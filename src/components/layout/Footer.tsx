@@ -9,7 +9,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm text-muted-foreground font-light tracking-wide text-center md:text-left">
-            © {currentYear} Biserica Un Nou Început. Toate drepturile rezervate.
+            Biserica Un Nou Început
           </p>
 
           <div className="flex items-center gap-6">

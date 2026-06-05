@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, Facebook, Instagram, HandHeart, MapPin } from 'lucide-react';
+import { Mail, Facebook, Instagram, HandHeart, MapPin, Phone } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Separator } from '@/components/ui/separator';
@@ -102,6 +102,21 @@ export default function Contact() {
                 <Separator />
 
                 <div className="space-y-5">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-sm bg-accent shrink-0">
+                      <Phone className="size-5 text-muted-foreground" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">Telefon</p>
+                      <a
+                        href={`tel:${photographerInfo.phone}`}
+                        className="text-base font-light hover:text-muted-foreground transition-colors"
+                      >
+                        {photographerInfo.phone}
+                      </a>
+                    </div>
+                  </div>
+
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-sm bg-accent shrink-0">
                       <Mail className="size-5 text-muted-foreground" />

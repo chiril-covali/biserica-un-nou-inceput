@@ -12,8 +12,8 @@ const NotFound = () => {
   return (
     <>
       <SEOHead
-        title="Page Not Found"
-        description="The page you're looking for doesn't exist. Return to the homepage to continue browsing."
+        title="Pagina nu a fost găsită"
+        description="Pagina pe care o cauți nu există. Revino la pagina principală pentru a continua navigarea."
       />
       
       <main className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-6">
@@ -42,7 +42,7 @@ const NotFound = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              Page Not Found
+              Pagina nu a fost găsită
             </motion.h2>
             
             <motion.p
@@ -51,8 +51,8 @@ const NotFound = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              The page you're looking for doesn't exist or has been moved.
-              Let's get you back on track.
+              Pagina pe care o cauți nu există sau a fost mutată.
+              Hai să te ducem înapoi.
             </motion.p>
           </div>
 
@@ -69,7 +69,7 @@ const NotFound = () => {
             >
               <Link to="/">
                 <ArrowLeft className="mr-2 size-5 transition-transform group-hover:-translate-x-1" />
-                Return to Home
+                Înapoi la Acasă
               </Link>
             </Button>
           </motion.div>

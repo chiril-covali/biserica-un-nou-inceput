@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Heart, HandHeart, Users } from 'lucide-react';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -19,7 +20,7 @@ export default function Donate() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <Heart className="size-12 mx-auto mb-6 text-muted-foreground" strokeWidth={1.2} />
+              <Heart className="size-12 mx-auto mb-6 text-red-400 fill-red-50" strokeWidth={1.2} />
               <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-light mb-4">
                 Poți dărui
               </p>
@@ -100,12 +101,18 @@ export default function Donate() {
                   Pentru detalii bancare sau alte modalități de a contribui, te rugăm să ne
                   contactezi direct. Vom fi bucuroși să-ți răspundem.
                 </p>
-                <a
-                  href="/contact"
+                <Link
+                  to="/contact"
                   className="inline-flex items-center gap-2 mt-4 px-8 py-3 bg-foreground text-background font-light tracking-wide hover:bg-foreground/90 transition-colors"
                 >
                   Contactează-ne
-                </a>
+                </Link>
+
+                <div className="mt-8 pt-8 border-t border-border/50">
+                  <p className="text-sm font-light text-muted-foreground tracking-wide">
+                    În curând va fi posibil să donezi și direct online prin card bancar.
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
           </div>

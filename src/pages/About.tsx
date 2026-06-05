@@ -53,9 +53,9 @@ export default function About() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  {photographerInfo.socialLinks.facebook && (
+                  {photographerInfo.pastorSocialLinks?.facebook && (
                     <a
-                      href={photographerInfo.socialLinks.facebook}
+                      href={photographerInfo.pastorSocialLinks.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-3 border border-border rounded-sm hover:bg-accent transition-colors"
@@ -64,9 +64,9 @@ export default function About() {
                       <Facebook className="size-5" />
                     </a>
                   )}
-                  {photographerInfo.socialLinks.instagram && (
+                  {photographerInfo.pastorSocialLinks?.instagram && (
                     <a
-                      href={photographerInfo.socialLinks.instagram}
+                      href={photographerInfo.pastorSocialLinks.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-3 border border-border rounded-sm hover:bg-accent transition-colors"
@@ -89,22 +89,40 @@ export default function About() {
                   <h2 className="text-3xl md:text-4xl font-light tracking-wide">
                     Vitalie Fedula
                   </h2>
-                  <p className="text-lg text-muted-foreground font-light tracking-wide">
-                    Pastor — Biserica Un Nou Început
-                  </p>
                 </div>
 
                 <Separator />
 
                 <div className="space-y-4">
-                  {photographerInfo.biography.split('\n\n').map((paragraph, index) => (
-                    <p
-                      key={index}
-                      className="text-base md:text-lg font-light leading-relaxed text-muted-foreground whitespace-pre-line"
-                    >
-                      {paragraph}
+                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                    Drag prieten,
+                  </p>
+                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                    Bine ai venit la <span className="font-bold text-foreground">Biserica UN NOU ÎNCEPUT!</span>
+                  </p>
+                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                    Te invităm să fii parte dintr-o comunitate de oameni care Îl iubesc pe Dumnezeu, sunt ancorați în Cuvântul Său și doresc să-L urmeze cu credincioșie pe Domnul Isus Hristos.
+                  </p>
+                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                    Aici este locul unde credința prinde viață, oamenii găsesc speranță, relațiile sunt zidite pe dragostea lui Hristos, iar Dumnezeu este glorificat în tot ceea ce facem. Ne dorim să creștem împreună în credință, să ne slujim unii pe alții cu dragoste și să fim o lumină pentru comunitatea noastră.
+                  </p>
+                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                    Indiferent de trecutul tău sau de etapa în care te afli, te încurajez să faci un pas spre Dumnezeu și să descoperi împreună cu noi bucuria unei vieți transformate prin Evanghelie. Cu ajutorul lui Dumnezeu, fiecare zi poate fi un nou început.
+                  </p>
+                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                    Te așteptăm cu drag!
+                  </p>
+                  <div className="pt-4">
+                    <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground italic">
+                      Cu dragoste în Hristos,
                     </p>
-                  ))}
+                    <p className="text-lg font-bold text-foreground mt-1">
+                      Vitalie Fedula
+                    </p>
+                    <p className="text-base font-medium text-muted-foreground">
+                      Pastor — Biserica UN NOU ÎNCEPUT
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             </div>

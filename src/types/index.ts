@@ -47,6 +47,10 @@ export interface PhotographerInfo {
     behance?: string;
     facebook?: string;
   };
+  pastorSocialLinks?: {
+    instagram?: string;
+    facebook?: string;
+  };
   portraitImage: string;
 }
 
@@ -63,6 +67,8 @@ export interface Ministry {
   title: string;
   schedule?: string;
   description: string;
+  image?: string;
+  link?: string;
 }
 
 export interface Value {

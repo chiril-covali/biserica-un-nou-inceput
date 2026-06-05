@@ -1,13 +1,26 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, MapPin } from 'lucide-react';
+import { ArrowRight, Heart, MapPin, Calendar as CalendarIcon } from 'lucide-react';
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { MapEmbed } from '@/components/MapEmbed';
 import { churchValues, ministries } from '@/data/church';
+import { format, nextDay, startOfToday } from 'date-fns';
+import { ro } from 'date-fns/locale';
 
 export default function Home() {
+  const today = startOfToday();
+  
+  const getNextServiceDate = (dayIndex: 0 | 1 | 2 | 3 | 4 | 5 | 6) => {
+    const next = nextDay(today, dayIndex);
+    return format(next, 'd MMMM', { locale: ro });
+  };
+
+  const nextSunday = getNextServiceDate(0);
+  const nextWednesday = getNextServiceDate(3);
+  const nextSaturday = getNextServiceDate(6);
+
   return (
     <>
       <SEOHead />
@@ -32,15 +45,23 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: 'easeOut' }}
             >
-              <p className="text-xs sm:text-sm md:text-base tracking-[0.4em] text-white/80 font-light uppercase">
+              <p className="text-sm sm:text-base md:text-xl tracking-[0.6em] text-white font-bold uppercase">
                 Biserica
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extralight tracking-widest text-white">
                 UN NOU ÎNCEPUT
               </h1>
-              <p className="text-base sm:text-lg md:text-2xl font-light tracking-wide text-white/90 max-w-3xl mx-auto leading-relaxed">
-                Glorificăm pe Isus. Suntem transformați prin Cuvânt. Slujim prin puterea Duhului Sfânt.
-              </p>
+              <div className="space-y-2">
+                <p className="text-base sm:text-lg md:text-2xl font-light tracking-wide text-white/90 max-w-3xl mx-auto leading-relaxed">
+                  Glorificăm pe Isus.
+                </p>
+                <p className="text-base sm:text-lg md:text-2xl font-light tracking-wide text-white/90 max-w-3xl mx-auto leading-relaxed">
+                  Suntem transformați prin Cuvânt.
+                </p>
+                <p className="text-base sm:text-lg md:text-2xl font-light tracking-wide text-white/90 max-w-3xl mx-auto leading-relaxed">
+                  Slujim prin puterea Duhului Sfânt.
+                </p>
+              </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-4">
                 <Link
@@ -79,7 +100,7 @@ export default function Home() {
                 Bine ai venit
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-wide mt-4">
-                O comunitate transformată de Isus Hristos
+                O comunitate transformată de <br className="hidden sm:block" /> Isus Hristos
               </h2>
               <div className="space-y-4 text-base sm:text-lg font-light leading-relaxed text-muted-foreground mt-6">
                 <p>
@@ -133,6 +154,64 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Program */}
+        <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border bg-accent/30">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-12 sm:mb-16 space-y-3">
+                <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light">
+                  Vino cu noi
+                </p>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide">
+                  Programul bisericii
+                </h2>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <ScrollReveal delay={0.1}>
+                <div className="p-8 border border-border bg-background space-y-4 text-center group hover:border-primary/30 transition-colors">
+                  <div className="flex flex-col items-center gap-2">
+                    <CalendarIcon className="size-5 text-primary/60" />
+                    <h3 className="text-xl font-bold tracking-wide text-primary uppercase">Duminică</h3>
+                    <p className="text-sm font-semibold text-muted-foreground">{nextSunday}</p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-lg font-medium">10:00 — Serviciu Divin</p>
+                    <p className="text-sm text-muted-foreground font-light">Închinare și Cuvânt</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={0.2}>
+                <div className="p-8 border border-border bg-background space-y-4 text-center group hover:border-primary/30 transition-colors">
+                  <div className="flex flex-col items-center gap-2">
+                    <CalendarIcon className="size-5 text-primary/60" />
+                    <h3 className="text-xl font-bold tracking-wide text-primary uppercase">Miercuri</h3>
+                    <p className="text-sm font-semibold text-muted-foreground">{nextWednesday}</p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-lg font-medium">18:00 — Seară de tineret</p>
+                    <p className="text-sm text-muted-foreground font-light">Părtășie și creștere</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={0.3}>
+                <div className="p-8 border border-border bg-background space-y-4 text-center group hover:border-primary/30 transition-colors">
+                  <div className="flex flex-col items-center gap-2">
+                    <CalendarIcon className="size-5 text-primary/60" />
+                    <h3 className="text-xl font-bold tracking-wide text-primary uppercase">Sâmbătă</h3>
+                    <p className="text-sm font-semibold text-muted-foreground">{nextSaturday}</p>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-lg font-medium">07:00 — Rugăciunea bărbaților</p>
+                    <p className="text-sm text-muted-foreground font-light">Micul dejun cu rugăciune</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
         {/* Slujiri — TOATE */}
         <section id="slujiri" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 border-t border-border scroll-mt-20">
           <div className="max-w-6xl mx-auto">
@@ -154,9 +233,9 @@ export default function Home() {
               {ministries.map((m, index) => (
                 <ScrollReveal key={m.id} delay={index * 0.04}>
                   <div className="h-full border border-border bg-background hover:border-foreground/30 transition-colors overflow-hidden flex flex-col">
-                    <div className="aspect-[4/3] bg-accent/40 overflow-hidden">
+                    <div className="aspect-[4/3] bg-accent/40 overflow-hidden relative">
                       <img
-                        src={`https://images.unsplash.com/photo-${
+                        src={m.image || `https://images.unsplash.com/photo-${
                           [
                             '1529070538774-1843cb3265df',
                             '1511632765486-a01980e01a18',
@@ -171,6 +250,16 @@ export default function Home() {
                         loading="lazy"
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                       />
+                      {m.link && (
+                        <a 
+                          href={m.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors"
+                        >
+                          <ArrowRight className="size-4 -rotate-45" />
+                        </a>
+                      )}
                     </div>
                     <div className="p-6 space-y-2 flex-1">
                       {m.schedule && (

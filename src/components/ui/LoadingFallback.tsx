@@ -10,7 +10,7 @@ export function LoadingFallback() {
       <div className="flex flex-col items-center gap-4">
         <Loader2 className="size-8 animate-spin text-muted-foreground" />
         <p className="text-sm font-light tracking-wide text-muted-foreground">
-          Loading...
+          Se încarcă...
         </p>
       </div>
     </div>

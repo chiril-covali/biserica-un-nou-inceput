@@ -23,20 +23,16 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const queryClient = new QueryClient();
 
 function AnimatedRoutes() {
-  const location = useLocation();
-
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-        <Route path="/despre" element={<PageTransition><About /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-        <Route path="/donatii" element={<PageTransition><Donate /></PageTransition>} />
-        <Route path="/biblia" element={<PageTransition><Bible /></PageTransition>} />
-        <Route path="/lucrari" element={<Navigate to="/#slujiri" replace />} />
-        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
-      </Routes>
-    </AnimatePresence>
+    <Routes>
+      <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+      <Route path="/despre" element={<PageTransition><About /></PageTransition>} />
+      <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+      <Route path="/donatii" element={<PageTransition><Donate /></PageTransition>} />
+      <Route path="/biblia" element={<PageTransition><Bible /></PageTransition>} />
+      <Route path="/lucrari" element={<Navigate to="/#slujiri" replace />} />
+      <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+    </Routes>
   );
 }
 

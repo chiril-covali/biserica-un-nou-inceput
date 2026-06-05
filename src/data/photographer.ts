@@ -2,7 +2,6 @@ import type { PhotographerInfo } from '@/types';
 
 /**
  * Informații despre Biserica UN NOU ÎNCEPUT
- * (Numele variabilei este păstrat pentru compatibilitate cu importurile existente)
  */
 export const photographerInfo: PhotographerInfo = {
   name: 'Biserica Un Nou Început',
@@ -30,13 +29,17 @@ Biserica UN NOU ÎNCEPUT`,
   clients: [],
   education: '',
   location: '',
-  email: 'contact@unnouinceput.md',
-  phone: '',
+  email: 'bisericaunnouinceput@gmail.com',
+  phone: '+37368254128',
   availability: '',
   socialLinks: {
     facebook: 'https://www.facebook.com/p/Biserica-Un-Nou-%C3%8Enceput-61586237546172/',
     instagram: 'https://www.instagram.com/biserica.unnouinceput/',
   },
+  pastorSocialLinks: {
+    facebook: 'https://www.facebook.com/profile.php?id=61578943004387&locale=ro_RO#',
+    instagram: 'https://www.instagram.com/vitaliefedula/',
+  },
   portraitImage:
-    'https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&w=1080&q=80',
+    '/poze/pastor1-optimized.webp',
 };

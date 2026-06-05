@@ -48,10 +48,10 @@ export class ErrorBoundary extends Component<Props, State> {
             
             <div className="space-y-3">
               <h1 className="text-3xl md:text-4xl font-light tracking-wide">
-                Something went wrong
+                Ceva nu a mers bine
               </h1>
               <p className="text-base text-muted-foreground font-light leading-relaxed">
-                We encountered an unexpected error. Don't worry, your data is safe.
+                Am întâmpinat o eroare neașteptată. Nu-ți face griji, datele tale sunt în siguranță.
               </p>
             </div>
 
@@ -59,7 +59,7 @@ export class ErrorBoundary extends Component<Props, State> {
               onClick={this.handleReset}
               className="w-full md:w-auto px-8 py-6 text-base font-light tracking-wide"
             >
-              Return to Home
+              Înapoi la Acasă
             </Button>
           </div>
         </div>

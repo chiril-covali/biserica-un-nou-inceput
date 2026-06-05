@@ -1,9 +1,11 @@
-import { useState, FormEvent } from 'react';
-import { motion } from 'framer-motion';
-import { BookOpen, Search, Shuffle, Loader2 } from 'lucide-react';
+import { useState, FormEvent, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { BookOpen, Search, Shuffle, Loader2, ChevronLeft, ChevronRight, List as ListIcon } from 'lucide-react';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { OLD_TESTAMENT, NEW_TESTAMENT, ALL_BOOKS, BibleBook } from '@/data/bible-books';
+import { cn } from '@/lib/utils';
 
 interface Verse {
   book_name: string;
@@ -22,20 +24,12 @@ interface BibleResponse {
 
 const TRANSLATION = 'rccv';
 
-const SUGGESTIONS = [
-  'Ioan 3:16',
-  'Psalmi 23',
-  'Romani 8:28',
-  'Filipeni 4:13',
-  'Matei 11:28-30',
-  '1 Corinteni 13',
-];
-
 export default function Bible() {
-  const [query, setQuery] = useState('Ioan 3:16');
+  const [query, setQuery] = useState('Ioan 3');
   const [data, setData] = useState<BibleResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showBooks, setShowBooks] = useState(true);
 
   async function fetchPassage(passage: string) {
     setLoading(true);
@@ -50,11 +44,13 @@ export default function Bible() {
         setData(null);
       } else {
         setData(json);
+        setQuery(json.reference);
       }
     } catch (e) {
       setError('Nu am putut încărca pasajul. Încearcă din nou.');
     } finally {
       setLoading(false);
+      setShowBooks(false);
     }
   }
 
@@ -88,109 +84,224 @@ export default function Bible() {
     if (query.trim()) fetchPassage(query.trim());
   };
 
+  useEffect(() => {
+    // Initial state is already showBooks: true
+    // We don't fetch anything to avoid switching to article view automatically
+  }, []);
+
+  const handleNextChapter = () => {
+    if (!data || data.verses.length === 0) return;
+    const v = data.verses[0];
+    const currentBook = ALL_BOOKS.find(b => b.name === v.book_name);
+    if (!currentBook) return;
+
+    if (v.chapter < currentBook.chapters) {
+      fetchPassage(`${v.book_name} ${v.chapter + 1}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const currentIndex = ALL_BOOKS.findIndex(b => b.name === v.book_name);
+      if (currentIndex < ALL_BOOKS.length - 1) {
+        const nextBook = ALL_BOOKS[currentIndex + 1];
+        fetchPassage(`${nextBook.name} 1`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const handlePrevChapter = () => {
+    if (!data || data.verses.length === 0) return;
+    const v = data.verses[0];
+    
+    if (v.chapter > 1) {
+      fetchPassage(`${v.book_name} ${v.chapter - 1}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const currentIndex = ALL_BOOKS.findIndex(b => b.name === v.book_name);
+      if (currentIndex > 0) {
+        const prevBook = ALL_BOOKS[currentIndex - 1];
+        fetchPassage(`${prevBook.name} ${prevBook.chapters}`);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <>
       <SEOHead
         title="Biblia"
-        description="Caută versete și pasaje biblice în traducerea Cornilescu — Biserica Un Nou Început."
+        description="Citește și caută în Sfânta Scriptură — Biserica Un Nou Început."
       />
 
-      <div className="min-h-screen">
-        <section className="py-20 md:py-28 px-6 lg:px-8 border-b border-border">
+      <div className="min-h-screen pb-20">
+        <section className="py-20 md:py-28 px-6 lg:px-8 border-b border-border bg-accent/5">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <motion.div
               initial={{ opacity: 0.8, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <BookOpen className="size-10 mx-auto mb-4 text-muted-foreground" strokeWidth={1.2} />
+              <BookOpen className="size-10 mx-auto mb-4 text-primary/60" strokeWidth={1.2} />
               <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-light mb-3">
-                Cuvântul lui Dumnezeu
+                Sfânta Scriptură
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-4">
                 Biblia
               </h1>
               <p className="text-base md:text-lg text-muted-foreground font-light">
-                Caută orice verset sau capitol — traducerea Cornilescu.
+                Cuvântul lui Dumnezeu pentru viața ta.
               </p>
             </motion.div>
           </div>
         </section>
 
-        <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-3">
-              <Input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="ex: Ioan 3:16 sau Psalmi 23"
-                className="flex-1 h-12 text-base"
-                aria-label="Caută verset sau pasaj"
-              />
-              <Button type="submit" disabled={loading} className="h-12 px-6">
-                {loading ? <Loader2 className="size-4 animate-spin" /> : <Search className="size-4" />}
-                <span className="ml-2">Caută</span>
+        <section className="sticky top-16 z-30 bg-background/80 backdrop-blur-md border-b border-border py-4 px-4">
+          <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-3">
+            <form onSubmit={onSubmit} className="flex-1 flex gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                <Input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="ex: Ioan 3 sau Psalmi 23"
+                  className="pl-10 h-11 text-base bg-accent/20 border-none focus-visible:ring-1 ring-primary/20"
+                  aria-label="Caută verset sau pasaj"
+                />
+              </div>
+              <Button type="submit" disabled={loading} className="h-11 px-6 shadow-sm">
+                {loading ? <Loader2 className="size-4 animate-spin" /> : "Caută"}
+              </Button>
+            </form>
+            <div className="flex gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowBooks(!showBooks)}
+                className={cn("h-11 px-4 flex-1 md:flex-none", showBooks && "bg-accent")}
+              >
+                <ListIcon className="size-4 mr-2" />
+                Cărți
               </Button>
               <Button
                 type="button"
                 variant="outline"
                 onClick={fetchRandom}
                 disabled={loading}
-                className="h-12 px-4"
+                className="h-11 px-4 flex-1 md:flex-none"
               >
-                <Shuffle className="size-4" />
-                <span className="ml-2 sm:hidden md:inline">Aleator</span>
+                <Shuffle className="size-4 mr-2" />
+                Aleator
               </Button>
-            </form>
-
-            <div className="flex flex-wrap gap-2">
-              {SUGGESTIONS.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => {
-                    setQuery(s);
-                    fetchPassage(s);
-                  }}
-                  className="text-xs md:text-sm px-3 py-1.5 border border-border hover:bg-accent transition-colors font-light"
-                >
-                  {s}
-                </button>
-              ))}
             </div>
+          </div>
+        </section>
 
-            {error && (
-              <div className="p-4 border border-destructive/30 bg-destructive/5 text-destructive text-sm">
-                {error}
-              </div>
-            )}
+        <section className="px-4 sm:px-6 lg:px-8 py-10">
+          <div className="max-w-4xl mx-auto">
+            <AnimatePresence mode="wait">
+              {showBooks ? (
+                <motion.div
+                  key="books-list"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="overflow-hidden space-y-8 bg-accent/10 p-6 md:p-10 border border-border rounded-xl"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-medium border-b border-border pb-2 text-primary/70">Vechiul Testament</h3>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        {OLD_TESTAMENT.map(book => (
+                          <button
+                            key={book.name}
+                            onClick={() => fetchPassage(`${book.name} 1`)}
+                            className="text-left text-sm py-1.5 px-2 hover:bg-primary/5 hover:text-primary transition-colors rounded"
+                          >
+                            {book.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-medium border-b border-border pb-2 text-primary/70">Noul Testament</h3>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        {NEW_TESTAMENT.map(book => (
+                          <button
+                            key={book.name}
+                            onClick={() => fetchPassage(`${book.name} 1`)}
+                            className="text-left text-sm py-1.5 px-2 hover:bg-primary/5 hover:text-primary transition-colors rounded"
+                          >
+                            {book.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ) : (
+                <div className="space-y-8">
+                  {error && (
+                    <div className="p-4 border border-destructive/30 bg-destructive/5 text-destructive text-sm rounded-lg text-center">
+                      {error}
+                    </div>
+                  )}
 
-            {data && !error && (
-              <motion.article
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="border border-border p-6 md:p-10 bg-accent/20 space-y-6"
-              >
-                <header className="space-y-1 border-b border-border pb-4">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">
-                    {data.translation_name}
-                  </p>
-                  <h2 className="text-2xl md:text-3xl font-light tracking-wide">{data.reference}</h2>
-                </header>
-                <div className="space-y-3 text-base md:text-lg font-light leading-relaxed">
-                  {data.verses.map((v, i) => (
-                    <p key={i}>
-                      <sup className="text-xs text-muted-foreground mr-2 font-medium">{v.verse}</sup>
-                      {v.text.trim()}
-                    </p>
-                  ))}
+                  {data && !error && (
+                    <motion.article
+                      key={data.reference}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="space-y-10"
+                    >
+                      <header className="flex flex-col md:flex-row justify-between items-center gap-6 border-b border-border pb-6">
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          onClick={handlePrevChapter}
+                          className="size-12 rounded-full border border-border hover:bg-accent"
+                          title="Capitolul anterior"
+                        >
+                          <ChevronLeft className="size-6" />
+                        </Button>
+                        
+                        <div className="text-center">
+                          <h2 className="text-3xl md:text-4xl font-light tracking-wide">{data.reference}</h2>
+                        </div>
+
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          onClick={handleNextChapter}
+                          className="size-12 rounded-full border border-border hover:bg-accent"
+                          title="Capitolul următor"
+                        >
+                          <ChevronRight className="size-6" />
+                        </Button>
+                      </header>
+
+                      <div className="space-y-6 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto px-4">
+                        {data.verses.map((v, i) => (
+                          <p key={i} className="relative pl-8">
+                            <span className="absolute left-0 top-1 text-xs font-bold text-primary/40 tabular-nums">
+                              {v.verse}
+                            </span>
+                            {v.text.trim()}
+                          </p>
+                        ))}
+                      </div>
+
+                      <footer className="flex justify-center gap-4 pt-10 border-t border-border">
+                        <Button variant="outline" onClick={handlePrevChapter} className="gap-2">
+                          <ChevronLeft className="size-4" /> Anterior
+                        </Button>
+                        <Button variant="outline" onClick={handleNextChapter} className="gap-2">
+                          Următor <ChevronRight className="size-4" />
+                        </Button>
+                      </footer>
+                    </motion.article>
+                  )}
                 </div>
-              </motion.article>
-            )}
-
-            <p className="text-xs text-muted-foreground font-light text-center">
-              Date oferite de bible-api.com — Cornilescu Corrected Romanian Version.
-            </p>
+              )}
+            </AnimatePresence>
           </div>
         </section>
       </div>
