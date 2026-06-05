@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { name: 'Acasă', path: '/' },
   { name: 'Despre', path: '/despre' },
-  { name: 'Lucrări', path: '/lucrari' },
+  { name: 'Biblia', path: '/biblia' },
   { name: 'Contact', path: '/contact' },
   { name: 'Donații', path: '/donatii' },
 ];
