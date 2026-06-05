@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import { Mail, Facebook, Instagram } from 'lucide-react';
+import { Mail, Facebook, Instagram, HandHeart, MapPin } from 'lucide-react';
 import { photographerInfo } from '@/data/photographer';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
+import { MapEmbed } from '@/components/MapEmbed';
 
 export default function Contact() {
   return (
@@ -14,41 +15,72 @@ export default function Contact() {
       />
 
       <div className="min-h-screen">
-        <section className="py-24 md:py-32 px-6 lg:px-8 border-b border-border">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
+        <section className="py-20 md:py-28 px-6 lg:px-8 border-b border-border">
+          <div className="max-w-4xl mx-auto text-center space-y-4">
             <motion.div
               initial={{ opacity: 0.8, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-light mb-4">
+              <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light mb-3">
                 Vorbește cu noi
               </p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
                 Contact
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-light tracking-wide">
                 Ne-ar plăcea să te cunoaștem și să ne rugăm împreună cu tine.
               </p>
             </motion.div>
           </div>
         </section>
 
-        <section className="py-16 md:py-24 px-6 lg:px-8">
+        {/* Secțiunea EVIDENȚIATĂ — Nevoi de rugăciune */}
+        <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-foreground text-background">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="grid md:grid-cols-[auto,1fr] gap-6 md:gap-8 items-center"
+            >
+              <div className="flex md:block justify-center">
+                <div className="size-16 md:size-20 rounded-full border border-background/30 flex items-center justify-center">
+                  <HandHeart className="size-8 md:size-10" strokeWidth={1.2} />
+                </div>
+              </div>
+              <div className="space-y-3 text-center md:text-left">
+                <p className="text-xs tracking-[0.3em] uppercase opacity-70 font-light">
+                  Ești în dificultate?
+                </p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide">
+                  Trimite-ne o nevoie de rugăciune
+                </h2>
+                <p className="text-base sm:text-lg font-light leading-relaxed opacity-90">
+                  Biserica noastră se va ruga pentru tine în confidențialitate. Folosește
+                  formularul de mai jos și alege „Nevoie de rugăciune” la tipul de mesaj.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+            <div className="grid md:grid-cols-2 gap-10 md:gap-12 lg:gap-16">
               <motion.div
                 className="space-y-6"
                 initial={{ opacity: 0.8, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4 }}
               >
-                <div className="space-y-3">
-                  <h2 className="text-3xl md:text-4xl font-light tracking-wide">
+                <div className="space-y-2">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide">
                     Trimite-ne un mesaj
                   </h2>
-                  <p className="text-muted-foreground font-light">
-                    Completează formularul de mai jos și îți vom răspunde cât mai curând posibil.
+                  <p className="text-sm sm:text-base text-muted-foreground font-light">
+                    Completează formularul și îți vom răspunde cât mai curând.
                   </p>
                 </div>
 
@@ -56,32 +88,29 @@ export default function Contact() {
               </motion.div>
 
               <motion.div
-                className="space-y-8"
+                className="space-y-6"
                 initial={{ opacity: 0.8, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
-                <div className="space-y-3">
-                  <h2 className="text-3xl md:text-4xl font-light tracking-wide">
+                <div className="space-y-2">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide">
                     Informații de contact
                   </h2>
-                  <p className="text-muted-foreground font-light">
-                    Preferi să ne contactezi direct? Iată cum ne poți găsi.
-                  </p>
                 </div>
 
                 <Separator />
 
-                <div className="space-y-6">
+                <div className="space-y-5">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-sm bg-accent">
+                    <div className="p-3 rounded-sm bg-accent shrink-0">
                       <Mail className="size-5 text-muted-foreground" />
                     </div>
                     <div className="space-y-1">
-                      <p className="text-sm font-light tracking-wide text-muted-foreground">Email</p>
+                      <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">Email</p>
                       <a
                         href={`mailto:${photographerInfo.email}`}
-                        className="text-base md:text-lg font-light hover:text-muted-foreground transition-colors break-all"
+                        className="text-base font-light hover:text-muted-foreground transition-colors break-all"
                       >
                         {photographerInfo.email}
                       </a>
@@ -90,18 +119,18 @@ export default function Contact() {
 
                   {photographerInfo.socialLinks.facebook && (
                     <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-sm bg-accent">
+                      <div className="p-3 rounded-sm bg-accent shrink-0">
                         <Facebook className="size-5 text-muted-foreground" />
                       </div>
                       <div className="space-y-1">
-                        <p className="text-sm font-light tracking-wide text-muted-foreground">
+                        <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">
                           Facebook
                         </p>
                         <a
                           href={photographerInfo.socialLinks.facebook}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-base md:text-lg font-light hover:text-muted-foreground transition-colors"
+                          className="text-base font-light hover:text-muted-foreground transition-colors"
                         >
                           Biserica Un Nou Început
                         </a>
@@ -111,18 +140,18 @@ export default function Contact() {
 
                   {photographerInfo.socialLinks.instagram && (
                     <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-sm bg-accent">
+                      <div className="p-3 rounded-sm bg-accent shrink-0">
                         <Instagram className="size-5 text-muted-foreground" />
                       </div>
                       <div className="space-y-1">
-                        <p className="text-sm font-light tracking-wide text-muted-foreground">
+                        <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">
                           Instagram
                         </p>
                         <a
                           href={photographerInfo.socialLinks.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-base md:text-lg font-light hover:text-muted-foreground transition-colors"
+                          className="text-base font-light hover:text-muted-foreground transition-colors"
                         >
                           @biserica.unnouinceput
                         </a>
@@ -135,7 +164,18 @@ export default function Contact() {
           </div>
         </section>
 
-        <div className="h-16" />
+        {/* Hartă */}
+        <section className="pb-16 md:pb-24 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto space-y-6">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <MapPin className="size-5" />
+              <h2 className="text-xl sm:text-2xl font-light tracking-wide">Cum ne găsești</h2>
+            </div>
+            <div className="h-[320px] sm:h-[420px] md:h-[500px] border border-border">
+              <MapEmbed className="h-full" />
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
