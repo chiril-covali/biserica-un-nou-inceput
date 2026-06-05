@@ -23,34 +23,29 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 
-// Validation schema with security best practices
 const contactFormSchema = z.object({
   name: z
     .string()
     .trim()
-    .min(2, { message: 'Name must be at least 2 characters' })
-    .max(100, { message: 'Name must be less than 100 characters' }),
+    .min(2, { message: 'Numele trebuie să aibă cel puțin 2 caractere' })
+    .max(100, { message: 'Numele trebuie să aibă mai puțin de 100 de caractere' }),
   email: z
     .string()
     .trim()
-    .email({ message: 'Please enter a valid email address' })
-    .max(255, { message: 'Email must be less than 255 characters' }),
-  projectType: z.enum(['editorial', 'commercial', 'personal'], {
-    required_error: 'Please select a project type',
+    .email({ message: 'Te rugăm să introduci o adresă de email validă' })
+    .max(255, { message: 'Emailul trebuie să aibă mai puțin de 255 de caractere' }),
+  projectType: z.enum(['general', 'rugaciune', 'implicare'], {
+    required_error: 'Te rugăm să selectezi tipul mesajului',
   }),
   message: z
     .string()
     .trim()
-    .min(10, { message: 'Message must be at least 10 characters' })
-    .max(1000, { message: 'Message must be less than 1000 characters' }),
+    .min(10, { message: 'Mesajul trebuie să aibă cel puțin 10 caractere' })
+    .max(1000, { message: 'Mesajul trebuie să aibă mai puțin de 1000 de caractere' }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-/**
- * Contact form component with validation and error handling
- * Uses react-hook-form + zod for type-safe validation
- */
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -67,45 +62,34 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
-    
+
     try {
-      // Formspree integration - replace YOUR_FORM_ID with your actual form ID
       const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: data.name,
           email: data.email,
           projectType: data.projectType,
           message: data.message,
-          _subject: `New ${data.projectType} inquiry from ${data.name}`,
+          _subject: `Mesaj nou (${data.projectType}) de la ${data.name}`,
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
+      if (!response.ok) throw new Error('Trimiterea a eșuat');
 
-      // Show success state
       setIsSuccess(true);
       form.reset();
-
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
-    } catch (error) {
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch {
       form.setError('root', {
-        message: 'Failed to send message. Please try again.',
+        message: 'Mesajul nu a putut fi trimis. Te rugăm să încerci din nou.',
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Show success message
   if (isSuccess) {
     return (
       <motion.div
@@ -119,11 +103,11 @@ export function ContactForm() {
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
         >
-          <CheckCircle2 className="size-16 mx-auto text-green-600 dark:text-green-400" />
+          <CheckCircle2 className="size-16 mx-auto text-green-600" />
         </motion.div>
-        <h3 className="text-2xl font-light tracking-wide">Message Sent!</h3>
+        <h3 className="text-2xl font-light tracking-wide">Mesaj trimis!</h3>
         <p className="text-muted-foreground font-light leading-relaxed">
-          Thank you for reaching out. I'll get back to you as soon as possible.
+          Îți mulțumim că ne-ai scris. Îți vom răspunde cât mai curând posibil.
         </p>
       </motion.div>
     );
@@ -132,40 +116,30 @@ export function ContactForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        {/* Name Field */}
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-light tracking-wide">
-                Name
-              </FormLabel>
+              <FormLabel className="text-sm font-light tracking-wide">Nume</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Your full name"
-                  className="font-light"
-                  {...field}
-                />
+                <Input placeholder="Numele tău complet" className="font-light" {...field} />
               </FormControl>
               <FormMessage className="text-xs font-light" />
             </FormItem>
           )}
         />
 
-        {/* Email Field */}
         <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-light tracking-wide">
-                Email
-              </FormLabel>
+              <FormLabel className="text-sm font-light tracking-wide">Email</FormLabel>
               <FormControl>
                 <Input
                   type="email"
-                  placeholder="your.email@example.com"
+                  placeholder="email@exemplu.com"
                   className="font-light"
                   {...field}
                 />
@@ -175,30 +149,27 @@ export function ContactForm() {
           )}
         />
 
-        {/* Project Type Select */}
         <FormField
           control={form.control}
           name="projectType"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-light tracking-wide">
-                Project Type
-              </FormLabel>
+              <FormLabel className="text-sm font-light tracking-wide">Tipul mesajului</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger className="font-light">
-                    <SelectValue placeholder="Select project type" />
+                    <SelectValue placeholder="Selectează tipul mesajului" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent className="bg-popover z-50">
-                  <SelectItem value="editorial" className="font-light">
-                    Editorial
+                  <SelectItem value="general" className="font-light">
+                    Întrebare generală
                   </SelectItem>
-                  <SelectItem value="commercial" className="font-light">
-                    Commercial
+                  <SelectItem value="rugaciune" className="font-light">
+                    Cerere de rugăciune
                   </SelectItem>
-                  <SelectItem value="personal" className="font-light">
-                    Personal
+                  <SelectItem value="implicare" className="font-light">
+                    Vreau să mă implic
                   </SelectItem>
                 </SelectContent>
               </Select>
@@ -207,18 +178,15 @@ export function ContactForm() {
           )}
         />
 
-        {/* Message Textarea */}
         <FormField
           control={form.control}
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-light tracking-wide">
-                Message
-              </FormLabel>
+              <FormLabel className="text-sm font-light tracking-wide">Mesaj</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell me about your project..."
+                  placeholder="Spune-ne cum te putem ajuta..."
                   className="min-h-32 font-light resize-none"
                   {...field}
                 />
@@ -228,14 +196,12 @@ export function ContactForm() {
           )}
         />
 
-        {/* Root Error Message */}
         {form.formState.errors.root && (
           <div className="text-sm text-destructive font-light">
             {form.formState.errors.root.message}
           </div>
         )}
 
-        {/* Submit Button */}
         <Button
           type="submit"
           className="w-full py-6 text-base font-light tracking-wide"
@@ -244,10 +210,10 @@ export function ContactForm() {
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 size-5 animate-spin" />
-              Sending...
+              Se trimite...
             </>
           ) : (
-            'Send Message'
+            'Trimite mesajul'
           )}
         </Button>
       </form>

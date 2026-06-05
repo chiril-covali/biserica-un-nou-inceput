@@ -1,28 +1,19 @@
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 interface ThemeProviderProps {
   children: ReactNode;
-  attribute?: string;
-  defaultTheme?: string;
-  enableSystem?: boolean;
-  disableTransitionOnChange?: boolean;
 }
 
 /**
- * Theme Provider component wrapping next-themes
- * Provides dark mode support with system preference detection
+ * Theme Provider — fixat pe tema luminoasă (fără mod întunecat).
  */
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return (
-    <NextThemesProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-      {...props}
-    >
-      {children}
-    </NextThemesProvider>
-  );
+export function ThemeProvider({ children }: ThemeProviderProps) {
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove('dark');
+    root.classList.add('light');
+    root.style.colorScheme = 'light';
+  }, []);
+
+  return <>{children}</>;
 }
