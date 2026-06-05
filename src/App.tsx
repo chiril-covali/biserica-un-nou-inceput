@@ -12,12 +12,11 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { AnimatePresence } from "framer-motion";
 import { lazy, Suspense } from "react";
 
-// Code-split route components for better performance
 const Index = lazy(() => import("./pages/Index"));
-const Portfolio = lazy(() => import("./pages/Portfolio"));
-const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const About = lazy(() => import("./pages/About"));
+const Ministries = lazy(() => import("./pages/Ministries"));
 const Contact = lazy(() => import("./pages/Contact"));
+const Donate = lazy(() => import("./pages/Donate"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -28,54 +27,12 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <PageTransition>
-              <Index />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/portfolio"
-          element={
-            <PageTransition>
-              <Portfolio />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/project/:slug"
-          element={
-            <PageTransition>
-              <ProjectDetail />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <PageTransition>
-              <About />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <PageTransition>
-              <Contact />
-            </PageTransition>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <PageTransition>
-              <NotFound />
-            </PageTransition>
-          }
-        />
+        <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+        <Route path="/despre" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/lucrari" element={<PageTransition><Ministries /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        <Route path="/donatii" element={<PageTransition><Donate /></PageTransition>} />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
