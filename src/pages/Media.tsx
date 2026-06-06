@@ -70,55 +70,45 @@ export default function Media() {
               <div className="space-y-8">
                 <div className="flex items-center gap-3 border-b border-border pb-4">
                   <Instagram className="size-6 text-pink-600" />
-                  <h2 className="text-2xl font-light tracking-tight">Instagram Updates</h2>
+                  <h2 className="text-2xl font-light tracking-tight">Instagram</h2>
                 </div>
-                <div className="space-y-6">
-                  {/* Since IG doesn't have a simple feed iframe, we show recent curated posts with real links */}
-                  {[
-                    {
-                      id: 'ig-1',
-                      image: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&fit=crop&w=800&q=80',
-                      desc: 'Duminica aceasta ne vedem la ora 10:00! Vă așteptăm să ne închinăm împreună.',
-                      url: 'https://www.instagram.com/biserica.unnouinceput/'
-                    },
-                    {
-                      id: 'ig-2',
-                      image: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=80',
-                      desc: 'Timpul de tineret este unul plin de viață și bucurie. Te așteptăm miercuri!',
-                      url: 'https://www.instagram.com/tineret.unnouinceput/'
-                    }
-                  ].map((post) => (
-                    <motion.div 
-                      key={post.id}
-                      whileHover={{ scale: 1.01 }}
-                      className="bg-background border border-border rounded-xl overflow-hidden group shadow-sm"
-                    >
-                      <div className="aspect-video relative overflow-hidden">
-                        <img src={post.image} alt="Instagram Post" className="size-full object-cover" />
-                        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                           <Instagram className="size-8 text-white" />
-                        </div>
-                      </div>
-                      <div className="p-6 space-y-4">
-                        <p className="text-sm font-light text-muted-foreground leading-relaxed italic">
-                          "{post.desc}"
-                        </p>
-                        <Button asChild variant="outline" size="sm" className="w-full gap-2 font-light">
-                          <a href={post.url} target="_blank" rel="noopener noreferrer">
-                            Vezi pe Instagram <ExternalLink className="size-3" />
-                          </a>
-                        </Button>
-                      </div>
-                    </motion.div>
-                  ))}
+                
+                <div className="grid gap-6">
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="p-8 bg-gradient-to-br from-pink-500/5 to-purple-500/5 border border-pink-500/20 rounded-2xl space-y-6 transition-all"
+                  >
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-light">Pagina Bisericii</h3>
+                      <p className="text-sm text-muted-foreground font-light">Urmărește activitatea duminicală și noutățile bisericii.</p>
+                    </div>
+                    <Button asChild className="w-full bg-pink-600 hover:bg-pink-700 text-white rounded-xl h-12">
+                      <a href="https://www.instagram.com/biserica.unnouinceput/" target="_blank" rel="noopener noreferrer" className="gap-2">
+                        @biserica.unnouinceput <ExternalLink className="size-4" />
+                      </a>
+                    </Button>
+                  </motion.div>
+
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="p-8 bg-gradient-to-br from-orange-500/5 to-pink-500/5 border border-orange-500/20 rounded-2xl space-y-6 transition-all"
+                  >
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-light">Grupul de Tineret</h3>
+                      <p className="text-sm text-muted-foreground font-light">Imagini și momente de la întâlnirile tinerilor noștri.</p>
+                    </div>
+                    <Button asChild className="w-full bg-gradient-to-r from-orange-600 to-pink-600 hover:from-orange-700 hover:to-pink-700 text-white rounded-xl h-12 border-none">
+                      <a href="https://www.instagram.com/tineret.unnouinceput/" target="_blank" rel="noopener noreferrer" className="gap-2">
+                        @tineret.unnouinceput <ExternalLink className="size-4" />
+                      </a>
+                    </Button>
+                  </motion.div>
                 </div>
-                <div className="p-8 bg-gradient-to-br from-pink-500/10 to-orange-500/10 rounded-2xl border border-pink-500/20 text-center space-y-4">
-                  <p className="text-base font-light">Vizitează profilul nostru pentru toate postările</p>
-                  <Button asChild className="bg-pink-600 hover:bg-pink-700 text-white rounded-full px-8">
-                    <a href="https://www.instagram.com/biserica.unnouinceput/" target="_blank" rel="noopener noreferrer">
-                      @biserica.unnouinceput
-                    </a>
-                  </Button>
+
+                <div className="p-10 border border-dashed border-border rounded-2xl text-center space-y-4">
+                  <p className="text-sm text-muted-foreground font-light italic">
+                    "Instagram nu permite momentan afișarea automată a pozelor fără autentificare. Te invităm să ne urmărești direct pe aplicație pentru cele mai noi postări!"
+                  </p>
                 </div>
               </div>
 
