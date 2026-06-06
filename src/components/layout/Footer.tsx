@@ -52,16 +52,16 @@ export function Footer() {
             <h4 className="text-white font-medium tracking-widest uppercase text-xs">Contact</h4>
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
-                <MapPin className="size-5 text-primary shrink-0" />
-                <span className="text-sm font-light">Strada Răsăritului 10, Popești-Leordeni, România</span>
+                <MapPin className="size-5 text-white shrink-0" />
+                <span className="text-sm font-light">Strada Alba Iulia 75 F, Chișinău, Moldova</span>
               </li>
               <li className="flex items-center gap-4">
-                <Phone className="size-5 text-primary shrink-0" />
-                <span className="text-sm font-light">+40 722 544 444</span>
+                <Phone className="size-5 text-white shrink-0" />
+                <span className="text-sm font-light">+373 68 254 128</span>
               </li>
               <li className="flex items-center gap-4">
-                <Mail className="size-5 text-primary shrink-0" />
-                <span className="text-sm font-light">contact@unnouinceput.ro</span>
+                <Mail className="size-5 text-white shrink-0" />
+                <span className="text-sm font-light">bisericaunnouinceput@gmail.com</span>
               </li>
             </ul>
           </div>
