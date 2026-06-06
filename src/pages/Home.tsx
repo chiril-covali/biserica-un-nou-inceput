@@ -165,8 +165,9 @@ export default function Home() {
         </section>
 
         {/* Program */}
-        <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border bg-slate-50/50 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+          <div className="max-w-6xl mx-auto relative z-10">
             <ScrollReveal>
               <div className="text-center mb-12 sm:mb-16 space-y-3">
                 <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light">

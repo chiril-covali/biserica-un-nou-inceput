@@ -53,15 +53,15 @@ export function Footer() {
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
                 <MapPin className="size-5 text-primary shrink-0" />
-                <span className="text-sm font-light">Strada Exemplu 123, Oraș, Țară</span>
+                <span className="text-sm font-light">Strada Răsăritului 10, Popești-Leordeni, România</span>
               </li>
               <li className="flex items-center gap-4">
                 <Phone className="size-5 text-primary shrink-0" />
-                <span className="text-sm font-light">+40 123 456 789</span>
+                <span className="text-sm font-light">+40 722 544 444</span>
               </li>
               <li className="flex items-center gap-4">
                 <Mail className="size-5 text-primary shrink-0" />
-                <span className="text-sm font-light">contact@biserica.ro</span>
+                <span className="text-sm font-light">contact@unnouinceput.ro</span>
               </li>
             </ul>
           </div>
