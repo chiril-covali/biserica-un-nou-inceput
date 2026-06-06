@@ -1,23 +1,27 @@
 import type { Ministry, Value } from '@/types';
+import { Cross, Book, Flame } from 'lucide-react';
 
-export const churchValues: Value[] = [
+export const churchValues: (Value & { icon: any })[] = [
   {
     id: 'glorificam',
     title: 'Glorificăm pe Isus',
     description:
       'Credem că Isus Hristos este centrul vieții și al lucrării noastre. Dorim ca prin închinare, rugăciune și ascultare de Dumnezeu să-I aducem slavă în fiecare aspect al vieții.',
+    icon: Cross
   },
   {
     id: 'transformati',
     title: 'Suntem transformați prin Cuvânt',
     description:
       'Biblia este autoritatea supremă pentru credință și viață. Prin studiul și aplicarea Scripturii, Dumnezeu ne modelează caracterul și ne conduce spre maturitate spirituală.',
+    icon: Book
   },
   {
     id: 'slujim',
     title: 'Slujim prin puterea Duhului Sfânt',
     description:
       'Credem că Dumnezeu lucrează și astăzi prin Duhul Sfânt. El ne echipează pentru slujire, ne călăuzește și ne dă puterea de a fi martori ai lui Hristos în lume.',
+    icon: Flame
   },
 ];
 

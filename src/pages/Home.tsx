@@ -39,9 +39,6 @@ export default function Home() {
 
   return (
     <>
-      <SEOHead />
-
-      <div className="min-h-screen">
         {/* Hero */}
         <section className="relative min-h-[100svh] w-full overflow-hidden">
           <div className="absolute inset-0">
@@ -51,7 +48,8 @@ export default function Home() {
               className="w-full h-full object-cover"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/70" />
           </div>
 
           <div className="relative min-h-[100svh] flex flex-col items-center justify-center px-6 py-24">
@@ -69,27 +67,21 @@ export default function Home() {
               </h1>
               <div className="space-y-2">
                 <p className="text-base sm:text-lg md:text-2xl font-light tracking-wide text-white/90 max-w-3xl mx-auto leading-relaxed">
-                  Glorificăm pe Isus.
-                </p>
-                <p className="text-base sm:text-lg md:text-2xl font-light tracking-wide text-white/90 max-w-3xl mx-auto leading-relaxed">
-                  Suntem transformați prin Cuvânt.
-                </p>
-                <p className="text-base sm:text-lg md:text-2xl font-light tracking-wide text-white/90 max-w-3xl mx-auto leading-relaxed">
-                  Slujim prin puterea Duhului Sfânt.
+                  Glorificăm pe Isus. Suntem transformați prin Cuvânt. <br className="hidden md:block" /> Slujim prin puterea Duhului Sfânt.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-8">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-foreground font-light tracking-wide hover:bg-white/90 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-medium tracking-wide hover:bg-white/90 transition-colors shadow-lg"
                 >
                   Contactează-ne
                   <ArrowRight className="size-4" />
                 </Link>
                 <a
                   href="#slujiri"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/60 text-white font-light tracking-wide hover:bg-white hover:text-foreground transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-medium tracking-wide hover:bg-white hover:text-black transition-colors"
                 >
                   Slujirile noastre
                   <ArrowRight className="size-4" />
@@ -124,14 +116,10 @@ export default function Home() {
                   zilnic prin adevărul Scripturii și să slujim lui Dumnezeu și semenilor noștri prin
                   puterea Duhului Sfânt.
                 </p>
-                <p>
-                  Indiferent unde te afli în călătoria ta spirituală, te invităm să descoperi
-                  împreună cu noi bucuria unei vieți trăite pentru Hristos.
-                </p>
               </div>
               <Link
                 to="/despre"
-                className="inline-flex items-center gap-2 mt-6 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group underline underline-offset-4"
+                className="inline-flex items-center gap-2 mt-6 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group underline underline-offset-4 decoration-primary/30 hover:decoration-primary"
               >
                 <span>Citește cuvântul păstorului</span>
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
@@ -141,28 +129,30 @@ export default function Home() {
         </section>
 
         {/* Valori */}
-        <section className="py-16 sm:py-24 md:py-32 px-6 lg:px-8 border-t border-border bg-accent/30">
+        <section className="py-16 sm:py-24 md:py-32 px-6 lg:px-8 border-t border-border bg-accent/5">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
-              <div className="text-center mb-12 sm:mb-16 space-y-3">
+              <div className="text-center mb-16 sm:mb-20 space-y-3">
                 <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light">
                   Valorile noastre
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide">Pe ce zidim</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide">Pe ce zidim</h2>
               </div>
             </ScrollReveal>
 
             <div className="grid md:grid-cols-3 gap-8 md:gap-12">
               {churchValues.map((value, index) => (
                 <ScrollReveal key={value.id} delay={index * 0.1}>
-                  <div className="space-y-3 text-center md:text-left">
-                    <div className="text-4xl sm:text-5xl font-extralight text-muted-foreground">
-                      0{index + 1}
+                  <div className="group p-10 border border-border bg-background rounded-xl space-y-6 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-2">
+                    <div className="size-16 rounded-2xl bg-accent/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-500">
+                      <value.icon className="size-8" strokeWidth={1.5} />
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-light tracking-wide">{value.title}</h3>
-                    <p className="text-sm sm:text-base font-light leading-relaxed text-muted-foreground">
-                      {value.description}
-                    </p>
+                    <div className="space-y-4">
+                      <h3 className="text-2xl font-light tracking-wide">{value.title}</h3>
+                      <p className="text-base font-light leading-relaxed text-muted-foreground">
+                        {value.description}
+                      </p>
+                    </div>
                   </div>
                 </ScrollReveal>
               ))}
@@ -171,7 +161,7 @@ export default function Home() {
         </section>
 
         {/* Program */}
-        <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border bg-accent/30">
+        <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-12 sm:mb-16 space-y-3">
@@ -185,58 +175,39 @@ export default function Home() {
             </ScrollReveal>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              <ScrollReveal delay={0.1}>
-                <div className="p-8 border border-border bg-background space-y-4 text-center group hover:border-primary/30 transition-colors">
-                  <div className="flex flex-col items-center gap-2">
-                    <CalendarIcon className="size-5 text-primary/60" />
-                    <h3 className="text-xl font-bold tracking-wide text-primary uppercase">Duminică</h3>
-                    <p className="text-sm font-semibold text-muted-foreground">{nextSunday}</p>
+              {[
+                { day: 'Duminică', date: nextSunday, time: '10:00', title: 'Serviciu Divin', subtitle: 'Închinare și Cuvânt' },
+                { day: 'Miercuri', date: nextWednesday, time: '18:00', title: 'Seară de tineret', subtitle: 'Părtășie și creștere' },
+                { day: 'Sâmbătă', date: nextSaturday, time: '07:00', title: 'Rugăciunea bărbaților', subtitle: 'Micul dejun cu rugăciune' },
+              ].map((item, index) => (
+                <ScrollReveal key={item.day} delay={index * 0.1}>
+                  <div className="p-10 border border-border bg-background rounded-xl space-y-6 text-center group hover:border-primary/30 transition-all duration-300">
+                    <div className="space-y-2">
+                      <h3 className="text-2xl font-bold tracking-widest text-primary uppercase">{item.day}</h3>
+                      <p className="text-sm font-light text-muted-foreground">{item.date}</p>
+                    </div>
+                    <div className="h-px w-12 bg-primary/20 mx-auto" />
+                    <div className="space-y-2">
+                      <p className="text-3xl font-light tracking-tighter text-foreground">{item.time}</p>
+                      <p className="text-lg font-medium">{item.title}</p>
+                      <p className="text-sm text-muted-foreground font-light">{item.subtitle}</p>
+                    </div>
                   </div>
-                  <div className="space-y-2">
-                    <p className="text-lg font-medium">10:00 — Serviciu Divin</p>
-                    <p className="text-sm text-muted-foreground font-light">Închinare și Cuvânt</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={0.2}>
-                <div className="p-8 border border-border bg-background space-y-4 text-center group hover:border-primary/30 transition-colors">
-                  <div className="flex flex-col items-center gap-2">
-                    <CalendarIcon className="size-5 text-primary/60" />
-                    <h3 className="text-xl font-bold tracking-wide text-primary uppercase">Miercuri</h3>
-                    <p className="text-sm font-semibold text-muted-foreground">{nextWednesday}</p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-lg font-medium">18:00 — Seară de tineret</p>
-                    <p className="text-sm text-muted-foreground font-light">Părtășie și creștere</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-              <ScrollReveal delay={0.3}>
-                <div className="p-8 border border-border bg-background space-y-4 text-center group hover:border-primary/30 transition-colors">
-                  <div className="flex flex-col items-center gap-2">
-                    <CalendarIcon className="size-5 text-primary/60" />
-                    <h3 className="text-xl font-bold tracking-wide text-primary uppercase">Sâmbătă</h3>
-                    <p className="text-sm font-semibold text-muted-foreground">{nextSaturday}</p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-lg font-medium">07:00 — Rugăciunea bărbaților</p>
-                    <p className="text-sm text-muted-foreground font-light">Micul dejun cu rugăciune</p>
-                  </div>
-                </div>
-              </ScrollReveal>
+                </ScrollReveal>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Slujiri — TOATE */}
-        <section id="slujiri" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 border-t border-border scroll-mt-20">
+        <section id="slujiri" className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 border-t border-border scroll-mt-20 bg-accent/5">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
-              <div className="text-center mb-12 sm:mb-16 space-y-3">
+              <div className="text-center mb-12 sm:mb-20 space-y-3">
                 <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light">
                   Implică-te
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide">
                   Slujirile noastre
                 </h2>
                 <p className="text-base sm:text-lg text-muted-foreground font-light max-w-2xl mx-auto">
@@ -245,15 +216,15 @@ export default function Home() {
               </div>
             </ScrollReveal>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {ministries.map((m, index) => {
                 const currentImages = m.images || [m.image];
                 const currentIndex = activeGallery[m.id] || 0;
                 
                 return (
                   <ScrollReveal key={m.id} delay={index * 0.04}>
-                    <div className="h-full border border-border bg-background hover:border-foreground/30 transition-colors overflow-hidden flex flex-col group/card">
-                      <div className="aspect-[4/3] bg-accent/40 overflow-hidden relative">
+                    <div className="h-full border border-border bg-background hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col group/card rounded-xl">
+                      <div className="aspect-video bg-accent/40 overflow-hidden relative">
                         <img
                           src={currentImages[currentIndex] || `https://images.unsplash.com/photo-${
                             [
@@ -310,13 +281,13 @@ export default function Home() {
                           </a>
                         )}
                       </div>
-                      <div className="p-6 space-y-2 flex-1">
+                      <div className="p-8 space-y-4 flex-1">
                         {m.schedule && (
-                          <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">
+                          <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">
                             {m.schedule}
                           </p>
                         )}
-                        <h3 className="text-lg sm:text-xl font-light tracking-wide">{m.title}</h3>
+                        <h3 className="text-xl font-light tracking-wide">{m.title}</h3>
                         <p className="text-sm font-light leading-relaxed text-muted-foreground">
                           {m.description}
                         </p>
@@ -330,7 +301,7 @@ export default function Home() {
         </section>
 
         {/* Hartă */}
-        <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border bg-accent/30">
+        <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-border">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-8 sm:mb-12 space-y-3">
@@ -344,7 +315,7 @@ export default function Home() {
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <div className="h-[320px] sm:h-[420px] md:h-[500px] border border-border bg-background">
+              <div className="h-[320px] sm:h-[420px] md:h-[500px] border border-border bg-background rounded-2xl overflow-hidden shadow-inner">
                 <MapEmbed className="h-full" />
               </div>
             </ScrollReveal>
@@ -352,20 +323,20 @@ export default function Home() {
         </section>
 
         {/* Donație CTA */}
-        <section className="py-16 sm:py-24 md:py-32 px-6 lg:px-8 border-t border-border bg-foreground text-background">
+        <section className="py-16 sm:py-24 md:py-32 px-6 lg:px-8 border-t border-border bg-zinc-950 text-white">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <ScrollReveal>
-              <Heart className="size-12 mx-auto mb-4 text-red-500 fill-red-500" strokeWidth={1.2} />
-              <h2 className="text-2xl sm:text-3xl md:text-6xl font-light tracking-wide mb-6">
+              <Heart className="size-16 mx-auto mb-4 text-red-500 fill-red-500" strokeWidth={1.2} />
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide mb-6">
                 Susține lucrarea lui Dumnezeu
               </h2>
-              <p className="text-lg sm:text-xl font-light leading-relaxed opacity-80 max-w-2xl mx-auto mb-10">
+              <p className="text-lg md:text-xl font-light leading-[1.8] opacity-80 max-w-2xl mx-auto mb-10">
                 Prin dărnicia noastră participăm la răspândirea Evangheliei și la dezvoltarea
                 lucrării cu copiii, tinerii și familiile.
               </p>
               <Link
                 to="/donatii"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-background text-foreground font-light tracking-wide hover:bg-background/90 transition-colors"
+                className="inline-flex items-center gap-2 px-10 py-5 bg-primary text-primary-foreground font-bold tracking-widest uppercase hover:bg-primary/90 transition-all shadow-xl hover:scale-105"
               >
                 Vreau să dăruiesc
                 <ArrowRight className="size-4" />
