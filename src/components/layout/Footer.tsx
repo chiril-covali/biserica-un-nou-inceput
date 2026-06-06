@@ -112,7 +112,7 @@ export function Footer() {
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-xs font-light tracking-wide">
-            © {new Date().getFullYear()} Biserica Un Nou Început. Toate drepturile rezervate.
+            © {new Date().getFullYear()} Biserica Un Nou Început
           </p>
           <button 
             onClick={scrollToTop}

@@ -1,21 +1,22 @@
 import type { Ministry, Value } from '@/types';
 import { Book, Flame } from 'lucide-react';
 
-const ChristianCross = (props: any) => (
+const ChristianCross = ({ className, ...props }: any) => (
   <svg
-    {...props}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="1.2"
+    strokeWidth="1"
     strokeLinecap="round"
     strokeLinejoin="round"
+    className={className}
+    {...props}
   >
-    <path d="M12 2v20M8 9h8" />
+    <path d="M12 3v18M7 8h10" />
   </svg>
 );
 
-export const churchValues: (Value & { icon: any })[] = [
+export const churchValues: Value[] = [
   {
     id: 'glorificam',
     title: 'Glorificăm pe Isus',
