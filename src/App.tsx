@@ -12,6 +12,7 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AnimatePresence } from "framer-motion";
 import { lazy, Suspense } from "react";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const Index = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/About"));
@@ -51,6 +52,7 @@ const App = () => (
               v7_relativeSplatPath: true,
             }}
           >
+            <GoogleAnalytics />
             <ScrollToTop />
             <SkipToContent />
             <Layout>
