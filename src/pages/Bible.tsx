@@ -48,15 +48,33 @@ export default function Bible() {
     setLoading(true);
     setError(null);
     try {
+      // Find the book in the passage to replace it with the English name for the API call
+      // The passage usually looks like "Book Name Chapter" or "Book Name Chapter:Verse"
+      let apiPassage = passage;
+      const foundBook = ALL_BOOKS.find(b => 
+        passage.toLowerCase().startsWith(b.name.ro.toLowerCase()) ||
+        passage.toLowerCase().startsWith(b.name.en.toLowerCase()) ||
+        passage.toLowerCase().startsWith(b.name.ru.toLowerCase())
+      );
+
+      if (foundBook) {
+        const restOfPassage = passage.substring(foundBook.name[currentLang].length).trim();
+        apiPassage = `${foundBook.name.en} ${restOfPassage}`;
+      }
+
       const translation = TRANSLATIONS[currentLang] || TRANSLATIONS.ro;
       const res = await fetch(
-        `https://bible-api.com/${encodeURIComponent(passage)}?translation=${translation}`
+        `https://bible-api.com/${encodeURIComponent(apiPassage)}?translation=${translation}`
       );
       const json = await res.json();
       if (json.error) {
         setError(json.error);
         setData(null);
       } else {
+        // If we found the book, ensure we use the localized name for the reference
+        if (foundBook) {
+           json.reference = json.reference.replace(foundBook.name.en, foundBook.name[currentLang]);
+        }
         setData(json);
         setQuery(json.reference);
         setShowBooks(false);
@@ -78,16 +96,20 @@ export default function Bible() {
   const handleNextChapter = () => {
     if (!data || data.verses.length === 0) return;
     const v = data.verses[0];
-    const currentBook = ALL_BOOKS.find(b => getBookName(b) === v.book_name || b.name.ro === v.book_name || b.name.en === v.book_name || b.name.ru === v.book_name);
+    const currentBook = ALL_BOOKS.find(b => 
+      b.name.en === v.book_name || 
+      b.name.ro === v.book_name || 
+      b.name.ru === v.book_name
+    );
     if (!currentBook) return;
 
     if (v.chapter < currentBook.chapters) {
-      fetchPassage(`${v.book_name} ${v.chapter + 1}`);
+      fetchPassage(`${currentBook.name[currentLang]} ${v.chapter + 1}`);
     } else {
       const currentIndex = ALL_BOOKS.findIndex(b => b.id === currentBook.id);
       if (currentIndex < ALL_BOOKS.length - 1) {
         const nextBook = ALL_BOOKS[currentIndex + 1];
-        fetchPassage(`${getBookName(nextBook)} 1`);
+        fetchPassage(`${nextBook.name[currentLang]} 1`);
       }
     }
   };
@@ -95,15 +117,19 @@ export default function Bible() {
   const handlePrevChapter = () => {
     if (!data || data.verses.length === 0) return;
     const v = data.verses[0];
-    const currentBook = ALL_BOOKS.find(b => getBookName(b) === v.book_name || b.name.ro === v.book_name || b.name.en === v.book_name || b.name.ru === v.book_name);
+    const currentBook = ALL_BOOKS.find(b => 
+      b.name.en === v.book_name || 
+      b.name.ro === v.book_name || 
+      b.name.ru === v.book_name
+    );
     
     if (v.chapter > 1) {
-      fetchPassage(`${v.book_name} ${v.chapter - 1}`);
+      fetchPassage(`${currentBook ? currentBook.name[currentLang] : v.book_name} ${v.chapter - 1}`);
     } else {
       const currentIndex = ALL_BOOKS.findIndex(b => b.id === (currentBook?.id || ''));
       if (currentIndex > 0) {
         const prevBook = ALL_BOOKS[currentIndex - 1];
-        fetchPassage(`${getBookName(prevBook)} ${prevBook.chapters}`);
+        fetchPassage(`${prevBook.name[currentLang]} ${prevBook.chapters}`);
       }
     }
   };
@@ -112,8 +138,8 @@ export default function Bible() {
     setSelectedBook(book);
   };
 
-  const handleChapterClick = (bookName: string, chapter: number) => {
-    fetchPassage(`${bookName} ${chapter}`);
+  const handleChapterClick = (book: BibleBook, chapter: number) => {
+    fetchPassage(`${book.name[currentLang]} ${chapter}`);
   };
 
   const filteredBooks = ALL_BOOKS.filter(b => 
@@ -235,7 +261,7 @@ export default function Bible() {
                         {Array.from({ length: selectedBook.chapters }, (_, i) => i + 1).map(chapter => (
                           <button
                             key={chapter}
-                            onClick={() => handleChapterClick(getBookName(selectedBook), chapter)}
+                            onClick={() => handleChapterClick(selectedBook, chapter)}
                             className="aspect-square flex items-center justify-center text-lg border border-border hover:bg-primary hover:text-primary-foreground transition-all rounded-md font-light"
                           >
                             {chapter}
