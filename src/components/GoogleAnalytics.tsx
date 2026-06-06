@@ -5,6 +5,7 @@ import { initGA, logPageView } from "@/lib/analytics";
 let initialized = false;
 
 export function GoogleAnalytics() {
+  /*
   const location = useLocation();
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export function GoogleAnalytics() {
   useEffect(() => {
     logPageView();
   }, [location]);
+  */
 
   return null;
 }

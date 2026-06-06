@@ -27,7 +27,7 @@ export function LanguageSelector({ className }: { className?: string }) {
           variant="ghost"
           size="sm"
           className={cn(
-            "h-9 w-auto px-4 font-medium tracking-wide hover:bg-white/10 active:bg-white/10 transition-all text-inherit",
+            "h-9 w-auto px-4 font-medium tracking-wide hover:bg-white/10 active:bg-white/10 transition-all text-inherit hover:text-inherit",
             className
           )}
         >

@@ -132,7 +132,7 @@ export default function Home() {
                 {t('about.title')}
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-wide mt-4">
-                {t('home.hero.transformed_by')} <br className="hidden sm:block" /> {t('home.hero.jesus_hristos')}
+                {currentLang === 'ro' ? 'O comunitate transformată de' : currentLang === 'ru' ? 'Сообщество, преображенное' : 'A community transformed by'} <br className="hidden sm:block" /> {currentLang === 'ro' ? 'Isus Hristos' : currentLang === 'ru' ? 'Иисусом Христом' : 'Jesus Christ'}
               </h2>
               <div className="space-y-4 text-base sm:text-lg font-light leading-relaxed text-muted-foreground mt-6">
                 <p>
@@ -233,8 +233,8 @@ export default function Home() {
                 <h2 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide">
                   {t('home.ministries.title')}
                 </h2>
-                <p className="text-lg sm:text-xl text-muted-foreground font-light leading-relaxed max-w-2xl mx-auto">
-                  {t('home.ministries.description')}
+                <p className="text-base sm:text-lg text-muted-foreground font-light max-w-2xl mx-auto">
+                  {currentLang === 'ro' ? 'Locuri în care poți crește, sluji și fi parte din familia bisericii.' : currentLang === 'ru' ? 'Места, где вы можете расти, служить и быть частью церковной семьи.' : 'Places where you can grow, serve, and be part of the church family.'}
                 </p>
               </div>
             </ScrollReveal>
@@ -341,16 +341,17 @@ export default function Home() {
             <ScrollReveal>
               <Heart className="size-16 mx-auto mb-4 text-red-500 fill-red-500" strokeWidth={1.2} />
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide mb-6">
-                {t('home.donate_cta.title')}
+                Susține lucrarea lui Dumnezeu
               </h2>
               <p className="text-lg md:text-xl font-light leading-[1.8] opacity-80 max-w-2xl mx-auto mb-10">
-                {t('home.donate_cta.description')}
+                Prin dărnicia noastră participăm la răspândirea Evangheliei și la dezvoltarea
+                lucrării cu copiii, tinerii și familiile.
               </p>
               <Link
-                to="/donate"
+                to="/donatii"
                 className="inline-flex items-center gap-2 px-10 py-5 bg-primary text-primary-foreground font-bold tracking-widest uppercase hover:bg-primary/90 transition-all shadow-xl hover:scale-105"
               >
-                {t('home.donate_cta.button')}
+                Vreau să dăruiesc
                 <ArrowRight className="size-4" />
               </Link>
             </ScrollReveal>

@@ -52,7 +52,7 @@ const App = () => (
               v7_relativeSplatPath: true,
             }}
           >
-            <GoogleAnalytics />
+            {/* <GoogleAnalytics /> */}
             <ScrollToTop />
             <SkipToContent />
             <Layout>
