@@ -27,25 +27,26 @@ export function LanguageSelector({ className }: { className?: string }) {
           variant="ghost"
           size="sm"
           className={cn(
-            "h-9 w-auto px-2 min-w-[3rem] font-medium tracking-[0.1em] hover:bg-current/10 transition-all",
+            "h-9 w-auto px-3 gap-2 font-medium tracking-wide hover:bg-white/10 active:bg-white/10 transition-colors",
             className
           )}
         >
           <span className="text-xs uppercase">{currentLanguage.code}</span>
+          <span className="text-base leading-none">{currentLanguage.flag}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border-border w-24">
+      <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border-border w-36">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
             className={cn(
-              "flex items-center justify-between text-xs font-light tracking-widest cursor-pointer py-2",
+              "flex items-center justify-between text-xs font-light tracking-wide cursor-pointer py-2.5 px-3 hover:bg-accent focus:bg-accent",
               i18n.language === lang.code ? "bg-accent" : ""
             )}
             onClick={() => i18n.changeLanguage(lang.code)}
           >
-            <span className="uppercase">{lang.code}</span>
-            <span className="text-sm">{lang.flag}</span>
+            <span>{lang.name}</span>
+            <span className="text-base">{lang.flag}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
