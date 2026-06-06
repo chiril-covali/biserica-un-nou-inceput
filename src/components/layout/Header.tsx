@@ -11,6 +11,7 @@ const navLinks = [
   { name: 'Acasă', path: '/' },
   { name: 'Despre', path: '/despre' },
   { name: 'Biblia', path: '/biblia' },
+  { name: 'Media', path: '/media' },
   { name: 'Contact', path: '/contact' },
   { name: 'Donații', path: '/donatii' },
 ];
@@ -37,25 +38,22 @@ export function Header() {
             to="/"
             className="flex items-center transition-all duration-300"
           >
-            <div className="relative size-10 md:size-12 flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                {!isTransparent && (
-                  <motion.div
-                    key="logo"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute inset-0 rounded-full overflow-hidden"
-                  >
-                    <img
-                      src="/logo.jpg"
-                      alt="Logo Biserica Un Nou Început"
-                      className="size-full object-cover"
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+            <div className="relative size-12 md:size-14 flex items-center justify-center">
+              {!isTransparent && (
+                <motion.div
+                  key="logo"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute inset-0 rounded-full overflow-hidden"
+                >
+                  <img
+                    src="/logo.png"
+                    alt="Logo Biserica Un Nou Început"
+                    className="size-full object-cover scale-150"
+                  />
+                </motion.div>
+              )}
             </div>
             
             <div

@@ -68,6 +68,7 @@ export interface Ministry {
   schedule?: string;
   description: string;
   image?: string;
+  images?: string[];
   link?: string;
 }
 

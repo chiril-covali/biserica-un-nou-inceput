@@ -27,6 +27,11 @@ export const ministries: Ministry[] = [
     title: 'Kids Un Nou Început',
     schedule: 'În fiecare duminică',
     image: '/poze/copii3.JPG-optimized.webp',
+    images: [
+      '/poze/copii3.JPG-optimized.webp',
+      '/poze/copii1.JPG-optimized.webp',
+      '/poze/copii2.JPG-optimized.webp'
+    ],
     description:
       'Copiii au parte de un timp special adaptat vârstei lor, într-un mediu sigur și plin de bucurie. Prin jocuri, cântări, activități creative și lecții biblice, cei mici descoperă dragostea lui Dumnezeu alături de învățători dedicați.',
   },
@@ -36,6 +41,10 @@ export const ministries: Ministry[] = [
     schedule: 'Miercuri seara',
     link: 'https://www.instagram.com/tineret.unnouinceput/',
     image: 'https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=70',
+    images: [
+      'https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=800&q=70',
+      'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=70'
+    ],
     description:
       'Tinerii se adună pentru părtășie, închinare, rugăciune și studiu biblic. Ne dorim să formăm o generație care Îl iubește pe Dumnezeu și trăiește pentru gloria Lui.',
   },
@@ -52,6 +61,10 @@ export const ministries: Ministry[] = [
     title: 'Micul Dejun cu Rugăciune – Bărbați',
     schedule: 'Sâmbătă, ora 07:00',
     image: 'https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=800&q=70',
+    images: [
+      'https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=800&q=70',
+      '/poze/rug.JPG-optimized.webp'
+    ],
     description:
       'Bărbații se întâlnesc pentru rugăciune, părtășie și încurajare spirituală înainte de începerea unei noi zile.',
   },
@@ -66,6 +79,10 @@ export const ministries: Ministry[] = [
     id: 'bunvenit',
     title: 'Echipa de Bun Venit',
     image: '/poze/intampin.JPG-optimized.webp',
+    images: [
+      '/poze/intampin.JPG-optimized.webp',
+      '/poze/vi.JPG-optimized.webp'
+    ],
     description:
       'Credem în puterea ospitalității creștine. Printr-un zâmbet, o îmbrățișare și o inimă deschisă, ne dorim ca fiecare persoană să se simtă iubită și binevenită.',
   },

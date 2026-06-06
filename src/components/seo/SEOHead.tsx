@@ -16,14 +16,14 @@ interface SEOHeadProps {
 export function SEOHead({ 
   title, 
   description, 
-  image = '/logo.jpg',
+  image = '/logo.png',
   type = 'website'
 }: SEOHeadProps) {
   const location = useLocation();
   
   const fullTitle = title 
-    ? `${title} | ${photographerInfo.name}` 
-    : `${photographerInfo.name} - ${photographerInfo.tagline}`;
+    ? `${title} | Biserica Un nou inceput` 
+    : `Biserica Un nou inceput`;
   
   const defaultDescription = photographerInfo.heroIntroduction;
   const fullDescription = description || defaultDescription;

@@ -21,7 +21,7 @@ export function Layout({ children }: LayoutProps) {
       <Header />
       <main 
         id="main-content" 
-        className={`flex-1 ${isHomepage ? '' : 'pt-16'}`}
+        className={`flex-1 ${isHomepage ? '' : 'pt-24 md:pt-32 px-4 sm:px-6 lg:px-8'}`}
         tabIndex={-1}
       >
         {children}

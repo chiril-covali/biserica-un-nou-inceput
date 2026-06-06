@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Layout } from "@/components/layout/Layout";
 import { SkipToContent } from "@/components/ui/SkipToContent";
@@ -18,6 +18,7 @@ const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Donate = lazy(() => import("./pages/Donate"));
 const Bible = lazy(() => import("./pages/Bible"));
+const Media = lazy(() => import("./pages/Media"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ function AnimatedRoutes() {
       <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
       <Route path="/donatii" element={<PageTransition><Donate /></PageTransition>} />
       <Route path="/biblia" element={<PageTransition><Bible /></PageTransition>} />
+      <Route path="/media" element={<PageTransition><Media /></PageTransition>} />
       <Route path="/lucrari" element={<Navigate to="/#slujiri" replace />} />
       <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
     </Routes>
@@ -43,7 +45,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
+          <HashRouter>
             <ScrollToTop />
             <SkipToContent />
             <Layout>
@@ -51,7 +53,7 @@ const App = () => (
                 <AnimatedRoutes />
               </Suspense>
             </Layout>
-          </BrowserRouter>
+          </HashRouter>
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>

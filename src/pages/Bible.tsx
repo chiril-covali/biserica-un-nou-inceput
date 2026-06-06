@@ -1,11 +1,17 @@
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, Search, Shuffle, Loader2, ChevronLeft, ChevronRight, List as ListIcon } from 'lucide-react';
+import { BookOpen, Search, Loader2, ChevronLeft, ChevronRight, List as ListIcon, ChevronDown } from 'lucide-react';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { OLD_TESTAMENT, NEW_TESTAMENT, ALL_BOOKS, BibleBook } from '@/data/bible-books';
 import { cn } from '@/lib/utils';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Verse {
   book_name: string;
@@ -25,11 +31,14 @@ interface BibleResponse {
 const TRANSLATION = 'rccv';
 
 export default function Bible() {
-  const [query, setQuery] = useState('Ioan 3');
+  const [query, setQuery] = useState('');
   const [data, setData] = useState<BibleResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedBook, setSelectedBook] = useState<BibleBook | null>(null);
   const [showBooks, setShowBooks] = useState(true);
+  
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   async function fetchPassage(passage: string) {
     setLoading(true);
@@ -45,35 +54,12 @@ export default function Bible() {
       } else {
         setData(json);
         setQuery(json.reference);
+        setShowBooks(false);
+        setSelectedBook(null);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (e) {
       setError('Nu am putut încărca pasajul. Încearcă din nou.');
-    } finally {
-      setLoading(false);
-      setShowBooks(false);
-    }
-  }
-
-  async function fetchRandom() {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(`https://bible-api.com/data/${TRANSLATION}/random`);
-      const json = await res.json();
-      const v = json.random_verse;
-      if (v) {
-        setQuery(`${v.book} ${v.chapter}:${v.verse}`);
-        setData({
-          reference: `${v.book} ${v.chapter}:${v.verse}`,
-          verses: [
-            { book_name: v.book, chapter: v.chapter, verse: v.verse, text: v.text },
-          ],
-          text: v.text,
-          translation_name: json.translation_name || 'Cornilescu',
-        });
-      }
-    } catch {
-      setError('Nu am putut încărca un verset aleatoriu.');
     } finally {
       setLoading(false);
     }
@@ -84,11 +70,6 @@ export default function Bible() {
     if (query.trim()) fetchPassage(query.trim());
   };
 
-  useEffect(() => {
-    // Initial state is already showBooks: true
-    // We don't fetch anything to avoid switching to article view automatically
-  }, []);
-
   const handleNextChapter = () => {
     if (!data || data.verses.length === 0) return;
     const v = data.verses[0];
@@ -97,13 +78,11 @@ export default function Bible() {
 
     if (v.chapter < currentBook.chapters) {
       fetchPassage(`${v.book_name} ${v.chapter + 1}`);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       const currentIndex = ALL_BOOKS.findIndex(b => b.name === v.book_name);
       if (currentIndex < ALL_BOOKS.length - 1) {
         const nextBook = ALL_BOOKS[currentIndex + 1];
         fetchPassage(`${nextBook.name} 1`);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   };
@@ -114,16 +93,26 @@ export default function Bible() {
     
     if (v.chapter > 1) {
       fetchPassage(`${v.book_name} ${v.chapter - 1}`);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       const currentIndex = ALL_BOOKS.findIndex(b => b.name === v.book_name);
       if (currentIndex > 0) {
         const prevBook = ALL_BOOKS[currentIndex - 1];
         fetchPassage(`${prevBook.name} ${prevBook.chapters}`);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
   };
+
+  const handleBookClick = (book: BibleBook) => {
+    setSelectedBook(book);
+  };
+
+  const handleChapterClick = (bookName: string, chapter: number) => {
+    fetchPassage(`${bookName} ${chapter}`);
+  };
+
+  const filteredBooks = ALL_BOOKS.filter(b => 
+    b.name.toLowerCase().includes(query.toLowerCase())
+  ).slice(0, 5);
 
   return (
     <>
@@ -154,18 +143,41 @@ export default function Bible() {
           </div>
         </section>
 
-        <section className="sticky top-16 z-30 bg-background/80 backdrop-blur-md border-b border-border py-4 px-4">
+        <section className="sticky top-[96px] md:top-[112px] z-30 bg-background/80 backdrop-blur-md border-b border-border py-4 px-4">
           <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-3">
-            <form onSubmit={onSubmit} className="flex-1 flex gap-2">
-              <div className="relative flex-1">
+            <form onSubmit={onSubmit} className="flex-1 flex gap-2 relative">
+              <div className="relative flex-1 group">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                 <Input
+                  ref={searchInputRef}
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="ex: Ioan 3 sau Psalmi 23"
+                  placeholder="Caută carte, capitol (ex: Ioan 3)"
                   className="pl-10 h-11 text-base bg-accent/20 border-none focus-visible:ring-1 ring-primary/20"
                   aria-label="Caută verset sau pasaj"
                 />
+                
+                {query.length > 1 && !loading && !data && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border shadow-xl rounded-lg overflow-hidden z-50">
+                    {filteredBooks.length > 0 ? (
+                      filteredBooks.map(book => (
+                        <button
+                          key={book.name}
+                          type="button"
+                          onClick={() => {
+                            setQuery(book.name + " ");
+                            handleBookClick(book);
+                            searchInputRef.current?.focus();
+                          }}
+                          className="w-full text-left px-4 py-3 hover:bg-accent transition-colors border-b border-border last:border-0 flex justify-between items-center"
+                        >
+                          <span className="font-medium">{book.name}</span>
+                          <span className="text-xs text-muted-foreground">{book.chapters} capitole</span>
+                        </button>
+                      ))
+                    ) : null}
+                  </div>
+                )}
               </div>
               <Button type="submit" disabled={loading} className="h-11 px-6 shadow-sm">
                 {loading ? <Loader2 className="size-4 animate-spin" /> : "Caută"}
@@ -175,21 +187,15 @@ export default function Bible() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => setShowBooks(!showBooks)}
-                className={cn("h-11 px-4 flex-1 md:flex-none", showBooks && "bg-accent")}
+                onClick={() => {
+                  setShowBooks(true);
+                  setSelectedBook(null);
+                  setData(null);
+                }}
+                className={cn("h-11 px-4 flex-1 md:flex-none", showBooks && !selectedBook && "bg-accent")}
               >
                 <ListIcon className="size-4 mr-2" />
-                Cărți
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={fetchRandom}
-                disabled={loading}
-                className="h-11 px-4 flex-1 md:flex-none"
-              >
-                <Shuffle className="size-4 mr-2" />
-                Aleator
+                Toate Cărțile
               </Button>
             </div>
           </div>
@@ -198,44 +204,71 @@ export default function Bible() {
         <section className="px-4 sm:px-6 lg:px-8 py-10">
           <div className="max-w-4xl mx-auto">
             <AnimatePresence mode="wait">
-              {showBooks ? (
+              {showBooks && !data ? (
                 <motion.div
-                  key="books-list"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="overflow-hidden space-y-8 bg-accent/10 p-6 md:p-10 border border-border rounded-xl"
+                  key={selectedBook ? 'chapters-list' : 'books-list'}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="bg-accent/10 p-6 md:p-10 border border-border rounded-xl"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-medium border-b border-border pb-2 text-primary/70">Vechiul Testament</h3>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {OLD_TESTAMENT.map(book => (
+                  {selectedBook ? (
+                    <div className="space-y-8">
+                      <div className="flex items-center gap-4 border-b border-border pb-6">
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          onClick={() => setSelectedBook(null)}
+                          className="rounded-full"
+                        >
+                          <ChevronLeft className="size-6" />
+                        </Button>
+                        <h2 className="text-2xl md:text-3xl font-light">{selectedBook.name}</h2>
+                      </div>
+                      <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
+                        {Array.from({ length: selectedBook.chapters }, (_, i) => i + 1).map(chapter => (
                           <button
-                            key={book.name}
-                            onClick={() => fetchPassage(`${book.name} 1`)}
-                            className="text-left text-sm py-1.5 px-2 hover:bg-primary/5 hover:text-primary transition-colors rounded"
+                            key={chapter}
+                            onClick={() => handleChapterClick(selectedBook.name, chapter)}
+                            className="aspect-square flex items-center justify-center text-lg border border-border hover:bg-primary hover:text-primary-foreground transition-all rounded-md font-light"
                           >
-                            {book.name}
+                            {chapter}
                           </button>
                         ))}
                       </div>
                     </div>
-                    <div className="space-y-4">
-                      <h3 className="text-lg font-medium border-b border-border pb-2 text-primary/70">Noul Testament</h3>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {NEW_TESTAMENT.map(book => (
-                          <button
-                            key={book.name}
-                            onClick={() => fetchPassage(`${book.name} 1`)}
-                            className="text-left text-sm py-1.5 px-2 hover:bg-primary/5 hover:text-primary transition-colors rounded"
-                          >
-                            {book.name}
-                          </button>
-                        ))}
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-medium border-b border-border pb-2 text-primary/70">Vechiul Testament</h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                          {OLD_TESTAMENT.map(book => (
+                            <button
+                              key={book.name}
+                              onClick={() => handleBookClick(book)}
+                              className="text-left text-sm py-1.5 px-2 hover:bg-primary/5 hover:text-primary transition-colors rounded"
+                            >
+                              {book.name}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-medium border-b border-border pb-2 text-primary/70">Noul Testament</h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                          {NEW_TESTAMENT.map(book => (
+                            <button
+                              key={book.name}
+                              onClick={() => handleBookClick(book)}
+                              className="text-left text-sm py-1.5 px-2 hover:bg-primary/5 hover:text-primary transition-colors rounded"
+                            >
+                              {book.name}
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </motion.div>
               ) : (
                 <div className="space-y-8">
@@ -263,8 +296,11 @@ export default function Bible() {
                           <ChevronLeft className="size-6" />
                         </Button>
                         
-                        <div className="text-center">
-                          <h2 className="text-3xl md:text-4xl font-light tracking-wide">{data.reference}</h2>
+                        <div className="text-center group cursor-pointer" onClick={() => setShowBooks(true)}>
+                          <h2 className="text-3xl md:text-4xl font-light tracking-wide flex items-center gap-2">
+                            {data.reference}
+                            <ChevronDown className="size-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                          </h2>
                         </div>
 
                         <Button 

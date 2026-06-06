@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, MapPin, Calendar as CalendarIcon } from 'lucide-react';
+import { ArrowRight, Heart, MapPin, Calendar as CalendarIcon, Instagram, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
@@ -8,9 +8,11 @@ import { MapEmbed } from '@/components/MapEmbed';
 import { churchValues, ministries } from '@/data/church';
 import { format, nextDay, startOfToday } from 'date-fns';
 import { ro } from 'date-fns/locale';
+import { useState } from 'react';
 
 export default function Home() {
   const today = startOfToday();
+  const [activeGallery, setActiveGallery] = useState<Record<string, number>>({});
   
   const getNextServiceDate = (dayIndex: 0 | 1 | 2 | 3 | 4 | 5 | 6) => {
     const next = nextDay(today, dayIndex);
@@ -20,6 +22,20 @@ export default function Home() {
   const nextSunday = getNextServiceDate(0);
   const nextWednesday = getNextServiceDate(3);
   const nextSaturday = getNextServiceDate(6);
+
+  const handleNextImage = (id: string, max: number) => {
+    setActiveGallery(prev => ({
+      ...prev,
+      [id]: ((prev[id] || 0) + 1) % max
+    }));
+  };
+
+  const handlePrevImage = (id: string, max: number) => {
+    setActiveGallery(prev => ({
+      ...prev,
+      [id]: ((prev[id] || 0) - 1 + max) % max
+    }));
+  };
 
   return (
     <>
@@ -115,7 +131,7 @@ export default function Home() {
               </div>
               <Link
                 to="/despre"
-                className="inline-flex items-center gap-2 mt-6 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group"
+                className="inline-flex items-center gap-2 mt-6 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group underline underline-offset-4"
               >
                 <span>Citește cuvântul păstorului</span>
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
@@ -230,51 +246,85 @@ export default function Home() {
             </ScrollReveal>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-              {ministries.map((m, index) => (
-                <ScrollReveal key={m.id} delay={index * 0.04}>
-                  <div className="h-full border border-border bg-background hover:border-foreground/30 transition-colors overflow-hidden flex flex-col">
-                    <div className="aspect-[4/3] bg-accent/40 overflow-hidden relative">
-                      <img
-                        src={m.image || `https://images.unsplash.com/photo-${
-                          [
-                            '1529070538774-1843cb3265df',
-                            '1511632765486-a01980e01a18',
-                            '1573497019940-1c28c88b4f3e',
-                            '1507692049790-de58290a4334',
-                            '1510915361894-db8b60106cb1',
-                            '1529390079861-591de354faf5',
-                            '1532635241-17e820acc59f',
-                          ][index % 7]
-                        }?auto=format&fit=crop&w=800&q=70`}
-                        alt={m.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                      />
-                      {m.link && (
-                        <a 
-                          href={m.link} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors"
-                        >
-                          <ArrowRight className="size-4 -rotate-45" />
-                        </a>
-                      )}
-                    </div>
-                    <div className="p-6 space-y-2 flex-1">
-                      {m.schedule && (
-                        <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">
-                          {m.schedule}
+              {ministries.map((m, index) => {
+                const currentImages = m.images || [m.image];
+                const currentIndex = activeGallery[m.id] || 0;
+                
+                return (
+                  <ScrollReveal key={m.id} delay={index * 0.04}>
+                    <div className="h-full border border-border bg-background hover:border-foreground/30 transition-colors overflow-hidden flex flex-col group/card">
+                      <div className="aspect-[4/3] bg-accent/40 overflow-hidden relative">
+                        <img
+                          src={currentImages[currentIndex] || `https://images.unsplash.com/photo-${
+                            [
+                              '1529070538774-1843cb3265df',
+                              '1511632765486-a01980e01a18',
+                              '1573497019940-1c28c88b4f3e',
+                              '1507692049790-de58290a4334',
+                              '1510915361894-db8b60106cb1',
+                              '1529390079861-591de354faf5',
+                              '1532635241-17e820acc59f',
+                            ][index % 7]
+                          }?auto=format&fit=crop&w=800&q=70`}
+                          alt={m.title}
+                          loading="lazy"
+                          className="w-full h-full object-cover transition-transform duration-700"
+                        />
+                        
+                        {currentImages.length > 1 && (
+                          <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover/card:opacity-100 transition-opacity">
+                            <button 
+                              onClick={() => handlePrevImage(m.id, currentImages.length)}
+                              className="p-1.5 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background transition-colors"
+                            >
+                              <ChevronLeft className="size-4" />
+                            </button>
+                            <button 
+                              onClick={() => handleNextImage(m.id, currentImages.length)}
+                              className="p-1.5 rounded-full bg-background/80 backdrop-blur-sm hover:bg-background transition-colors"
+                            >
+                              <ChevronLeft className="size-4 rotate-180" />
+                            </button>
+                            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1">
+                              {currentImages.map((_, i) => (
+                                <div 
+                                  key={i} 
+                                  className={cn(
+                                    "size-1.5 rounded-full transition-all",
+                                    i === currentIndex ? "bg-white w-3" : "bg-white/50"
+                                  )}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {m.link && (
+                          <a 
+                            href={m.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm p-2 rounded-full hover:bg-background transition-colors"
+                          >
+                            <Instagram className="size-4" />
+                          </a>
+                        )}
+                      </div>
+                      <div className="p-6 space-y-2 flex-1">
+                        {m.schedule && (
+                          <p className="text-xs uppercase tracking-widest text-muted-foreground font-light">
+                            {m.schedule}
+                          </p>
+                        )}
+                        <h3 className="text-lg sm:text-xl font-light tracking-wide">{m.title}</h3>
+                        <p className="text-sm font-light leading-relaxed text-muted-foreground">
+                          {m.description}
                         </p>
-                      )}
-                      <h3 className="text-lg sm:text-xl font-light tracking-wide">{m.title}</h3>
-                      <p className="text-sm font-light leading-relaxed text-muted-foreground">
-                        {m.description}
-                      </p>
+                      </div>
                     </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -303,19 +353,19 @@ export default function Home() {
 
         {/* Donație CTA */}
         <section className="py-16 sm:py-24 md:py-32 px-6 lg:px-8 border-t border-border bg-foreground text-background">
-          <div className="max-w-3xl mx-auto text-center space-y-5">
+          <div className="max-w-3xl mx-auto text-center space-y-8">
             <ScrollReveal>
-              <Heart className="size-10 mx-auto mb-2 opacity-80" strokeWidth={1.2} />
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-wide">
+              <Heart className="size-12 mx-auto mb-4 text-red-500 fill-red-500" strokeWidth={1.2} />
+              <h2 className="text-2xl sm:text-3xl md:text-6xl font-light tracking-wide mb-6">
                 Susține lucrarea lui Dumnezeu
               </h2>
-              <p className="text-base sm:text-lg font-light leading-relaxed opacity-80 max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl font-light leading-relaxed opacity-80 max-w-2xl mx-auto mb-10">
                 Prin dărnicia noastră participăm la răspândirea Evangheliei și la dezvoltarea
                 lucrării cu copiii, tinerii și familiile.
               </p>
               <Link
                 to="/donatii"
-                className="inline-flex items-center gap-2 mt-4 px-8 py-4 bg-background text-foreground font-light tracking-wide hover:bg-background/90 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-background text-foreground font-light tracking-wide hover:bg-background/90 transition-colors"
               >
                 Vreau să dăruiesc
                 <ArrowRight className="size-4" />
@@ -327,3 +377,5 @@ export default function Home() {
     </>
   );
 }
+
+import { cn } from '@/lib/utils';

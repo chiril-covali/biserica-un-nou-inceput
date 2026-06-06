@@ -13,23 +13,22 @@ export default function Donate() {
       />
 
       <div className="min-h-screen">
-        <section className="py-24 md:py-32 px-6 lg:px-8 border-b border-border">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
+        <section className="py-20 md:py-28 px-6 lg:px-8 border-b border-border bg-accent/5">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
             <motion.div
               initial={{ opacity: 0.8, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <Heart className="size-12 mx-auto mb-6 text-red-400 fill-red-50" strokeWidth={1.2} />
+              <Heart className="size-12 mx-auto mb-6 text-red-500 fill-red-500/10" strokeWidth={1.2} />
               <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-light mb-4">
                 Poți dărui
               </p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-8">
                 Susține lucrarea lui Dumnezeu
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide max-w-2xl mx-auto">
-                Prin dărnicia noastră participăm la răspândirea Evangheliei și la slujirea
-                semenilor noștri.
+              <p className="text-lg md:text-xl text-muted-foreground font-light leading-[1.8] max-w-2xl mx-auto">
+                Prin dărnicia noastră participăm la răspândirea Evangheliei și la dezvoltarea lucrării cu copiii, tinerii și familiile.
               </p>
             </motion.div>
           </div>
