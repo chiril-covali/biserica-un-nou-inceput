@@ -48,7 +48,9 @@
     "cta_visit": {
       "title": "Want to visit us?",
       "description": "You are welcome anytime to join our services. We'd love to meet you!",
-      "button": "Plan a visit"
+      "button": "Plan a visit",
+      "we_wait": "We wait for you",
+      "visit_us": "Come visit us"
     }
   },
   "bible": {

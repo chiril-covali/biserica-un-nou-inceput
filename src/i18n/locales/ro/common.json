@@ -48,7 +48,9 @@
     "cta_visit": {
       "title": "Vrei să ne vizitezi?",
       "description": "Ești binevenit oricând să participi la serviciile noastre. Ne-ar face plăcere să te cunoaștem!",
-      "button": "Planifică o vizită"
+      "button": "Planifică o vizită",
+      "we_wait": "Te așteptăm",
+      "visit_us": "Vino să ne vizitezi"
     }
   },
   "bible": {

@@ -10,9 +10,9 @@ import { Languages } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const languages = [
-  { code: 'ro', name: 'Română', flag: '🇷🇴' },
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
+  { code: 'ro', name: 'RO' },
+  { code: 'en', name: 'EN' },
+  { code: 'ru', name: 'РУ' },
 ];
 
 export function LanguageSelector({ className }: { className?: string }) {
@@ -27,26 +27,28 @@ export function LanguageSelector({ className }: { className?: string }) {
           variant="ghost"
           size="sm"
           className={cn(
-            "h-9 w-auto px-3 gap-2 font-medium tracking-wide hover:bg-white/10 active:bg-white/10 transition-colors",
+            "h-9 w-12 p-0 font-medium tracking-widest hover:bg-white/10 active:bg-white/10 transition-colors",
             className
           )}
         >
-          <span className="text-xs uppercase">{currentLanguage.code}</span>
-          <span className="text-base leading-none">{currentLanguage.flag}</span>
+          <span className="text-xs uppercase">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border-border w-36">
+      <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border-border min-w-[4rem] p-1">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
             className={cn(
-              "flex items-center justify-between text-xs font-light tracking-wide cursor-pointer py-2.5 px-3 hover:bg-accent focus:bg-accent",
+              "flex items-center justify-center text-xs font-medium tracking-widest cursor-pointer py-2.5 px-2 hover:bg-accent focus:bg-accent",
               i18n.language === lang.code ? "bg-accent" : ""
             )}
-            onClick={() => i18n.changeLanguage(lang.code)}
+            onClick={() => {
+              if (i18n.language !== lang.code) {
+                i18n.changeLanguage(lang.code);
+              }
+            }}
           >
             <span>{lang.name}</span>
-            <span className="text-base">{lang.flag}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

@@ -26,7 +26,7 @@ interface BibleResponse {
 const TRANSLATIONS: Record<string, string> = {
   ro: 'rccv',
   en: 'web',
-  ru: 'sz-rusbt'
+  ru: 'synodal'
 };
 
 export default function Bible() {
