@@ -9,6 +9,7 @@ import { churchValues, ministries } from '@/data/church';
 import { format, nextDay, startOfToday } from 'date-fns';
 import { ro } from 'date-fns/locale';
 import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 export default function Home() {
   const today = startOfToday();
@@ -39,6 +40,9 @@ export default function Home() {
 
   return (
     <>
+      <SEOHead />
+
+      <div className="min-h-screen">
         {/* Hero */}
         <section className="relative min-h-[100svh] w-full overflow-hidden">
           <div className="absolute inset-0">
@@ -348,5 +352,3 @@ export default function Home() {
     </>
   );
 }
-
-import { cn } from '@/lib/utils';

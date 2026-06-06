@@ -21,9 +21,7 @@ export function SEOHead({
 }: SEOHeadProps) {
   const location = useLocation();
   
-  const fullTitle = title 
-    ? `${title} | Biserica Un nou inceput` 
-    : `Biserica Un nou inceput`;
+  const fullTitle = location.pathname === "/" ? "Biserica Un Nou Început" : (title ? `${title} | Biserica Un Nou Început` : "Biserica Un Nou Început");
   
   const defaultDescription = photographerInfo.heroIntroduction;
   const fullDescription = description || defaultDescription;

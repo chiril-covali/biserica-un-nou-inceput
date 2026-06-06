@@ -1,15 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <circle cx="64" cy="64" r="62" fill="white" stroke="#eee" stroke-width="1" />
-  <clipPath id="circle-clip">
-    <circle cx="64" cy="64" r="60" />
-  </clipPath>
-  <image 
-    href="/logo.png" 
-    x="4" 
-    y="4" 
-    width="120" 
-    height="120" 
-    preserveAspectRatio="xMidYMid slice"
-    clip-path="url(#circle-clip)"
-  />
+  <circle cx="64" cy="64" r="64" fill="#000000" />
+  <circle cx="64" cy="64" r="60" fill="white" />
+  <text 
+    x="50%" 
+    y="50%" 
+    dominant-baseline="middle" 
+    text-anchor="middle" 
+    font-family="serif" 
+    font-weight="bold" 
+    font-size="80" 
+    fill="black"
+  >B</text>
+  <text 
+    x="75%" 
+    y="75%" 
+    dominant-baseline="middle" 
+    text-anchor="middle" 
+    font-family="sans-serif" 
+    font-weight="bold" 
+    font-size="30" 
+    fill="red"
+  >+</text>
 </svg>

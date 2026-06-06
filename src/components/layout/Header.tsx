@@ -26,19 +26,19 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-colors duration-300',
         isTransparent
-          ? 'bg-transparent py-4'
-          : 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm py-2'
+          ? 'bg-transparent border-transparent'
+          : 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm'
       )}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           <Link
             to="/"
-            className="flex items-center transition-all duration-300"
+            className="flex items-center gap-3 transition-all duration-300"
           >
-            <div className="relative size-12 md:size-14 flex items-center justify-center">
+            <div className="relative size-12 md:size-14 flex items-center justify-center shrink-0">
               {!isTransparent && (
                 <motion.div
                   key="logo"
@@ -56,20 +56,15 @@ export function Header() {
               )}
             </div>
             
-            <div
-              className={cn(
-                "flex flex-col items-start leading-none transition-all duration-300",
-                !isTransparent ? "ml-3" : "ml-0"
-              )}
-            >
+            <div className="flex flex-col items-start leading-none">
               <span className={cn(
-                'text-xl md:text-2xl font-bold tracking-[0.2em]',
+                'text-xl md:text-2xl font-bold tracking-[0.2em] transition-colors',
                 isTransparent ? 'text-white' : 'text-foreground'
               )}>
                 BISERICA
               </span>
               <span className={cn(
-                'text-[11px] md:text-sm font-semibold tracking-[0.3em] mt-1',
+                'text-[11px] md:text-sm font-semibold tracking-[0.3em] mt-1 transition-colors',
                 isTransparent ? 'text-white/90' : 'text-muted-foreground'
               )}>
                 UN NOU ÎNCEPUT
