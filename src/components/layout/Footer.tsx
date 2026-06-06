@@ -3,7 +3,7 @@ import { Facebook, Instagram, Mail, MapPin, Phone, ArrowUp } from 'lucide-react'
 import { useTranslation } from 'react-i18next';
 
 export function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
