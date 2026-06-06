@@ -20,7 +20,9 @@
       "title": "A New Beginning",
       "description": "A community of people transformed by Jesus Christ, anchored in the Word of God and empowered by the Holy Spirit.",
       "cta_main": "Discover more",
-      "cta_secondary": "Pastor's Message"
+      "cta_secondary": "Pastor's Message",
+      "transformed_by": "A community transformed by",
+      "jesus_hristos": "Jesus Christ"
     },
     "values": {
       "subtitle": "Our Values",
@@ -28,7 +30,8 @@
     },
     "ministries": {
       "subtitle": "Service and Community",
-      "title": "Our Ministries"
+      "title": "Our Ministries",
+      "description": "Places where you can grow, serve, and be part of the church family."
     },
     "program": {
       "subtitle": "When we meet",
@@ -51,6 +54,11 @@
       "button": "Plan a visit",
       "we_wait": "We wait for you",
       "visit_us": "Come visit us"
+    },
+    "donate_cta": {
+      "title": "Support God's work",
+      "description": "Through our generosity, we participate in spreading the Gospel and developing the work with children, youth, and families.",
+      "button": "I want to give"
     }
   },
   "bible": {
@@ -59,12 +67,30 @@
     "search_placeholder": "Search for a book (e.g., John, Romans...)",
     "back_to_books": "Back to book list",
     "no_results": "No book found with this name.",
-    "select_chapter": "Select chapter"
+    "select_chapter": "Select chapter",
+    "holy_scripture": "Holy Scripture",
+    "holy_scripture_desc": "The Word of God for your life.",
+    "chapters_count": "chapters",
+    "all_books": "All Books",
+    "old_testament": "Old Testament",
+    "new_testament": "New Testament",
+    "previous": "Previous",
+    "next": "Next"
   },
   "about": {
     "title": "About Us",
     "pastor_word": "Pastor's Message",
-    "history": "Our Story"
+    "history": "Our Story",
+    "pastor_subtitle": "A welcome message from Pastor Vitalie Fedula",
+    "pastor_greeting": "Dear friend,",
+    "pastor_welcome_1": "Welcome to ",
+    "pastor_welcome_2": "A NEW BEGINNING Church!",
+    "pastor_text_1": "We invite you to be part of a community of people who love God, are anchored in His Word, and desire to faithfully follow the Lord Jesus Christ.",
+    "pastor_text_2": "This is the place where faith comes to life, people find hope, relationships are built on the love of Christ, and God is glorified in everything we do. We want to grow together in faith, serve one another with love, and be a light for our community.",
+    "pastor_text_3": "Regardless of your past or the stage you are in, I encourage you to take a step toward God and discover with us the joy of a life transformed by the Gospel. With God's help, every day can be a new beginning.",
+    "pastor_closing": "We look forward to seeing you!",
+    "pastor_signoff": "With love in Christ,",
+    "pastor_role": "Pastor — A NEW BEGINNING Church"
   },
   "contact": {
     "title": "Contact",
@@ -76,6 +102,24 @@
     "prayer_request_title": "Send a prayer request",
     "prayer_request_desc": "Our church will pray for you in confidentiality.",
     "find_us": "How to find us"
+  },
+  "donate": {
+    "subtitle": "You can give",
+    "title": "Support God's work",
+    "description": "Through our generosity, we participate in spreading the Gospel and developing the work with children, youth, and families.",
+    "verse": "„Each one must give as he has decided in his heart, not reluctantly or under compulsion, for God loves a cheerful giver.\"",
+    "verse_ref": "2 Corinthians 9:7",
+    "text_1": "Through our generosity, we participate in spreading the Gospel, developing the work with children, youth, and families, as well as supporting the missionary and social projects of the church.",
+    "text_2": "Thank you for your generous heart and for your partnership in the Lord's work. Every gift, small or large, contributes to the growth of the Kingdom of God.",
+    "mission_title": "Spreading the Gospel",
+    "mission_desc": "You support the preaching of the Word in the community and online.",
+    "youth_title": "Children and Youth Work",
+    "youth_desc": "You contribute to forming the next generation.",
+    "social_title": "Mission and Social Projects",
+    "social_desc": "You help support those in need and missionaries.",
+    "how_title": "How you can give",
+    "how_desc": "For bank details or other ways to contribute, please contact us directly. We will be happy to answer you.",
+    "online_soon": "Soon it will be possible to donate directly online via bank card."
   },
   "common": {
     "phone": "Phone",

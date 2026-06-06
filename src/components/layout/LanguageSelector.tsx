@@ -10,9 +10,9 @@ import { Languages } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const languages = [
-  { code: 'ro', name: 'RO' },
-  { code: 'en', name: 'EN' },
-  { code: 'ru', name: 'РУ' },
+  { code: 'ro', name: 'Română' },
+  { code: 'en', name: 'English' },
+  { code: 'ru', name: 'Русский' },
 ];
 
 export function LanguageSelector({ className }: { className?: string }) {
@@ -27,20 +27,21 @@ export function LanguageSelector({ className }: { className?: string }) {
           variant="ghost"
           size="sm"
           className={cn(
-            "h-9 w-12 p-0 font-medium tracking-widest hover:bg-white/10 active:bg-white/10 transition-colors",
+            "h-9 w-auto px-4 font-medium tracking-wide hover:bg-white/10 active:bg-white/10 transition-all text-inherit",
             className
           )}
         >
-          <span className="text-xs uppercase">{currentLanguage.name}</span>
+          <span className="text-xs uppercase tracking-widest">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border-border min-w-[4rem] p-1">
+      <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-xl border-border min-w-[10rem] p-1.5 shadow-2xl">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
             className={cn(
-              "flex items-center justify-center text-xs font-medium tracking-widest cursor-pointer py-2.5 px-2 hover:bg-accent focus:bg-accent",
-              i18n.language === lang.code ? "bg-accent" : ""
+              "flex items-center justify-center text-xs font-medium tracking-[0.15em] cursor-pointer py-3 px-4 rounded-md transition-colors outline-none",
+              "focus:bg-foreground/10 focus:text-foreground hover:bg-foreground/10 hover:text-foreground",
+              i18n.language === lang.code ? "bg-foreground/10 text-foreground font-bold" : "text-muted-foreground"
             )}
             onClick={() => {
               if (i18n.language !== lang.code) {
@@ -48,7 +49,7 @@ export function LanguageSelector({ className }: { className?: string }) {
               }
             }}
           >
-            <span>{lang.name}</span>
+            <span className="uppercase">{lang.name}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

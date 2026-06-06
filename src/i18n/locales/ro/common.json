@@ -20,7 +20,9 @@
       "title": "Un Nou Început",
       "description": "O comunitate de oameni transformați de Isus Hristos, ancorați în Cuvântul lui Dumnezeu și împuterniciți de Duhul Sfânt.",
       "cta_main": "Descoperă mai mult",
-      "cta_secondary": "Cuvântul Păstorului"
+      "cta_secondary": "Cuvântul Păstorului",
+      "transformed_by": "O comunitate transformată de",
+      "jesus_hristos": "Isus Hristos"
     },
     "values": {
       "subtitle": "Valorile noastre",
@@ -28,7 +30,8 @@
     },
     "ministries": {
       "subtitle": "Slujire și Comunitate",
-      "title": "Lucrările noastre"
+      "title": "Lucrările noastre",
+      "description": "Locuri în care poți crește, sluji și fi parte din familia bisericii."
     },
     "program": {
       "subtitle": "Când ne vedem",
@@ -51,6 +54,11 @@
       "button": "Planifică o vizită",
       "we_wait": "Te așteptăm",
       "visit_us": "Vino să ne vizitezi"
+    },
+    "donate_cta": {
+      "title": "Susține lucrarea lui Dumnezeu",
+      "description": "Prin dărnicia noastră participăm la răspândirea Evangheliei și la dezvoltarea lucrării cu copiii, tinerii și familiile.",
+      "button": "Vreau să dăruiesc"
     }
   },
   "bible": {
@@ -59,12 +67,30 @@
     "search_placeholder": "Caută o carte (ex: Ioan, Romani...)",
     "back_to_books": "Înapoi la lista cărților",
     "no_results": "Nu am găsit nicio carte cu acest nume.",
-    "select_chapter": "Selectează capitolul"
+    "select_chapter": "Selectează capitolul",
+    "holy_scripture": "Sfânta Scriptură",
+    "holy_scripture_desc": "Cuvântul lui Dumnezeu pentru viața ta.",
+    "chapters_count": "capitole",
+    "all_books": "Toate Cărțile",
+    "old_testament": "Vechiul Testament",
+    "new_testament": "Noul Testament",
+    "previous": "Anterior",
+    "next": "Următor"
   },
   "about": {
     "title": "Despre noi",
     "pastor_word": "Cuvântul Păstorului",
-    "history": "Povestea noastră"
+    "history": "Povestea noastră",
+    "pastor_subtitle": "Un mesaj de bun venit din partea pastorului Vitalie Fedula",
+    "pastor_greeting": "Drag prieten,",
+    "pastor_welcome_1": "Bine ai venit la ",
+    "pastor_welcome_2": "Biserica UN NOU ÎNCEPUT!",
+    "pastor_text_1": "Te invităm să fii parte dintr-o comunitate de oameni care Îl iubesc pe Dumnezeu, sunt ancorați în Cuvântul Său și doresc să-L urmeze cu credincioșie pe Domnul Isus Hristos.",
+    "pastor_text_2": "Aici este locul unde credința prinde viață, oamenii găsesc speranță, relațiile sunt zidite pe dragostea lui Hristos, iar Dumnezeu este glorificat în tot ceea ce facem. Ne dorim să creștem împreună în credință, să ne slujim unii pe alții cu dragoste și să fim o lumină pentru comunitatea noastră.",
+    "pastor_text_3": "Indiferent de trecutul tău sau de etapa în care te afli, te încurajez să faci un pas spre Dumnezeu și să descoperi împreună cu noi bucuria unei vieți transformate prin Evanghelie. Cu ajutorul lui Dumnezeu, fiecare zi poate fi un nou început.",
+    "pastor_closing": "Te așteptăm cu drag!",
+    "pastor_signoff": "Cu dragoste în Hristos,",
+    "pastor_role": "Pastor — Biserica UN NOU ÎNCEPUT"
   },
   "contact": {
     "title": "Contact",
@@ -76,6 +102,24 @@
     "prayer_request_title": "Trimite-ne o nevoie de rugăciune",
     "prayer_request_desc": "Biserica noastră se va ruga pentru tine în confidențialitate.",
     "find_us": "Cum ne găsești"
+  },
+  "donate": {
+    "subtitle": "Poți dărui",
+    "title": "Susține lucrarea lui Dumnezeu",
+    "description": "Prin dărnicia noastră participăm la răspândirea Evangheliei și la dezvoltarea lucrării cu copiii, tinerii și familiile.",
+    "verse": "„Pe fiecare să-l lase inima să dea cum a hotărât, nu cu părere de rău sau de silă, căci Dumnezeu iubește pe cine dă cu bucurie.\"",
+    "verse_ref": "2 Corinteni 9:7",
+    "text_1": "Prin dărnicia noastră participăm la răspândirea Evangheliei, la dezvoltarea lucrării cu copiii, tinerii și familiile, precum și la susținerea proiectelor misionare și sociale ale bisericii.",
+    "text_2": "Mulțumim pentru inima ta darnică și pentru parteneriatul tău în lucrarea Domnului. Fiecare dar, mic sau mare, contribuie la creșterea Împărăției lui Dumnezeu.",
+    "mission_title": "Răspândirea Evangheliei",
+    "mission_desc": "Susții vestirea Cuvântului în comunitate și online.",
+    "youth_title": "Lucrarea cu copiii și tinerii",
+    "youth_desc": "Contribui la formarea generației următoare.",
+    "social_title": "Misiune și proiecte sociale",
+    "social_desc": "Ajuți la susținerea celor în nevoi și a misionarilor.",
+    "how_title": "Cum poți dărui",
+    "how_desc": "Pentru detalii bancare sau alte modalități de a contribui, te rugăm să ne contactezi direct. Vom fi bucuroși să-ți răspundem.",
+    "online_soon": "În curând va fi posibil să donezi și direct online prin card bancar."
   },
   "common": {
     "phone": "Telefon",
