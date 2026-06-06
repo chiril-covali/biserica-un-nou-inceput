@@ -197,8 +197,10 @@ export default function Bible() {
     fetchPassage(`${book.name[currentLang]} ${chapter}`);
   };
 
+  const getBookNameShort = (book: BibleBook) => book.name[currentLang] || book.name.ro;
+
   const filteredBooks = ALL_BOOKS.filter(b => 
-    getBookName(b).toLowerCase().includes(query.toLowerCase())
+    getBookNameShort(b).toLowerCase().includes(query.toLowerCase())
   ).slice(0, 5);
 
   return (
@@ -218,13 +220,13 @@ export default function Bible() {
             >
               <BookOpen className="size-10 mx-auto mb-4 text-primary/60" strokeWidth={1.2} />
               <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-light mb-3">
-                {currentLang === 'ro' ? 'Sfânta Scriptură' : currentLang === 'ru' ? 'Священное Писание' : 'Holy Scripture'}
+                {t('bible.holy_scripture')}
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-4">
                 {t('bible.title')}
               </h1>
               <p className="text-base md:text-lg text-muted-foreground font-light">
-                {currentLang === 'ro' ? 'Cuvântul lui Dumnezeu pentru viața ta.' : currentLang === 'ru' ? 'Слово Божье для твоей жизни.' : 'The Word of God for your life.'}
+                {t('bible.holy_scripture_desc')}
               </p>
             </motion.div>
           </div>
@@ -252,14 +254,14 @@ export default function Bible() {
                           key={book.id}
                           type="button"
                           onClick={() => {
-                            setQuery(getBookName(book) + " ");
+                            setQuery(getBookNameShort(book) + " ");
                             handleBookClick(book);
                             searchInputRef.current?.focus();
                           }}
                           className="w-full text-left px-4 py-3 hover:bg-accent transition-colors border-b border-border last:border-0 flex justify-between items-center"
                         >
-                          <span className="font-medium">{getBookName(book)}</span>
-                          <span className="text-xs text-muted-foreground">{book.chapters} {currentLang === 'ro' ? 'capitole' : currentLang === 'ru' ? 'глав' : 'chapters'}</span>
+                          <span className="font-medium">{getBookNameShort(book)}</span>
+                          <span className="text-xs text-muted-foreground">{book.chapters} {t('bible.chapters_count')}</span>
                         </button>
                       ))
                     ) : null}
@@ -267,7 +269,7 @@ export default function Bible() {
                 )}
               </div>
               <Button type="submit" disabled={loading} className="h-11 px-6 shadow-sm">
-                {loading ? <Loader2 className="size-4 animate-spin" /> : (currentLang === 'ro' ? 'Caută' : currentLang === 'ru' ? 'Поиск' : 'Search')}
+                {loading ? <Loader2 className="size-4 animate-spin" /> : t('common.search')}
               </Button>
             </form>
             <div className="flex gap-2">
@@ -282,7 +284,7 @@ export default function Bible() {
                 className={cn("h-11 px-4 flex-1 md:flex-none", showBooks && !selectedBook && "bg-accent")}
               >
                 <ListIcon className="size-4 mr-2" />
-                {currentLang === 'ro' ? 'Toate Cărțile' : currentLang === 'ru' ? 'Все Книги' : 'All Books'}
+                {t('bible.all_books')}
               </Button>
             </div>
           </div>
@@ -310,7 +312,7 @@ export default function Bible() {
                         >
                           <ChevronLeft className="size-6" />
                         </Button>
-                        <h2 className="text-2xl md:text-3xl font-light">{getBookName(selectedBook)}</h2>
+                        <h2 className="text-2xl md:text-3xl font-light">{getBookNameShort(selectedBook)}</h2>
                       </div>
                       <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
                         {Array.from({ length: selectedBook.chapters }, (_, i) => i + 1).map(chapter => (
@@ -328,7 +330,7 @@ export default function Bible() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                       <div className="space-y-4">
                         <h3 className="text-lg font-medium border-b border-border pb-2 text-primary/70">
-                          {currentLang === 'ro' ? 'Vechiul Testament' : currentLang === 'ru' ? 'Ветхий Завет' : 'Old Testament'}
+                          {t('bible.old_testament')}
                         </h3>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {OLD_TESTAMENT.map(book => (
@@ -337,14 +339,14 @@ export default function Bible() {
                               onClick={() => handleBookClick(book)}
                               className="text-left text-sm py-1.5 px-2 hover:bg-primary/5 hover:text-primary transition-colors rounded"
                             >
-                              {getBookName(book)}
+                              {getBookNameShort(book)}
                             </button>
                           ))}
                         </div>
                       </div>
                       <div className="space-y-4">
                         <h3 className="text-lg font-medium border-b border-border pb-2 text-primary/70">
-                          {currentLang === 'ro' ? 'Noul Testament' : currentLang === 'ru' ? 'Новый Завет' : 'New Testament'}
+                          {t('bible.new_testament')}
                         </h3>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {NEW_TESTAMENT.map(book => (
@@ -353,7 +355,7 @@ export default function Bible() {
                               onClick={() => handleBookClick(book)}
                               className="text-left text-sm py-1.5 px-2 hover:bg-primary/5 hover:text-primary transition-colors rounded"
                             >
-                              {getBookName(book)}
+                              {getBookNameShort(book)}
                             </button>
                           ))}
                         </div>
@@ -418,10 +420,10 @@ export default function Bible() {
 
                       <footer className="flex justify-center gap-4 pt-10 border-t border-border">
                         <Button variant="outline" onClick={handlePrevChapter} className="gap-2 font-light">
-                          <ChevronLeft className="size-4" /> {currentLang === 'ro' ? 'Anterior' : currentLang === 'ru' ? 'Назад' : 'Previous'}
+                          <ChevronLeft className="size-4" /> {t('bible.previous')}
                         </Button>
                         <Button variant="outline" onClick={handleNextChapter} className="gap-2 font-light">
-                          {currentLang === 'ro' ? 'Următor' : currentLang === 'ru' ? 'Далее' : 'Next'} <ChevronRight className="size-4" />
+                          {t('bible.next')} <ChevronRight className="size-4" />
                         </Button>
                       </footer>
                     </motion.article>

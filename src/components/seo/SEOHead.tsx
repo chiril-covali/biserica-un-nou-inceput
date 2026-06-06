@@ -20,8 +20,10 @@ export function SEOHead({
   type = 'website'
 }: SEOHeadProps) {
   const location = useLocation();
+  const pathParts = location.pathname.split('/').filter(Boolean);
+  const isHomepage = pathParts.length <= 1;
   
-  const fullTitle = location.pathname === "/" ? "Biserica Un Nou Început" : (title ? `${title} | Biserica Un Nou Început` : "Biserica Un Nou Început");
+  const fullTitle = isHomepage ? "Biserica Un Nou Început" : (title ? `${title} | Biserica Un Nou Început` : "Biserica Un Nou Început");
   
   const defaultDescription = photographerInfo.heroIntroduction;
   const fullDescription = description || defaultDescription;

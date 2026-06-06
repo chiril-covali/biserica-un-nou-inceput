@@ -97,14 +97,14 @@ export default function Home() {
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-8">
                 <Link
-                  to="/contact"
+                  to={`/${currentLang}/contact`}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-medium tracking-wide hover:bg-white/90 transition-colors shadow-lg"
                 >
                   {t('home.hero.cta_main')}
                   <ArrowRight className="size-4" />
                 </Link>
                 <Link
-                  to="/despre"
+                  to={`/${currentLang}/despre`}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-medium tracking-wide hover:bg-white hover:text-black transition-colors"
                 >
                   {t('home.hero.cta_secondary')}
@@ -132,7 +132,7 @@ export default function Home() {
                 {t('about.title')}
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-wide mt-4">
-                {currentLang === 'ro' ? 'O comunitate transformată de' : currentLang === 'ru' ? 'Сообщество, преображенное' : 'A community transformed by'} <br className="hidden sm:block" /> {currentLang === 'ro' ? 'Isus Hristos' : currentLang === 'ru' ? 'Иисусом Христом' : 'Jesus Christ'}
+                {t('home.hero.transformed_by')} <br className="hidden sm:block" /> {t('home.hero.jesus_hristos')}
               </h2>
               <div className="space-y-4 text-base sm:text-lg font-light leading-relaxed text-muted-foreground mt-6">
                 <p>
@@ -140,7 +140,7 @@ export default function Home() {
                 </p>
               </div>
               <Link
-                to="/despre"
+                to={`/${currentLang}/despre`}
                 className="inline-flex items-center gap-2 mt-6 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group underline underline-offset-4 decoration-primary/30 hover:decoration-primary"
               >
                 <span>{t('home.hero.cta_secondary')}</span>
@@ -234,7 +234,7 @@ export default function Home() {
                   {t('home.ministries.title')}
                 </h2>
                 <p className="text-base sm:text-lg text-muted-foreground font-light max-w-2xl mx-auto">
-                  {currentLang === 'ro' ? 'Locuri în care poți crește, sluji și fi parte din familia bisericii.' : currentLang === 'ru' ? 'Места, где вы можете расти, служить и быть частью церковной семьи.' : 'Places where you can grow, serve, and be part of the church family.'}
+                  {t('home.ministries.description')}
                 </p>
               </div>
             </ScrollReveal>
@@ -341,17 +341,16 @@ export default function Home() {
             <ScrollReveal>
               <Heart className="size-16 mx-auto mb-4 text-red-500 fill-red-500" strokeWidth={1.2} />
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide mb-6">
-                Susține lucrarea lui Dumnezeu
+                {t('home.donate_cta.title')}
               </h2>
               <p className="text-lg md:text-xl font-light leading-[1.8] opacity-80 max-w-2xl mx-auto mb-10">
-                Prin dărnicia noastră participăm la răspândirea Evangheliei și la dezvoltarea
-                lucrării cu copiii, tinerii și familiile.
+                {t('home.donate_cta.description')}
               </p>
               <Link
-                to="/donatii"
+                to={`/${currentLang}/donatii`}
                 className="inline-flex items-center gap-2 px-10 py-5 bg-primary text-primary-foreground font-bold tracking-widest uppercase hover:bg-primary/90 transition-all shadow-xl hover:scale-105"
               >
-                Vreau să dăruiesc
+                {t('home.donate_cta.button')}
                 <ArrowRight className="size-4" />
               </Link>
             </ScrollReveal>

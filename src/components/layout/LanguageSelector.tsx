@@ -8,6 +8,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Languages } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const languages = [
   { code: 'ro', name: 'Română' },
@@ -17,8 +18,21 @@ const languages = [
 
 export function LanguageSelector({ className }: { className?: string }) {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const currentLanguage = languages.find((l) => l.code === i18n.language) || languages[0];
+
+  const handleLanguageChange = (langCode: string) => {
+    if (i18n.language !== langCode) {
+      const currentPath = location.pathname;
+      const pathParts = currentPath.split('/');
+      // currentPath is likely /:lng/path... so pathParts[1] is the lng
+      pathParts[1] = langCode;
+      const newPath = pathParts.join('/');
+      navigate(newPath);
+    }
+  };
 
   return (
     <DropdownMenu>
@@ -43,11 +57,7 @@ export function LanguageSelector({ className }: { className?: string }) {
               "focus:bg-foreground/10 focus:text-foreground hover:bg-foreground/10 hover:text-foreground",
               i18n.language === lang.code ? "bg-foreground/10 text-foreground font-bold" : "text-muted-foreground"
             )}
-            onClick={() => {
-              if (i18n.language !== lang.code) {
-                i18n.changeLanguage(lang.code);
-              }
-            }}
+            onClick={() => handleLanguageChange(lang.code)}
           >
             <span className="uppercase">{lang.name}</span>
           </DropdownMenuItem>

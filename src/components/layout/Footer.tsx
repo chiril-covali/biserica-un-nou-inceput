@@ -9,13 +9,15 @@ export function Footer() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const currentLang = i18n.language.split('-')[0] || 'ro';
+
   const navLinks = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.about'), path: '/despre' },
-    { name: t('nav.bible'), path: '/biblia' },
-    { name: t('nav.media'), path: '/media' },
-    { name: t('nav.contact'), path: '/contact' },
-    { name: t('nav.donate'), path: '/donatii' }
+    { name: t('nav.home'), path: `/${currentLang}` },
+    { name: t('nav.about'), path: `/${currentLang}/despre` },
+    { name: t('nav.bible'), path: `/${currentLang}/biblia` },
+    { name: t('nav.media'), path: `/${currentLang}/media` },
+    { name: t('nav.contact'), path: `/${currentLang}/contact` },
+    { name: t('nav.donate'), path: `/${currentLang}/donatii` }
   ];
 
   return (
@@ -24,7 +26,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Logo & Info */}
           <div className="space-y-8 text-center md:text-left flex flex-col items-center md:items-start">
-            <Link to="/" className="inline-block group">
+            <Link to={`/${currentLang}`} className="inline-block group">
               <div className="flex flex-col items-center md:items-start">
                 <span className="text-2xl font-bold tracking-[0.3em] text-white leading-none">
                   BISERICA

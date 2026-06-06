@@ -67,7 +67,7 @@ const NotFound = () => {
               size="lg"
               className="px-8 py-6 text-base font-light tracking-wide group"
             >
-              <Link to="/">
+              <Link to={`/${currentLang}`}>
                 <ArrowLeft className="mr-2 size-5 transition-transform group-hover:-translate-x-1" />
                 Înapoi la Acasă
               </Link>

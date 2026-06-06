@@ -14,7 +14,9 @@ interface LayoutProps {
  */
 export function Layout({ children }: LayoutProps) {
   const location = useLocation();
-  const isHomepage = location.pathname === '/';
+  const pathParts = location.pathname.split('/').filter(Boolean);
+  // Homepage is either /:lng or /:lng/
+  const isHomepage = pathParts.length === 1;
 
   return (
     <div className="min-h-screen flex flex-col">

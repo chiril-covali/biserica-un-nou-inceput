@@ -10,20 +10,22 @@ import { LanguageSelector } from './LanguageSelector';
 import { cn } from '@/lib/utils';
 
 export function Header() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const { isScrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const isTransparent = location.pathname === '/' && !isScrolled;
+  const currentLang = i18n.language.split('-')[0] || 'ro';
+  const pathParts = location.pathname.split('/').filter(Boolean);
+  const isTransparent = pathParts.length === 1 && !isScrolled;
 
   const navLinks = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.about'), path: '/despre' },
-    { name: t('nav.bible'), path: '/biblia' },
-    { name: t('nav.media'), path: '/media' },
-    { name: t('nav.contact'), path: '/contact' },
-    { name: t('nav.donate'), path: '/donatii' },
+    { name: t('nav.home'), path: `/${currentLang}` },
+    { name: t('nav.about'), path: `/${currentLang}/despre` },
+    { name: t('nav.bible'), path: `/${currentLang}/biblia` },
+    { name: t('nav.media'), path: `/${currentLang}/media` },
+    { name: t('nav.contact'), path: `/${currentLang}/contact` },
+    { name: t('nav.donate'), path: `/${currentLang}/donatii` },
   ];
 
   return (
@@ -38,7 +40,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           <Link
-            to="/"
+            to={`/${currentLang}`}
             className="flex items-center gap-3 transition-all duration-300"
           >
             <div className="relative size-12 md:size-14 flex items-center justify-center shrink-0">
@@ -89,7 +91,7 @@ export function Header() {
                 )}
               >
                 {link.name}
-                {location.pathname === link.path && (
+                {(location.pathname === link.path || (link.path === `/${currentLang}` && location.pathname === `/${currentLang}/`)) && (
                   <motion.div
                     layoutId="activeNav"
                     className={cn(
