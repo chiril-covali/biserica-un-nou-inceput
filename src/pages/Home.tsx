@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Heart, MapPin, Calendar as CalendarIcon, Instagram, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { MapEmbed } from '@/components/MapEmbed';
 import { churchValues, ministries } from '@/data/church';
 import { format, nextDay, startOfToday } from 'date-fns';
-import { ro } from 'date-fns/locale';
+import { ro, enUS, ru } from 'date-fns/locale';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -26,12 +27,17 @@ const ThinCross = ({ className }: { className?: string }) => (
 );
 
 export default function Home() {
+  const { t, i18n } = useTranslation();
+  const currentLang = (i18n.language as 'ro' | 'en' | 'ru') || 'ro';
+  
   const today = startOfToday();
   const [activeGallery, setActiveGallery] = useState<Record<string, number>>({});
   
   const getNextServiceDate = (dayIndex: 0 | 1 | 2 | 3 | 4 | 5 | 6) => {
     const next = nextDay(today, dayIndex);
-    return format(next, 'd MMMM', { locale: ro });
+    const locales = { ro, en: enUS, ru };
+    const locale = locales[currentLang as keyof typeof locales] || ro;
+    return format(next, 'd MMMM', { locale });
   };
 
   const nextSunday = getNextServiceDate(0);
@@ -78,14 +84,14 @@ export default function Home() {
               transition={{ duration: 1, ease: 'easeOut' }}
             >
               <p className="text-sm sm:text-base md:text-xl tracking-[0.6em] text-white font-bold uppercase">
-                Biserica
+                {t('home.hero.subtitle')}
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extralight tracking-widest text-white">
-                UN NOU ÎNCEPUT
+                {t('home.hero.title')}
               </h1>
               <div className="space-y-2">
                 <p className="text-base sm:text-lg md:text-2xl font-light tracking-wide text-white/90 max-w-3xl mx-auto leading-relaxed">
-                  Glorificăm pe Isus. Suntem transformați prin Cuvânt. <br className="hidden md:block" /> Slujim prin puterea Duhului Sfânt.
+                  {t('home.hero.description')}
                 </p>
               </div>
 
@@ -94,16 +100,16 @@ export default function Home() {
                   to="/contact"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-medium tracking-wide hover:bg-white/90 transition-colors shadow-lg"
                 >
-                  Contactează-ne
+                  {t('home.hero.cta_main')}
                   <ArrowRight className="size-4" />
                 </Link>
-                <a
-                  href="#slujiri"
+                <Link
+                  to="/despre"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-medium tracking-wide hover:bg-white hover:text-black transition-colors"
                 >
-                  Slujirile noastre
+                  {t('home.hero.cta_secondary')}
                   <ArrowRight className="size-4" />
-                </a>
+                </Link>
               </div>
             </motion.div>
 
@@ -123,23 +129,21 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <ScrollReveal>
               <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light">
-                Bine ai venit
+                {t('about.title')}
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-wide mt-4">
-                O comunitate transformată de <br className="hidden sm:block" /> Isus Hristos
+                {currentLang === 'ro' ? 'O comunitate transformată de' : currentLang === 'ru' ? 'Сообщество, преображенное' : 'A community transformed by'} <br className="hidden sm:block" /> {currentLang === 'ro' ? 'Isus Hristos' : currentLang === 'ru' ? 'Иисусом Христом' : 'Jesus Christ'}
               </h2>
               <div className="space-y-4 text-base sm:text-lg font-light leading-relaxed text-muted-foreground mt-6">
                 <p>
-                  Ne dorim să-L glorificăm pe Domnul Isus în tot ceea ce facem, să fim transformați
-                  zilnic prin adevărul Scripturii și să slujim lui Dumnezeu și semenilor noștri prin
-                  puterea Duhului Sfânt.
+                  {t('home.hero.description')}
                 </p>
               </div>
               <Link
                 to="/despre"
                 className="inline-flex items-center gap-2 mt-6 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group underline underline-offset-4 decoration-primary/30 hover:decoration-primary"
               >
-                <span>Citește cuvântul păstorului</span>
+                <span>{t('home.hero.cta_secondary')}</span>
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </ScrollReveal>
@@ -152,9 +156,9 @@ export default function Home() {
             <ScrollReveal>
               <div className="text-center mb-16 sm:mb-20 space-y-3">
                 <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light">
-                  Valorile noastre
+                  {t('home.values.subtitle')}
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide">Pe ce zidim</h2>
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide">{t('home.values.title')}</h2>
               </div>
             </ScrollReveal>
 
@@ -166,9 +170,9 @@ export default function Home() {
                       {index === 0 ? <ThinCross className="size-8" /> : (value.icon && <value.icon className="size-8" strokeWidth={1.5} />)}
                     </div>
                     <div className="space-y-4">
-                      <h3 className="text-2xl font-light tracking-wide">{value.title}</h3>
+                      <h3 className="text-2xl font-light tracking-wide">{value.title[currentLang as keyof TranslatedString]}</h3>
                       <p className="text-base font-light leading-relaxed text-muted-foreground">
-                        {value.description}
+                        {value.description[currentLang as keyof TranslatedString]}
                       </p>
                     </div>
                   </div>
@@ -185,19 +189,19 @@ export default function Home() {
             <ScrollReveal>
               <div className="text-center mb-12 sm:mb-16 space-y-3">
                 <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light">
-                  Vino cu noi
+                  {t('home.program.subtitle')}
                 </p>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide">
-                  Programul bisericii
+                  {t('home.program.title')}
                 </h2>
               </div>
             </ScrollReveal>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                { day: 'Duminică', date: nextSunday, time: '10:00', title: 'Serviciu Divin', subtitle: 'Închinare și Cuvânt' },
-                { day: 'Miercuri', date: nextWednesday, time: '18:00', title: 'Seară de tineret', subtitle: 'Părtășie și creștere' },
-                { day: 'Sâmbătă', date: nextSaturday, time: '07:00', title: 'Rugăciunea bărbaților', subtitle: 'Micul dejun cu rugăciune' },
+                { day: t('home.program.sunday'), date: nextSunday, time: t('home.program.sunday_time'), title: t('home.program.sunday_event'), subtitle: currentLang === 'ro' ? 'Închinare și Cuvânt' : currentLang === 'ru' ? 'Поклонение и Слово' : 'Worship and Word' },
+                { day: t('home.program.youth'), date: nextWednesday, time: t('home.program.youth_time'), title: t('home.program.youth_event'), subtitle: currentLang === 'ro' ? 'Părtășie și creștere' : currentLang === 'ru' ? 'Общение и рост' : 'Fellowship and growth' },
+                { day: t('home.program.men'), date: nextSaturday, time: t('home.program.men_time'), title: t('home.program.men_event'), subtitle: currentLang === 'ro' ? 'Micul dejun cu rugăciune' : currentLang === 'ru' ? 'Молитвенный завтрак' : 'Prayer breakfast' },
               ].map((item, index) => (
                 <ScrollReveal key={item.day} delay={index * 0.1}>
                   <div className="p-10 border border-border bg-background rounded-xl space-y-6 text-center group hover:border-primary/30 transition-all duration-300">
@@ -224,13 +228,13 @@ export default function Home() {
             <ScrollReveal>
               <div className="text-center mb-12 sm:mb-20 space-y-3">
                 <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light">
-                  Implică-te
+                  {t('home.ministries.subtitle')}
                 </p>
                 <h2 className="text-3xl sm:text-4xl md:text-6xl font-light tracking-wide">
-                  Slujirile noastre
+                  {t('home.ministries.title')}
                 </h2>
                 <p className="text-base sm:text-lg text-muted-foreground font-light max-w-2xl mx-auto">
-                  Locuri în care poți crește, sluji și fi parte din familia bisericii.
+                  {currentLang === 'ro' ? 'Locuri în care poți crește, sluji și fi parte din familia bisericii.' : currentLang === 'ru' ? 'Места, где вы можете расти, служить и быть частью церковной семьи.' : 'Places where you can grow, serve, and be part of the church family.'}
                 </p>
               </div>
             </ScrollReveal>
@@ -245,18 +249,8 @@ export default function Home() {
                     <div className="h-full border border-border bg-background hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col group/card rounded-xl">
                       <div className="aspect-video bg-accent/40 overflow-hidden relative">
                         <img
-                          src={currentImages[currentIndex] || `https://images.unsplash.com/photo-${
-                            [
-                              '1529070538774-1843cb3265df',
-                              '1511632765486-a01980e01a18',
-                              '1573497019940-1c28c88b4f3e',
-                              '1507692049790-de58290a4334',
-                              '1510915361894-db8b60106cb1',
-                              '1529390079861-591de354faf5',
-                              '1532635241-17e820acc59f',
-                            ][index % 7]
-                          }?auto=format&fit=crop&w=800&q=70`}
-                          alt={m.title}
+                          src={currentImages[currentIndex]}
+                          alt={m.title[currentLang as keyof TranslatedString]}
                           loading="lazy"
                           className="w-full h-full object-cover transition-transform duration-700"
                         />
@@ -303,12 +297,12 @@ export default function Home() {
                       <div className="p-8 space-y-4 flex-1">
                         {m.schedule && (
                           <p className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">
-                            {m.schedule}
+                            {m.schedule[currentLang as keyof TranslatedString]}
                           </p>
                         )}
-                        <h3 className="text-xl font-light tracking-wide">{m.title}</h3>
+                        <h3 className="text-xl font-light tracking-wide">{m.title[currentLang as keyof TranslatedString]}</h3>
                         <p className="text-sm font-light leading-relaxed text-muted-foreground">
-                          {m.description}
+                          {m.description[currentLang as keyof TranslatedString]}
                         </p>
                       </div>
                     </div>

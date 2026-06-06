@@ -1,10 +1,22 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Mail, MapPin, Phone, ArrowUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function Footer() {
+  const { t } = useTranslation();
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const navLinks = [
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.about'), path: '/despre' },
+    { name: t('nav.bible'), path: '/biblia' },
+    { name: t('nav.media'), path: '/media' },
+    { name: t('nav.contact'), path: '/contact' },
+    { name: t('nav.donate'), path: '/donatii' }
+  ];
 
   return (
     <footer className="bg-zinc-950 text-zinc-400 py-20 px-6 lg:px-8 border-t border-white/5">
@@ -23,7 +35,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-sm font-light leading-relaxed max-w-xs text-zinc-400">
-              Suntem o comunitate creștină dedicată răspândirii Evangheliei și transformării vieților prin puterea lui Isus Hristos.
+              {t('footer.tagline')}
             </p>
             <div className="flex gap-4">
               <a 
@@ -49,11 +61,11 @@ export function Footer() {
 
           {/* Contact */}
           <div className="space-y-8">
-            <h4 className="text-white font-medium tracking-widest uppercase text-xs">Contact</h4>
+            <h4 className="text-white font-medium tracking-widest uppercase text-xs">{t('footer.contact')}</h4>
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
                 <MapPin className="size-5 text-white shrink-0" />
-                <span className="text-sm font-light">Strada Alba Iulia 75 F, Chișinău, Moldova</span>
+                <span className="text-sm font-light">{t('footer.address')}</span>
               </li>
               <li className="flex items-center gap-4">
                 <Phone className="size-5 text-white shrink-0" />
@@ -68,16 +80,9 @@ export function Footer() {
 
           {/* Navigare Rapidă */}
           <div className="space-y-8">
-            <h4 className="text-white font-medium tracking-widest uppercase text-xs">Navigare</h4>
+            <h4 className="text-white font-medium tracking-widest uppercase text-xs">{t('footer.rapid_nav')}</h4>
             <ul className="space-y-4">
-              {[
-                { name: 'Acasă', path: '/' },
-                { name: 'Despre', path: '/despre' },
-                { name: 'Biblia', path: '/biblia' },
-                { name: 'Media', path: '/media' },
-                { name: 'Contact', path: '/contact' },
-                { name: 'Donații', path: '/donatii' }
-              ].map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link 
                     to={link.path}
@@ -92,33 +97,33 @@ export function Footer() {
 
           {/* Orar */}
           <div className="space-y-8">
-            <h4 className="text-white font-medium tracking-widest uppercase text-xs">Program Servicii</h4>
+            <h4 className="text-white font-medium tracking-widest uppercase text-xs">{t('home.program.title')}</h4>
             <ul className="space-y-4">
               <li className="space-y-1">
-                <p className="text-sm font-medium text-white">Duminică</p>
-                <p className="text-xs font-light">10:00 — Serviciu Divin</p>
+                <p className="text-sm font-medium text-white">{t('home.program.sunday')}</p>
+                <p className="text-xs font-light">{t('home.program.sunday_time')} — {t('home.program.sunday_event')}</p>
               </li>
               <li className="space-y-1">
-                <p className="text-sm font-medium text-white">Miercuri</p>
-                <p className="text-xs font-light">18:00 — Seară de tineret</p>
+                <p className="text-sm font-medium text-white">{t('home.program.youth')}</p>
+                <p className="text-xs font-light">{t('home.program.youth_time')} — {t('home.program.youth_event')}</p>
               </li>
               <li className="space-y-1">
-                <p className="text-sm font-medium text-white">Sâmbătă</p>
-                <p className="text-xs font-light">07:00 — Rugăciunea bărbaților</p>
+                <p className="text-sm font-medium text-white">{t('home.program.men')}</p>
+                <p className="text-xs font-light">{t('home.program.men_time')} — {t('home.program.men_event')}</p>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-xs font-light tracking-wide">
-            © {new Date().getFullYear()} Biserica Un Nou Început
+          <p className="text-xs font-light tracking-wide uppercase">
+            © {new Date().getFullYear()} BISERICA UN NOU ÎNCEPUT
           </p>
           <button 
             onClick={scrollToTop}
             className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors group"
           >
-            Sus <ArrowUp className="size-4 transition-transform group-hover:-translate-y-1" />
+            {t('common.phone') === 'Phone' ? 'Up' : t('common.phone') === 'Телефон' ? 'Вверх' : 'Sus'} <ArrowUp className="size-4 transition-transform group-hover:-translate-y-1" />
           </button>
         </div>
       </div>

@@ -1,27 +1,30 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
+import { LanguageSelector } from './LanguageSelector';
 import { cn } from '@/lib/utils';
 
-const navLinks = [
-  { name: 'Acasă', path: '/' },
-  { name: 'Despre', path: '/despre' },
-  { name: 'Biblia', path: '/biblia' },
-  { name: 'Media', path: '/media' },
-  { name: 'Contact', path: '/contact' },
-  { name: 'Donații', path: '/donatii' },
-];
-
 export function Header() {
+  const { t } = useTranslation();
   const location = useLocation();
   const { isScrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isTransparent = location.pathname === '/' && !isScrolled;
+
+  const navLinks = [
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.about'), path: '/despre' },
+    { name: t('nav.bible'), path: '/biblia' },
+    { name: t('nav.media'), path: '/media' },
+    { name: t('nav.contact'), path: '/contact' },
+    { name: t('nav.donate'), path: '/donatii' },
+  ];
 
   return (
     <header
@@ -73,7 +76,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -98,10 +101,23 @@ export function Header() {
                 )}
               </Link>
             ))}
+            
+            <LanguageSelector 
+              className={cn(
+                "ml-4 border-l border-white/10 pl-4",
+                isTransparent ? "text-white" : "text-foreground"
+              )} 
+            />
           </nav>
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-2">
+            <LanguageSelector 
+              className={cn(
+                isTransparent ? "text-white" : "text-foreground"
+              )} 
+            />
+            
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button
@@ -113,23 +129,31 @@ export function Header() {
                   <Menu className="size-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full sm:w-80 border-l border-border">
+              <SheetContent side="right" className="w-full sm:w-80 border-l border-border bg-background/98 backdrop-blur-lg">
                 <SheetTitle className="sr-only">Meniu de navigare</SheetTitle>
                 <SheetDescription className="sr-only">
                   Accesează paginile principale ale bisericii.
                 </SheetDescription>
-                <nav className="flex flex-col gap-6 mt-12">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.path}
-                      to={link.path}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-xl leading-7 font-medium tracking-wide text-foreground hover:text-primary transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
-                </nav>
+                
+                <div className="flex flex-col h-full">
+                  <nav className="flex flex-col gap-6 mt-12 flex-1">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.path}
+                        to={link.path}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="text-2xl leading-7 font-light tracking-widest text-foreground hover:text-muted-foreground transition-all"
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                  </nav>
+                  
+                  <div className="pb-12 border-t border-border pt-8 flex items-center justify-between">
+                     <span className="text-xs font-light tracking-widest uppercase opacity-50">Limbă / Language</span>
+                     <LanguageSelector />
+                  </div>
+                </div>
               </SheetContent>
             </Sheet>
           </div>

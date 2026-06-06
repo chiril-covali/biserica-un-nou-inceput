@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Mail, Facebook, Instagram, HandHeart, MapPin, Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { photographerInfo } from '@/data/photographer';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Separator } from '@/components/ui/separator';
@@ -7,11 +8,13 @@ import { SEOHead } from '@/components/seo/SEOHead';
 import { MapEmbed } from '@/components/MapEmbed';
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   return (
     <>
       <SEOHead
-        title="Contact"
-        description="Contactează Biserica Un Nou Început — suntem aici pentru tine."
+        title={t('contact.title')}
+        description={t('contact.description')}
       />
 
       <div className="min-h-screen">
@@ -23,13 +26,13 @@ export default function Contact() {
               transition={{ duration: 0.4 }}
             >
               <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light mb-3">
-                Vorbește cu noi
+                {t('contact.subtitle')}
               </p>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
-                Contact
+                {t('contact.title')}
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-light tracking-wide">
-                Ne-ar plăcea să te cunoaștem și să ne rugăm împreună cu tine.
+                {t('contact.description')}
               </p>
             </motion.div>
           </div>
@@ -52,14 +55,13 @@ export default function Contact() {
               </div>
               <div className="space-y-3 text-center md:text-left">
                 <p className="text-xs tracking-[0.3em] uppercase opacity-70 font-light">
-                  Ești în dificultate?
+                  {t('common.phone') === 'Phone' ? 'IN DIFFICULTY?' : t('common.phone') === 'Телефон' ? 'В ТРУДНОСТИ?' : 'EȘTI ÎN DIFICULTATE?'}
                 </p>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide">
-                  Trimite-ne o nevoie de rugăciune
+                  {t('contact.prayer_request_title')}
                 </h2>
                 <p className="text-base sm:text-lg font-light leading-relaxed opacity-90">
-                  Biserica noastră se va ruga pentru tine în confidențialitate. Folosește
-                  formularul de mai jos și alege „Nevoie de rugăciune” la tipul de mesaj.
+                  {t('contact.prayer_request_desc')}
                 </p>
               </div>
             </motion.div>
@@ -77,10 +79,10 @@ export default function Contact() {
               >
                 <div className="space-y-2">
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide">
-                    Trimite-ne un mesaj
+                    {t('contact.form_title')}
                   </h2>
                   <p className="text-sm sm:text-base text-muted-foreground font-light">
-                    Completează formularul și îți vom răspunde cât mai curând.
+                    {t('contact.form_subtitle')}
                   </p>
                 </div>
 
@@ -95,7 +97,7 @@ export default function Contact() {
               >
                 <div className="space-y-2">
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide">
-                    Informații de contact
+                    {t('contact.info_title')}
                   </h2>
                 </div>
 
@@ -107,7 +109,7 @@ export default function Contact() {
                       <Phone className="size-5 text-muted-foreground" />
                     </div>
                     <div className="space-y-1">
-                      <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">Telefon</p>
+                      <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">{t('common.phone')}</p>
                       <a
                         href={`tel:${photographerInfo.phone}`}
                         className="text-base font-light hover:text-muted-foreground transition-colors"
@@ -122,7 +124,7 @@ export default function Contact() {
                       <Mail className="size-5 text-muted-foreground" />
                     </div>
                     <div className="space-y-1">
-                      <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">Email</p>
+                      <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">{t('common.email')}</p>
                       <a
                         href={`mailto:${photographerInfo.email}`}
                         className="text-base font-light hover:text-muted-foreground transition-colors break-all"
@@ -139,7 +141,7 @@ export default function Contact() {
                       </div>
                       <div className="space-y-1">
                         <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">
-                          Facebook
+                          {t('common.facebook')}
                         </p>
                         <a
                           href={photographerInfo.socialLinks.facebook}
@@ -160,7 +162,7 @@ export default function Contact() {
                       </div>
                       <div className="space-y-1">
                         <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">
-                          Instagram
+                          {t('common.instagram')}
                         </p>
                         <a
                           href={photographerInfo.socialLinks.instagram}
@@ -184,7 +186,7 @@ export default function Contact() {
           <div className="max-w-6xl mx-auto space-y-6">
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="size-5" />
-              <h2 className="text-xl sm:text-2xl font-light tracking-wide">Cum ne găsești</h2>
+              <h2 className="text-xl sm:text-2xl font-light tracking-wide">{t('contact.find_us')}</h2>
             </div>
             <div className="h-[320px] sm:h-[420px] md:h-[500px] border border-border">
               <MapEmbed className="h-full" />

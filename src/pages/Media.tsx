@@ -1,15 +1,17 @@
 import { SEOHead } from '@/components/seo/SEOHead';
 import { motion } from 'framer-motion';
-import { Instagram, Facebook, Play, Image as ImageIcon, ExternalLink, Calendar, Heart, Share2, MessageCircle } from 'lucide-react';
+import { Instagram, Facebook, ExternalLink } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 
 export default function Media() {
+  const { t } = useTranslation();
+
   return (
     <>
       <SEOHead 
-        title="Media" 
-        description="Imagini și noutăți de la Biserica Un Nou Început — fii la curent cu tot ce se întâmplă în comunitatea noastră."
+        title={t('nav.media')} 
+        description={t('bible.description')}
       />
 
       <div className="min-h-screen pb-20">
@@ -32,10 +34,10 @@ export default function Media() {
                 Social Media Hub
               </p>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
-                Media
+                {t('nav.media')}
               </h1>
               <p className="text-base md:text-xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
-                Urmărește activitatea noastră în timp real prin feed-urile oficiale de Facebook și Instagram.
+                {t('common.phone') === 'Phone' ? 'Follow our activity in real time through our official Facebook and Instagram feeds.' : t('common.phone') === 'Телефон' ? 'Следите за нашей деятельностью в режиме реального времени через наши официальные ленты в Facebook и Instagram.' : 'Urmărește activitatea noastră în timp real prin feed-urile oficiale de Facebook și Instagram.'}
               </p>
             </motion.div>
           </div>
@@ -79,8 +81,8 @@ export default function Media() {
                     className="p-8 bg-gradient-to-br from-pink-500/5 to-purple-500/5 border border-pink-500/20 rounded-2xl space-y-6 transition-all"
                   >
                     <div className="space-y-2">
-                      <h3 className="text-xl font-light">Pagina Bisericii</h3>
-                      <p className="text-sm text-muted-foreground font-light">Urmărește activitatea duminicală și noutățile bisericii.</p>
+                      <h3 className="text-xl font-light">{t('common.phone') === 'Phone' ? 'Church Page' : t('common.phone') === 'Телефон' ? 'Страница церкви' : 'Pagina Bisericii'}</h3>
+                      <p className="text-sm text-muted-foreground font-light">{t('common.phone') === 'Phone' ? 'Follow our Sunday activity and church news.' : t('common.phone') === 'Телефон' ? 'Следите за нашей воскресной деятельностью и новостями церкви.' : 'Urmărește activitatea duminicală și noutățile bisericii.'}</p>
                     </div>
                     <Button asChild className="w-full bg-pink-600 hover:bg-pink-700 text-white rounded-xl h-12">
                       <a href="https://www.instagram.com/biserica.unnouinceput/" target="_blank" rel="noopener noreferrer" className="gap-2">
@@ -94,8 +96,8 @@ export default function Media() {
                     className="p-8 bg-gradient-to-br from-orange-500/5 to-pink-500/5 border border-orange-500/20 rounded-2xl space-y-6 transition-all"
                   >
                     <div className="space-y-2">
-                      <h3 className="text-xl font-light">Grupul de Tineret</h3>
-                      <p className="text-sm text-muted-foreground font-light">Imagini și momente de la întâlnirile tinerilor noștri.</p>
+                      <h3 className="text-xl font-light">{t('common.phone') === 'Phone' ? 'Youth Group' : t('common.phone') === 'Телефон' ? 'Молодежная группа' : 'Grupul de Tineret'}</h3>
+                      <p className="text-sm text-muted-foreground font-light">{t('common.phone') === 'Phone' ? 'Images and moments from our youth meetings.' : t('common.phone') === 'Телефон' ? 'Фотографии и моменты с наших молодежных встреч.' : 'Imagini și momente de la întâlnirile tinerilor noștri.'}</p>
                     </div>
                     <Button asChild className="w-full bg-gradient-to-r from-orange-600 to-pink-600 hover:from-orange-700 hover:to-pink-700 text-white rounded-xl h-12 border-none">
                       <a href="https://www.instagram.com/tineret.unnouinceput/" target="_blank" rel="noopener noreferrer" className="gap-2">
@@ -107,7 +109,7 @@ export default function Media() {
 
                 <div className="p-10 border border-dashed border-border rounded-2xl text-center space-y-4">
                   <p className="text-sm text-muted-foreground font-light italic">
-                    "Instagram nu permite momentan afișarea automată a pozelor fără autentificare. Te invităm să ne urmărești direct pe aplicație pentru cele mai noi postări!"
+                    {t('common.phone') === 'Phone' ? '"Instagram currently does not allow automatic photo display without authentication. We invite you to follow us directly on the app for the latest posts!"' : t('common.phone') === 'Телефон' ? '"Instagram в настоящее время не позволяет автоматически отображать фотографии без аутентификации. Приглашаем вас подписаться на нас прямо в приложении для получения последних сообщений!"' : '"Instagram nu permite momentan afișarea automată a pozelor fără autentificare. Te invităm să ne urmărești direct pe aplicație pentru cele mai noi postări!"'}
                   </p>
                 </div>
               </div>
@@ -119,3 +121,4 @@ export default function Media() {
     </>
   );
 }
+

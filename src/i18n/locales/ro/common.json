@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "about": "Despre noi",
+    "bible": "Biblie",
+    "media": "Media",
+    "donate": "Donații",
+    "contact": "Contact"
+  },
+  "footer": {
+    "tagline": "Glorificăm pe Isus. Suntem transformați prin Cuvânt. Slujim prin puterea Duhului Sfânt.",
+    "rapid_nav": "Navigare Rapidă",
+    "social_media": "Social Media",
+    "contact": "Contact",
+    "address": "Strada Alba Iulia 75 F, Chișinău, Moldova"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Biserica Creștină Baptistă",
+      "title": "Un Nou Început",
+      "description": "O comunitate de oameni transformați de Isus Hristos, ancorați în Cuvântul lui Dumnezeu și împuterniciți de Duhul Sfânt.",
+      "cta_main": "Descoperă mai mult",
+      "cta_secondary": "Cuvântul Păstorului"
+    },
+    "values": {
+      "subtitle": "Valorile noastre",
+      "title": "Cine suntem și în ce credem"
+    },
+    "ministries": {
+      "subtitle": "Slujire și Comunitate",
+      "title": "Lucrările noastre"
+    },
+    "program": {
+      "subtitle": "Când ne vedem",
+      "title": "Programul Bisericii",
+      "sunday": "Duminică",
+      "sunday_time": "10:00 – 12:00",
+      "sunday_event": "Serviciu Divin Principal",
+      "youth": "Miercuri",
+      "youth_time": "19:00 – 21:00",
+      "youth_event": "Tineret",
+      "men": "Sâmbătă",
+      "men_time": "07:00 – 08:30",
+      "men_event": "Rugăciune Bărbați",
+      "location": "Locație",
+      "address": "Strada Alba Iulia 75 F, Chișinău"
+    },
+    "cta_visit": {
+      "title": "Vrei să ne vizitezi?",
+      "description": "Ești binevenit oricând să participi la serviciile noastre. Ne-ar face plăcere să te cunoaștem!",
+      "button": "Planifică o vizită"
+    }
+  },
+  "bible": {
+    "title": "Biblia Online",
+    "description": "Citește și studiază Sfânta Scriptură direct pe site-ul nostru.",
+    "search_placeholder": "Caută o carte (ex: Ioan, Romani...)",
+    "back_to_books": "Înapoi la lista cărților",
+    "no_results": "Nu am găsit nicio carte cu acest nume.",
+    "select_chapter": "Selectează capitolul"
+  },
+  "about": {
+    "title": "Despre noi",
+    "pastor_word": "Cuvântul Păstorului",
+    "history": "Povestea noastră"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Vorbește cu noi",
+    "description": "Ne-ar plăcea să te cunoaștem și să ne rugăm împreună cu tine.",
+    "form_title": "Trimite-ne un mesaj",
+    "form_subtitle": "Completează formularul și îți vom răspunde cât mai curând.",
+    "info_title": "Informații de contact",
+    "prayer_request_title": "Trimite-ne o nevoie de rugăciune",
+    "prayer_request_desc": "Biserica noastră se va ruga pentru tine în confidențialitate.",
+    "find_us": "Cum ne găsești"
+  },
+  "common": {
+    "phone": "Telefon",
+    "email": "Email",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "loading": "Se încarcă...",
+    "read_more": "Citește mai mult",
+    "see_on_ig": "Vezi pe Instagram"
+  }
+}

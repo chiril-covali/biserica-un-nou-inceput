@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "bible": "Bible",
+    "media": "Media",
+    "donate": "Donate",
+    "contact": "Contact"
+  },
+  "footer": {
+    "tagline": "Glorifying Jesus. Transformed by the Word. Serving through the Power of the Holy Spirit.",
+    "rapid_nav": "Quick Navigation",
+    "social_media": "Social Media",
+    "contact": "Contact",
+    "address": "Strada Alba Iulia 75 F, Chișinău, Moldova"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Baptist Christian Church",
+      "title": "A New Beginning",
+      "description": "A community of people transformed by Jesus Christ, anchored in the Word of God and empowered by the Holy Spirit.",
+      "cta_main": "Discover more",
+      "cta_secondary": "Pastor's Message"
+    },
+    "values": {
+      "subtitle": "Our Values",
+      "title": "Who we are and what we believe"
+    },
+    "ministries": {
+      "subtitle": "Service and Community",
+      "title": "Our Ministries"
+    },
+    "program": {
+      "subtitle": "When we meet",
+      "title": "Church Schedule",
+      "sunday": "Sunday",
+      "sunday_time": "10:00 – 12:00",
+      "sunday_event": "Main Service",
+      "youth": "Wednesday",
+      "youth_time": "19:00 – 21:00",
+      "youth_event": "Youth Meeting",
+      "men": "Saturday",
+      "men_time": "07:00 – 08:30",
+      "men_event": "Men's Prayer",
+      "location": "Location",
+      "address": "75 F Alba Iulia St, Chișinău"
+    },
+    "cta_visit": {
+      "title": "Want to visit us?",
+      "description": "You are welcome anytime to join our services. We'd love to meet you!",
+      "button": "Plan a visit"
+    }
+  },
+  "bible": {
+    "title": "Bible Online",
+    "description": "Read and study the Holy Scripture directly on our website.",
+    "search_placeholder": "Search for a book (e.g., John, Romans...)",
+    "back_to_books": "Back to book list",
+    "no_results": "No book found with this name.",
+    "select_chapter": "Select chapter"
+  },
+  "about": {
+    "title": "About Us",
+    "pastor_word": "Pastor's Message",
+    "history": "Our Story"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Talk to us",
+    "description": "We would love to meet you and pray with you.",
+    "form_title": "Send us a message",
+    "form_subtitle": "Fill out the form and we will get back to you soon.",
+    "info_title": "Contact Information",
+    "prayer_request_title": "Send a prayer request",
+    "prayer_request_desc": "Our church will pray for you in confidentiality.",
+    "find_us": "How to find us"
+  },
+  "common": {
+    "phone": "Phone",
+    "email": "Email",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "loading": "Loading...",
+    "read_more": "Read more",
+    "see_on_ig": "See on Instagram"
+  }
+}
