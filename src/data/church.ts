@@ -1,28 +1,12 @@
 import type { Ministry, Value } from '@/types';
 import { Book, Flame } from 'lucide-react';
 
-const ChristianCross = ({ className, ...props }: any) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    {...props}
-  >
-    <path d="M12 3v18M7 8h10" />
-  </svg>
-);
-
 export const churchValues: Value[] = [
   {
     id: 'glorificam',
     title: 'Glorificăm pe Isus',
     description:
       'Credem că Isus Hristos este centrul vieții și al lucrării noastre. Dorim ca prin închinare, rugăciune și ascultare de Dumnezeu să-I aducem slavă în fiecare aspect al vieții.',
-    icon: ChristianCross
   },
   {
     id: 'transformati',

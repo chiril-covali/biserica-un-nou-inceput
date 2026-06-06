@@ -11,6 +11,20 @@ import { ro } from 'date-fns/locale';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 
+const ThinCross = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M12 3v18M8 9h8" />
+  </svg>
+);
+
 export default function Home() {
   const today = startOfToday();
   const [activeGallery, setActiveGallery] = useState<Record<string, number>>({});
@@ -149,7 +163,7 @@ export default function Home() {
                 <ScrollReveal key={value.id} delay={index * 0.1}>
                   <div className="group p-10 border border-border bg-background rounded-xl space-y-6 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-2">
                     <div className="size-16 rounded-2xl bg-accent/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-500">
-                      {value.icon && <value.icon className="size-8" strokeWidth={1.5} />}
+                      {index === 0 ? <ThinCross className="size-8" /> : (value.icon && <value.icon className="size-8" strokeWidth={1.5} />)}
                     </div>
                     <div className="space-y-4">
                       <h3 className="text-2xl font-light tracking-wide">{value.title}</h3>
