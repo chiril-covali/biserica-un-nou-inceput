@@ -1,3 +1,5 @@
+import { Book, Flame } from 'lucide-react';
+
 export interface TranslatedString {
   ro: string;
   en: string;
