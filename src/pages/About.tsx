@@ -29,10 +29,10 @@ export default function About() {
               <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-light mb-4">
                 {t('nav.about')}
               </p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wide mb-4">
                 {t('about.pastor_word')}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide">
+              <p className="text-lg md:text-xl text-muted-foreground font-normal tracking-wide">
                 {t('about.pastor_subtitle')}
               </p>
             </motion.div>
@@ -99,28 +99,28 @@ export default function About() {
                 <Separator />
 
                 <div className="space-y-4">
-                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                  <p className="text-lg font-normal leading-relaxed text-muted-foreground">
                     {t('about.pastor_greeting')}
                   </p>
-                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                  <p className="text-lg font-normal leading-relaxed text-muted-foreground">
                     {t('about.pastor_welcome_1')}
                     <span className="font-bold text-foreground">{t('about.pastor_welcome_2')}</span>
                   </p>
-                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                  <p className="text-lg font-normal leading-relaxed text-muted-foreground">
                     {t('about.pastor_text_1')}
                   </p>
-                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                  <p className="text-lg font-normal leading-relaxed text-muted-foreground">
                     {t('about.pastor_text_2')}
                   </p>
-                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                  <p className="text-lg font-normal leading-relaxed text-muted-foreground">
                     {t('about.pastor_text_3')}
                   </p>
-                  <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground">
+                  <p className="text-lg font-normal leading-relaxed text-muted-foreground">
                     {t('about.pastor_closing')}
                   </p>
                   
                   <div className="pt-4">
-                    <p className="text-base md:text-lg font-light leading-relaxed text-muted-foreground italic">
+                    <p className="text-lg font-normal leading-relaxed text-muted-foreground italic">
                       {t('about.pastor_signoff')}
                     </p>
                     <p className="text-lg font-bold text-foreground mt-1">
@@ -140,13 +140,13 @@ export default function About() {
         <section className="py-20 md:py-28 px-6 lg:px-8 border-t border-border bg-slate-50/50 dark:bg-zinc-900/30 relative overflow-hidden">
           <div className="max-w-6xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20 space-y-4">
-              <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light">
+              <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-semibold">
                 {t('about.team_title')}
               </p>
-              <h2 className="text-3xl md:text-5xl font-light tracking-wide text-foreground">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-wide text-foreground">
                 {t('about.team_title')}
               </h2>
-              <p className="text-base sm:text-lg text-muted-foreground font-light leading-relaxed">
+              <p className="text-lg text-muted-foreground font-normal leading-relaxed">
                 {t('about.team_description')}
               </p>
             </div>
@@ -205,10 +205,10 @@ export default function About() {
                       <p className="text-[10px] tracking-[0.2em] uppercase text-primary font-bold">
                         {t(member.roleKey)}
                       </p>
-                      <h3 className="text-xl font-light tracking-wide text-foreground">
+                      <h3 className="text-xl font-semibold tracking-wide text-foreground">
                         {member.name}
                       </h3>
-                      <p className="text-sm font-light leading-relaxed text-muted-foreground">
+                      <p className="text-base font-normal leading-relaxed text-muted-foreground">
                         {t(member.detailsKey)}
                       </p>
                     </div>

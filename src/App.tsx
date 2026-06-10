@@ -20,7 +20,6 @@ const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Donate = lazy(() => import("./pages/Donate"));
 const Bible = lazy(() => import("./pages/Bible"));
-const Media = lazy(() => import("./pages/Media"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -42,7 +41,6 @@ function AnimatedRoutes() {
       <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
       <Route path="/donatii" element={<PageTransition><Donate /></PageTransition>} />
       <Route path="/biblia" element={<PageTransition><Bible /></PageTransition>} />
-      <Route path="/media" element={<PageTransition><Media /></PageTransition>} />
       <Route path="/lucrari" element={<Navigate to={`/${lng}/#slujiri`} replace />} />
       <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
     </Routes>

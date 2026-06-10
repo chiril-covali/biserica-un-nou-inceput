@@ -15,13 +15,12 @@ export function Footer() {
     { name: t('nav.home'), path: `/${currentLang}` },
     { name: t('nav.about'), path: `/${currentLang}/despre` },
     { name: t('nav.bible'), path: `/${currentLang}/biblia` },
-    { name: t('nav.media'), path: `/${currentLang}/media` },
     { name: t('nav.contact'), path: `/${currentLang}/contact` },
     { name: t('nav.donate'), path: `/${currentLang}/donatii` }
   ];
 
   return (
-    <footer className="bg-zinc-950 text-zinc-400 py-20 px-6 lg:px-8 border-t border-white/5">
+    <footer className="bg-gradient-to-br from-[#07162C] to-[#0A1D37] text-zinc-400 py-20 px-6 lg:px-8 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Logo & Info */}

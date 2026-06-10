@@ -25,13 +25,13 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-light mb-3">
+              <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-muted-foreground font-semibold mb-3">
                 {t('contact.subtitle')}
               </p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-wide mb-4">
                 {t('contact.title')}
               </h1>
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-light tracking-wide">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-normal tracking-wide">
                 {t('contact.description')}
               </p>
             </motion.div>
@@ -54,13 +54,13 @@ export default function Contact() {
                 </div>
               </div>
               <div className="space-y-3 text-center md:text-left">
-                <p className="text-xs tracking-[0.3em] uppercase opacity-70 font-light">
+                <p className="text-xs tracking-[0.3em] uppercase opacity-70 font-semibold">
                   {t('common.phone') === 'Phone' ? 'IN DIFFICULTY?' : t('common.phone') === 'Телефон' ? 'В ТРУДНОСТИ?' : 'EȘTI ÎN DIFICULTATE?'}
                 </p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide">
                   {t('contact.prayer_request_title')}
                 </h2>
-                <p className="text-base sm:text-lg font-light leading-relaxed opacity-90">
+                <p className="text-lg font-normal leading-relaxed opacity-90">
                   {t('contact.prayer_request_desc')}
                 </p>
               </div>
@@ -78,10 +78,10 @@ export default function Contact() {
                 transition={{ duration: 0.4 }}
               >
                 <div className="space-y-2">
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide">
                     {t('contact.form_title')}
                   </h2>
-                  <p className="text-sm sm:text-base text-muted-foreground font-light">
+                  <p className="text-sm sm:text-base text-muted-foreground font-normal">
                     {t('contact.form_subtitle')}
                   </p>
                 </div>
@@ -96,7 +96,7 @@ export default function Contact() {
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
                 <div className="space-y-2">
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide">
                     {t('contact.info_title')}
                   </h2>
                 </div>
@@ -109,10 +109,10 @@ export default function Contact() {
                       <Phone className="size-5 text-muted-foreground" />
                     </div>
                     <div className="space-y-1">
-                      <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">{t('common.phone')}</p>
+                      <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">{t('common.phone')}</p>
                       <a
                         href={`tel:${photographerInfo.phone}`}
-                        className="text-base font-light hover:text-muted-foreground transition-colors"
+                        className="text-base font-normal hover:text-muted-foreground transition-colors"
                       >
                         {photographerInfo.phone}
                       </a>
@@ -124,10 +124,10 @@ export default function Contact() {
                       <Mail className="size-5 text-muted-foreground" />
                     </div>
                     <div className="space-y-1">
-                      <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">{t('common.email')}</p>
+                      <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">{t('common.email')}</p>
                       <a
                         href={`mailto:${photographerInfo.email}`}
-                        className="text-base font-light hover:text-muted-foreground transition-colors break-all"
+                        className="text-base font-normal hover:text-muted-foreground transition-colors break-all"
                       >
                         {photographerInfo.email}
                       </a>
@@ -140,14 +140,14 @@ export default function Contact() {
                         <Facebook className="size-5 text-muted-foreground" />
                       </div>
                       <div className="space-y-1">
-                        <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">
+                        <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
                           {t('common.facebook')}
                         </p>
                         <a
                           href={photographerInfo.socialLinks.facebook}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-base font-light hover:text-muted-foreground transition-colors"
+                          className="text-base font-normal hover:text-muted-foreground transition-colors"
                         >
                           Biserica UN NOU ÎNCEPUT
                         </a>
@@ -161,14 +161,14 @@ export default function Contact() {
                         <Instagram className="size-5 text-muted-foreground" />
                       </div>
                       <div className="space-y-1">
-                        <p className="text-xs font-light tracking-wide text-muted-foreground uppercase">
+                        <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
                           {t('common.instagram')}
                         </p>
                         <a
                           href={photographerInfo.socialLinks.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-base font-light hover:text-muted-foreground transition-colors"
+                          className="text-base font-normal hover:text-muted-foreground transition-colors"
                         >
                           @biserica.unnouinceput
                         </a>
@@ -186,7 +186,7 @@ export default function Contact() {
           <div className="max-w-6xl mx-auto space-y-6">
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="size-5" />
-              <h2 className="text-xl sm:text-2xl font-light tracking-wide">{t('contact.find_us')}</h2>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-wide">{t('contact.find_us')}</h2>
             </div>
             <div className="h-[320px] sm:h-[420px] md:h-[500px] border border-border">
               <MapEmbed className="h-full" />

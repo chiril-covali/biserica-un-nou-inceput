@@ -23,7 +23,6 @@ export function Header() {
     { name: t('nav.home'), path: `/${currentLang}` },
     { name: t('nav.about'), path: `/${currentLang}/despre` },
     { name: t('nav.bible'), path: `/${currentLang}/biblia` },
-    { name: t('nav.media'), path: `/${currentLang}/media` },
     { name: t('nav.contact'), path: `/${currentLang}/contact` },
     { name: t('nav.donate'), path: `/${currentLang}/donatii` },
   ];
@@ -31,45 +30,37 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-colors duration-300',
+        'fixed left-1/2 -translate-x-1/2 w-[92%] max-w-7xl z-50 transition-all duration-300 rounded-full border shadow-lg px-4 md:px-6',
         isTransparent
-          ? 'bg-transparent border-transparent'
-          : 'bg-background/95 backdrop-blur-md border-b border-border shadow-sm'
+          ? 'top-4 md:top-6 bg-[#07162C]/50 backdrop-blur-md border-white/10 text-white'
+          : 'top-2 md:top-4 bg-background/90 backdrop-blur-md border-border text-foreground'
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
+      <div className="w-full">
+        <div className="flex items-center justify-between h-16 md:h-18">
           <Link
             to={`/${currentLang}`}
             className="flex items-center gap-3 transition-all duration-300"
           >
-            <div className="relative size-12 md:size-14 flex items-center justify-center shrink-0">
-              {!isTransparent && (
-                <motion.div
-                  key="logo"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute inset-0 rounded-full overflow-hidden"
-                >
-                  <img
-                    src="/logo.png"
-                    alt="Logo Biserica UN NOU ÎNCEPUT"
-                    className="size-full object-cover scale-150"
-                  />
-                </motion.div>
-              )}
+            <div className="relative size-10 md:size-12 flex items-center justify-center shrink-0">
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                <img
+                  src="/logo.png"
+                  alt="Logo Biserica UN NOU ÎNCEPUT"
+                  className="size-full object-cover scale-150"
+                />
+              </div>
             </div>
             
             <div className="flex flex-col items-start leading-none">
               <span className={cn(
-                'text-xl md:text-2xl font-bold tracking-[0.2em] transition-colors',
+                'text-base md:text-lg font-bold tracking-[0.2em] transition-colors',
                 isTransparent ? 'text-white' : 'text-foreground'
               )}>
                 BISERICA
               </span>
               <span className={cn(
-                'text-[11px] md:text-sm font-semibold tracking-[0.3em] mt-1 transition-colors',
+                'text-[9px] md:text-xs font-semibold tracking-[0.3em] mt-1 transition-colors',
                 isTransparent ? 'text-white/90' : 'text-muted-foreground'
               )}>
                 UN NOU ÎNCEPUT
