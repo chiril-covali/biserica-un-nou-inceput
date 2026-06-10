@@ -54,7 +54,7 @@ export function Header() {
                 >
                   <img
                     src="/logo.png"
-                    alt="Logo Biserica Un Nou Început"
+                    alt="Logo Biserica UN NOU ÎNCEPUT"
                     className="size-full object-cover scale-150"
                   />
                 </motion.div>

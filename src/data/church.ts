@@ -71,9 +71,9 @@ export const ministries: Ministry[] = [
   {
     id: 'kids',
     title: {
-      ro: 'Kids Un Nou Început',
-      en: 'Kids New Beginning',
-      ru: 'Дети Новое Начало'
+      ro: 'Kids UN NOU ÎNCEPUT',
+      en: 'Kids A NEW BEGINNING',
+      ru: 'Дети НОВОЕ НАЧАЛО'
     },
     schedule: {
       ro: 'În fiecare duminică',
@@ -95,9 +95,9 @@ export const ministries: Ministry[] = [
   {
     id: 'tineri',
     title: {
-      ro: 'Tinerii Un Nou Început',
-      en: 'Youth New Beginning',
-      ru: 'Молодежь Новое Начало'
+      ro: 'Tinerii UN NOU ÎNCEPUT',
+      en: 'Youth A NEW BEGINNING',
+      ru: 'Молодежь НОВОЕ НАЧАЛО'
     },
     schedule: {
       ro: 'Miercuri seara',
@@ -119,9 +119,9 @@ export const ministries: Ministry[] = [
   {
     id: 'femei',
     title: {
-      ro: 'Femeile Un Nou Început',
-      en: 'Women New Beginning',
-      ru: 'Женщины Новое Начало'
+      ro: 'Femeile UN NOU ÎNCEPUT',
+      en: 'Women A NEW BEGINNING',
+      ru: 'Женщины НОВОЕ НАЧАЛО'
     },
     schedule: {
       ro: 'Periodic',
@@ -193,9 +193,9 @@ export const ministries: Ministry[] = [
   {
     id: 'media',
     title: {
-      ro: 'Echipa Media Un Nou Început',
-      en: 'Media Team New Beginning',
-      ru: 'Медиа-команда Новое Начало'
+      ro: 'Echipa Media UN NOU ÎNCEPUT',
+      en: 'Media Team A NEW BEGINNING',
+      ru: 'Медиа-команда НОВОЕ НАЧАЛО'
     },
     image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=70',
     description: {

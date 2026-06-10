@@ -149,7 +149,7 @@ export default function Contact() {
                           rel="noopener noreferrer"
                           className="text-base font-light hover:text-muted-foreground transition-colors"
                         >
-                          Biserica Un Nou Început
+                          Biserica UN NOU ÎNCEPUT
                         </a>
                       </div>
                     </div>

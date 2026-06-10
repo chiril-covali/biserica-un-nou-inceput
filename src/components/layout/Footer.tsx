@@ -32,7 +32,7 @@ export function Footer() {
                   BISERICA
                 </span>
                 <span className="text-sm tracking-[0.2em] text-white/60 font-light mt-1 uppercase">
-                  Un Nou Început
+                  UN NOU ÎNCEPUT
                 </span>
               </div>
             </Link>

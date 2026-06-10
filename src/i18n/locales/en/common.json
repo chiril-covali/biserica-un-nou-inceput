@@ -17,7 +17,7 @@
   "home": {
     "hero": {
       "subtitle": "Baptist Christian Church",
-      "title": "A New Beginning",
+      "title": "A NEW BEGINNING",
       "description": "A community of people transformed by Jesus Christ, anchored in the Word of God and empowered by the Holy Spirit.",
       "cta_main": "Discover more",
       "cta_secondary": "Pastor's Message",
@@ -90,7 +90,27 @@
     "pastor_text_3": "Regardless of your past or the stage you are in, I encourage you to take a step toward God and discover with us the joy of a life transformed by the Gospel. With God's help, every day can be a new beginning.",
     "pastor_closing": "We look forward to seeing you!",
     "pastor_signoff": "With love in Christ,",
-    "pastor_role": "Pastor — A NEW BEGINNING Church"
+    "pastor_role": "Pastor — A NEW BEGINNING Church",
+    "team_title": "Serving Team",
+    "team_description": "People dedicated to serving God and our community, working together to spread the Gospel and build the church.",
+    "team": {
+      "vitalie": {
+        "role": "Lead Pastor",
+        "details": "Vitalie has a vision to build a healthy church focused on biblical teaching, prayer, and discipleship, dedicated to serving the community in Chișinău."
+      },
+      "inchinare": {
+        "role": "Worship Leader",
+        "details": "Coordinator of the praise and worship team, responsible for leading the congregation into God's presence through song and deep worship."
+      },
+      "tineret": {
+        "role": "Youth Leader",
+        "details": "Dedicated to coordinating the youth ministry, guiding them in discipleship, and creating a space where the new generation can grow spiritually."
+      },
+      "kids": {
+        "role": "Kids Leader",
+        "details": "Responsible for children's ministry and coordinating Sunday school teachers, making the Word of God accessible and engaging for the little ones."
+      }
+    }
   },
   "contact": {
     "title": "Contact",

@@ -9,7 +9,7 @@ interface MapEmbedProps {
  * Pentru a schimba locația, modifică `query` mai jos cu adresa exactă.
  */
 export function MapEmbed({ className = '', title = 'Locația bisericii' }: MapEmbedProps) {
-  const query = encodeURIComponent('Biserica Un Nou Început');
+  const query = encodeURIComponent('Biserica UN NOU ÎNCEPUT');
   const src = `https://www.google.com/maps?q=${query}&output=embed`;
 
   return (

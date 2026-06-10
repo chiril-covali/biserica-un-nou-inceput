@@ -17,7 +17,7 @@
   "home": {
     "hero": {
       "subtitle": "Biserica Creștină Baptistă",
-      "title": "Un Nou Început",
+      "title": "UN NOU ÎNCEPUT",
       "description": "O comunitate de oameni transformați de Isus Hristos, ancorați în Cuvântul lui Dumnezeu și împuterniciți de Duhul Sfânt.",
       "cta_main": "Descoperă mai mult",
       "cta_secondary": "Cuvântul Păstorului",
@@ -90,7 +90,27 @@
     "pastor_text_3": "Indiferent de trecutul tău sau de etapa în care te afli, te încurajez să faci un pas spre Dumnezeu și să descoperi împreună cu noi bucuria unei vieți transformate prin Evanghelie. Cu ajutorul lui Dumnezeu, fiecare zi poate fi un nou început.",
     "pastor_closing": "Te așteptăm cu drag!",
     "pastor_signoff": "Cu dragoste în Hristos,",
-    "pastor_role": "Pastor — Biserica UN NOU ÎNCEPUT"
+    "pastor_role": "Pastor — Biserica UN NOU ÎNCEPUT",
+    "team_title": "Echipa de slujire",
+    "team_description": "Oameni dedicați slujirii lui Dumnezeu și comunității noastre, lucrând împreună pentru a răspândi Evanghelia și a zidi biserica.",
+    "team": {
+      "vitalie": {
+        "role": "Pastor Principal",
+        "details": "Vitalie are viziunea de a zidi o biserică sănătoasă, axată pe învățătura biblică, rugăciune și ucenicie, fiind dedicat slujirii comunității din Chișinău."
+      },
+      "inchinare": {
+        "role": "Lider Închinare",
+        "details": "Coordonatorul echipei de laudă și închinare, responsabil de conducerea bisericii în prezența lui Dumnezeu prin cântec și închinare profundă."
+      },
+      "tineret": {
+        "role": "Lider Tineret",
+        "details": "Dedicat coordonării lucrării cu tinerii, ghidării lor în ucenicie și creării unui spațiu în care noua generație să crească spiritual."
+      },
+      "kids": {
+        "role": "Lider Kids",
+        "details": "Responsabilă de lucrarea cu copiii și coordonarea învățătorilor de la școala duminicală, aducând Cuvântul lui Dumnezeu pe înțelesul celor mici."
+      }
+    }
   },
   "contact": {
     "title": "Contact",

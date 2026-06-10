@@ -4,7 +4,7 @@ import type { PhotographerInfo } from '@/types';
  * Informații despre Biserica UN NOU ÎNCEPUT
  */
 export const photographerInfo: PhotographerInfo = {
-  name: 'Biserica Un Nou Început',
+  name: 'Biserica UN NOU ÎNCEPUT',
   tagline: 'Glorificăm pe Isus. Suntem transformați prin Cuvânt. Slujim prin puterea Duhului Sfânt.',
   heroIntroduction:
     'O comunitate de oameni transformați de Isus Hristos, ancorați în Cuvântul lui Dumnezeu și împuterniciți de Duhul Sfânt.',

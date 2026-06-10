@@ -23,7 +23,7 @@ export function SEOHead({
   const pathParts = location.pathname.split('/').filter(Boolean);
   const isHomepage = pathParts.length <= 1;
   
-  const fullTitle = isHomepage ? "Biserica Un Nou Început" : (title ? `${title} | Biserica Un Nou Început` : "Biserica Un Nou Început");
+  const fullTitle = isHomepage ? "Biserica UN NOU ÎNCEPUT" : (title ? `${title} | Biserica UN NOU ÎNCEPUT` : "Biserica UN NOU ÎNCEPUT");
   
   const defaultDescription = photographerInfo.heroIntroduction;
   const fullDescription = description || defaultDescription;
