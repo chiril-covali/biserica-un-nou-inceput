@@ -20,7 +20,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-[#07162C] to-[#0A1D37] text-zinc-400 py-20 px-6 lg:px-8 border-t border-white/5">
+    <footer className="bg-gradient-to-b from-[#07162C] to-[#020e1a] text-zinc-400 py-20 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Logo & Info */}

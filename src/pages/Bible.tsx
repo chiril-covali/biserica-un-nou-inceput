@@ -232,7 +232,7 @@ export default function Bible() {
           </div>
         </section>
 
-        <section className="sticky top-[96px] md:top-[112px] z-30 bg-background/80 backdrop-blur-md border-b border-border py-4 px-4">
+        <section className="bg-background border-b border-border py-4 px-4">
           <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-3">
             <form onSubmit={onSubmit} className="flex-1 flex gap-2 relative">
               <div className="relative flex-1 group">

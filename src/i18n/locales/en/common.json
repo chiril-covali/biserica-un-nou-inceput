@@ -108,7 +108,7 @@
       },
       "kids": {
         "role": "Kids Leader",
-        "details": "Responsible for children's ministry and coordinating Sunday school teachers, making the Word of God accessible and engaging for the little ones."
+        "details": ""
       }
     }
   },
@@ -139,7 +139,7 @@
     "social_desc": "You help support those in need and missionaries.",
     "how_title": "How you can give",
     "how_desc": "For bank details or other ways to contribute, please contact us directly. We will be happy to answer you.",
-    "online_soon": "Soon it will be possible to donate directly online via bank card."
+    "online_soon": "Online donations via credit card will be available soon. Currently, donations can be made via Bank Transfer."
   },
   "common": {
     "phone": "Phone",

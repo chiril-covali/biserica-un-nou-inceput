@@ -108,7 +108,7 @@
       },
       "kids": {
         "role": "Lider Kids",
-        "details": "Responsabilă de lucrarea cu copiii și coordonarea învățătorilor de la școala duminicală, aducând Cuvântul lui Dumnezeu pe înțelesul celor mici."
+        "details": ""
       }
     }
   },
@@ -139,7 +139,7 @@
     "social_desc": "Ajuți la susținerea celor în nevoi și a misionarilor.",
     "how_title": "Cum poți dărui",
     "how_desc": "Pentru detalii bancare sau alte modalități de a contribui, te rugăm să ne contactezi direct. Vom fi bucuroși să-ți răspundem.",
-    "online_soon": "În curând va fi posibil să donezi și direct online prin card bancar."
+    "online_soon": "În curând va fi disponibilă donația online prin card bancar. Momentan, donațiile pot fi efectuate prin Transfer Bancar."
   },
   "common": {
     "phone": "Telefon",
