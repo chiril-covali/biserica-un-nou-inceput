@@ -19,7 +19,7 @@ const NotFound = () => {
         description="Pagina pe care o cauți nu există. Revino la pagina principală pentru a continua navigarea."
       />
       
-      <main className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-6 bg-[#071a2f]">
+      <main className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-6 bg-[#FAF8F5]">
         <motion.div
           className="max-w-2xl w-full text-center space-y-8"
           initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ const NotFound = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <h1 className="text-[120px] md:text-[180px] font-extralight tracking-wider leading-none text-white/10">
+            <h1 className="text-[120px] md:text-[180px] font-extralight tracking-wider leading-none text-slate-200">
               404
             </h1>
           </motion.div>
@@ -40,7 +40,7 @@ const NotFound = () => {
           {/* Content */}
           <div className="space-y-4 -mt-8">
             <motion.h2
-              className="text-3xl md:text-5xl font-light tracking-wide text-white"
+              className="text-3xl md:text-5xl font-bold tracking-tight text-[#0F1E36]"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -49,7 +49,7 @@ const NotFound = () => {
             </motion.h2>
             
             <motion.p
-              className="text-base md:text-lg text-white/50 font-light leading-relaxed max-w-md mx-auto"
+              className="text-base md:text-lg text-slate-500 font-light leading-relaxed max-w-md mx-auto"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
@@ -67,7 +67,7 @@ const NotFound = () => {
           >
             <Link
               to={`/${currentLang}`}
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-[#0d2740] font-bold rounded-full hover:bg-sky-100 transition-all shadow-lg shadow-white/10 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 text-sm tracking-wide duration-300 group"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#0F1E36] text-white font-bold rounded-full hover:bg-slate-800 transition-all shadow-md shadow-slate-200/50 hover:shadow-lg hover:-translate-y-0.5 active:scale-95 text-sm tracking-wide duration-300 group"
             >
               <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
               Înapoi la Acasă
@@ -81,7 +81,7 @@ const NotFound = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.8 }}
           >
-            <div className="h-px w-24 mx-auto bg-white/10" />
+            <div className="h-px w-24 mx-auto bg-slate-200" />
           </motion.div>
         </motion.div>
       </main>

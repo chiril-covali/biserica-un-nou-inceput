@@ -19,7 +19,7 @@ export function Layout({ children }: LayoutProps) {
   const isHomepage = pathParts.length === 1;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#071a2f]">
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5]">
       <Header />
       <main 
         id="main-content" 

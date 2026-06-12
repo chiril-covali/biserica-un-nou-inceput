@@ -93,7 +93,7 @@ export function ContactForm() {
   if (isSuccess) {
     return (
       <motion.div
-        className="rounded-2xl bg-white/[0.04] border border-white/8 p-8 text-center space-y-4"
+        className="rounded-2xl bg-white border border-slate-200 p-8 text-center space-y-4 shadow-md"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -103,10 +103,10 @@ export function ContactForm() {
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
         >
-          <CheckCircle2 className="size-16 mx-auto text-emerald-400" />
+          <CheckCircle2 className="size-16 mx-auto text-emerald-600" />
         </motion.div>
-        <h3 className="text-2xl font-light tracking-wide text-white">Mesaj trimis!</h3>
-        <p className="text-white/55 font-light leading-relaxed">
+        <h3 className="text-2xl font-bold tracking-tight text-[#0F1E36]">Mesaj trimis!</h3>
+        <p className="text-slate-600 font-light leading-relaxed">
           Îți mulțumim că ne-ai scris. Îți vom răspunde cât mai curând posibil.
         </p>
       </motion.div>
@@ -121,11 +121,11 @@ export function ContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-light tracking-wide text-white/70">Nume</FormLabel>
+              <FormLabel className="text-sm font-semibold tracking-wide text-slate-700">Nume</FormLabel>
               <FormControl>
-                <Input placeholder="Numele tău complet" className="font-light bg-white/[0.04] border-white/10 text-white placeholder:text-white/30 focus-visible:ring-sky-400/50 focus-visible:border-sky-400/30" {...field} />
+                <Input placeholder="Numele tău complet" className="font-light bg-white border-slate-200 text-slate-800 placeholder:text-slate-400 focus-visible:ring-sky-500/30 focus-visible:border-sky-500/50" {...field} />
               </FormControl>
-              <FormMessage className="text-xs font-light" />
+              <FormMessage className="text-xs font-light text-red-600" />
             </FormItem>
           )}
         />
@@ -135,16 +135,16 @@ export function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-light tracking-wide text-white/70">Email</FormLabel>
+              <FormLabel className="text-sm font-semibold tracking-wide text-slate-700">Email</FormLabel>
               <FormControl>
                 <Input
                   type="email"
                   placeholder="email@exemplu.com"
-                  className="font-light bg-white/[0.04] border-white/10 text-white placeholder:text-white/30 focus-visible:ring-sky-400/50 focus-visible:border-sky-400/30"
+                  className="font-light bg-white border-slate-200 text-slate-800 placeholder:text-slate-400 focus-visible:ring-sky-500/30 focus-visible:border-sky-500/50"
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-xs font-light" />
+              <FormMessage className="text-xs font-light text-red-600" />
             </FormItem>
           )}
         />
@@ -154,26 +154,26 @@ export function ContactForm() {
           name="projectType"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-light tracking-wide text-white/70">Tipul mesajului</FormLabel>
+              <FormLabel className="text-sm font-semibold tracking-wide text-slate-700">Tipul mesajului</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger className="font-light bg-white/[0.04] border-white/10 text-white [&>span]:text-white/30 [&[data-state=open]>span]:text-white focus:ring-sky-400/50">
+                  <SelectTrigger className="font-light bg-white border-slate-200 text-slate-800 [&>span]:text-slate-400 [&[data-state=open]>span]:text-slate-800 focus:ring-sky-500/30">
                     <SelectValue placeholder="Selectează tipul mesajului" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent className="bg-[#0f2d4a] border-white/10 z-50">
-                  <SelectItem value="general" className="font-light text-white/80 focus:bg-white/10 focus:text-white">
+                <SelectContent className="bg-white border-slate-200 shadow-lg z-50">
+                  <SelectItem value="general" className="font-light text-slate-800 focus:bg-slate-100 focus:text-slate-900 cursor-pointer">
                     Întrebare generală
                   </SelectItem>
-                  <SelectItem value="rugaciune" className="font-light text-white/80 focus:bg-white/10 focus:text-white">
+                  <SelectItem value="rugaciune" className="font-light text-slate-800 focus:bg-slate-100 focus:text-slate-900 cursor-pointer">
                     Cerere de rugăciune
                   </SelectItem>
-                  <SelectItem value="implicare" className="font-light text-white/80 focus:bg-white/10 focus:text-white">
+                  <SelectItem value="implicare" className="font-light text-slate-800 focus:bg-slate-100 focus:text-slate-900 cursor-pointer">
                     Vreau să mă implic
                   </SelectItem>
                 </SelectContent>
               </Select>
-              <FormMessage className="text-xs font-light" />
+              <FormMessage className="text-xs font-light text-red-600" />
             </FormItem>
           )}
         />
@@ -183,28 +183,28 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-light tracking-wide text-white/70">Mesaj</FormLabel>
+              <FormLabel className="text-sm font-semibold tracking-wide text-slate-700">Mesaj</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Spune-ne cum te putem ajuta..."
-                  className="min-h-32 font-light resize-none bg-white/[0.04] border-white/10 text-white placeholder:text-white/30 focus-visible:ring-sky-400/50 focus-visible:border-sky-400/30"
+                  className="min-h-32 font-light resize-none bg-white border-slate-200 text-slate-800 placeholder:text-slate-400 focus-visible:ring-sky-500/30 focus-visible:border-sky-500/50"
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="text-xs font-light" />
+              <FormMessage className="text-xs font-light text-red-600" />
             </FormItem>
           )}
         />
 
         {form.formState.errors.root && (
-          <div className="text-sm text-red-400 font-light">
+          <div className="text-sm text-red-600 font-light">
             {form.formState.errors.root.message}
           </div>
         )}
 
         <Button
           type="submit"
-          className="w-full py-6 text-base font-light tracking-wide bg-white text-[#0d2740] hover:bg-sky-100 rounded-full"
+          className="w-full py-6 text-base font-semibold tracking-wide bg-[#0F1E36] text-white hover:bg-slate-800 rounded-full cursor-pointer"
           disabled={isSubmitting}
         >
           {isSubmitting ? (

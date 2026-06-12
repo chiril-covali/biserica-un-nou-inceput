@@ -33,7 +33,7 @@ export function Header() {
         'fixed left-1/2 -translate-x-1/2 w-[92%] max-w-7xl z-50 transition-all duration-300 rounded-full border shadow-lg px-4 md:px-6',
         isTransparent
           ? 'top-4 md:top-6 bg-[#07162C]/50 backdrop-blur-md border-white/10 text-white'
-          : 'top-2 md:top-4 bg-[#0a2240]/85 backdrop-blur-md border-white/10 text-white'
+          : 'top-2 md:top-4 bg-white/90 backdrop-blur-md border-black/5 text-slate-800 shadow-md shadow-slate-100/50'
       )}
     >
       <div className="w-full">
@@ -53,10 +53,10 @@ export function Header() {
             </div>
             
             <div className="flex flex-col items-start leading-none">
-              <span className="text-base md:text-lg font-bold tracking-[0.2em] text-white">
+              <span className="text-base md:text-lg font-bold tracking-[0.2em] text-current">
                 BISERICA
               </span>
-              <span className="text-[9px] md:text-xs font-semibold tracking-[0.3em] mt-1 text-white/80">
+              <span className="text-[9px] md:text-xs font-semibold tracking-[0.3em] mt-1 opacity-80">
                 UN NOU ÎNCEPUT
               </span>
             </div>
@@ -68,13 +68,21 @@ export function Header() {
               <Link
                 key={link.path}
                 to={link.path}
-                className="relative text-base leading-7 font-light tracking-wide text-white/90 hover:text-white transition-colors duration-200"
+                className={cn(
+                  "relative text-base leading-7 font-light tracking-wide transition-colors duration-200",
+                  isTransparent 
+                    ? "text-white/90 hover:text-white" 
+                    : "text-slate-600 hover:text-slate-900"
+                )}
               >
                 {link.name}
                 {(location.pathname === link.path || (link.path === `/${currentLang}` && location.pathname === `/${currentLang}/`)) && (
                   <motion.div
                     layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-px bg-white"
+                    className={cn(
+                      "absolute -bottom-1 left-0 right-0 h-px",
+                      isTransparent ? "bg-white" : "bg-slate-900"
+                    )}
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -82,26 +90,38 @@ export function Header() {
             ))}
             
             <LanguageSelector 
-              className="ml-4 border-l border-white/20 pl-4 text-white" 
+              className={cn(
+                "ml-4 border-l pl-4",
+                isTransparent 
+                  ? "border-white/20 text-white" 
+                  : "border-slate-200 text-slate-700"
+              )} 
             />
           </nav>
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-2">
-            <LanguageSelector className="text-white" />
+            <LanguageSelector 
+              className={isTransparent ? "text-white" : "text-slate-700"} 
+            />
             
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="size-10 text-white hover:bg-white/10"
+                  className={cn(
+                    "size-10",
+                    isTransparent 
+                      ? "text-white hover:bg-white/10" 
+                      : "text-slate-800 hover:bg-slate-100"
+                  )}
                   aria-label="Deschide meniul"
                 >
                   <Menu className="size-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-full sm:w-80 border-l border-border bg-background/98 backdrop-blur-lg">
+              <SheetContent side="right" className="w-full sm:w-80 border-l border-border bg-white/98 backdrop-blur-lg">
                 <SheetTitle className="sr-only">Meniu de navigare</SheetTitle>
                 <SheetDescription className="sr-only">
                   Accesează paginile principale ale bisericii.

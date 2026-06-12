@@ -32,20 +32,20 @@ export default function About() {
 
       <div className="min-h-screen">
         {/* Page Header */}
-        <section className="py-24 md:py-32 px-6 lg:px-8 bg-[#0a2240] border-b border-white/8">
+        <section className="py-24 md:py-32 px-6 lg:px-8 bg-gradient-to-b from-[#F3EFF5] to-[#FAF8F5] border-b border-slate-200/60">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <motion.div
               initial={{ opacity: 0.8, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <p className="text-xs tracking-[0.3em] uppercase text-sky-400 font-bold mb-4">
+              <p className="text-xs tracking-[0.3em] uppercase text-sky-600 font-bold mb-4">
                 {t('nav.about')}
               </p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wide text-white mb-4">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wide text-[#0F1E36] mb-4">
                 {t('about.pastor_word')}
               </h1>
-              <p className="text-lg md:text-xl text-white/50 font-normal tracking-wide">
+              <p className="text-lg md:text-xl text-slate-500 font-normal tracking-wide">
                 {t('about.pastor_subtitle')}
               </p>
             </motion.div>
@@ -53,7 +53,7 @@ export default function About() {
         </section>
 
         {/* Pastor Section */}
-        <section className="py-16 md:py-24 px-6 lg:px-8 bg-[#071a2f]">
+        <section className="py-16 md:py-24 px-6 lg:px-8 bg-[#FAF8F5]">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
               <motion.div
@@ -63,7 +63,7 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
               >
-                <div className="aspect-[3/4] relative overflow-hidden rounded-2xl bg-white/5 border border-white/8">
+                <div className="aspect-[3/4] relative overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-md">
                   <img
                     src={photographerInfo.portraitImage}
                     alt="Biserica UN NOU ÎNCEPUT"
@@ -77,7 +77,7 @@ export default function About() {
                       href={photographerInfo.pastorSocialLinks.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-xl bg-white/[0.04] border border-white/8 hover:bg-white/10 transition-colors text-white/70 hover:text-white"
+                      className="p-3 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 hover:text-slate-900 transition-colors text-slate-700 shadow-sm"
                       aria-label="Facebook"
                     >
                       <Facebook className="size-5" />
@@ -88,7 +88,7 @@ export default function About() {
                       href={photographerInfo.pastorSocialLinks.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-xl bg-white/[0.04] border border-white/8 hover:bg-white/10 transition-colors text-white/70 hover:text-white"
+                      className="p-3 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 hover:text-slate-900 transition-colors text-slate-700 shadow-sm"
                       aria-label="Instagram"
                     >
                       <Instagram className="size-5" />
@@ -105,42 +105,42 @@ export default function About() {
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
                 <div className="space-y-3">
-                  <h2 className="text-3xl md:text-4xl font-light tracking-wide text-white">
+                  <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[#0F1E36]">
                     Vitalie Fedula
                   </h2>
                 </div>
 
-                <div className="h-px bg-white/10" />
+                <div className="h-px bg-slate-200" />
 
                 <div className="space-y-4">
-                  <p className="text-lg font-normal leading-relaxed text-white/55">
+                  <p className="text-lg font-normal leading-relaxed text-slate-600">
                     {t('about.pastor_greeting')}
                   </p>
-                  <p className="text-lg font-normal leading-relaxed text-white/55">
-                    {t('about.pastor_welcome_1')}
-                    <span className="font-bold text-white">{t('about.pastor_welcome_2')}</span>
+                  <p className="text-lg font-normal leading-relaxed text-slate-600">
+                    {t('about.pastor_welcome_1')}{' '}
+                    <span className="font-bold text-[#0F1E36]">{t('about.pastor_welcome_2')}</span>
                   </p>
-                  <p className="text-lg font-normal leading-relaxed text-white/55">
+                  <p className="text-lg font-normal leading-relaxed text-slate-600">
                     {t('about.pastor_text_1')}
                   </p>
-                  <p className="text-lg font-normal leading-relaxed text-white/55">
+                  <p className="text-lg font-normal leading-relaxed text-slate-600">
                     {t('about.pastor_text_2')}
                   </p>
-                  <p className="text-lg font-normal leading-relaxed text-white/55">
+                  <p className="text-lg font-normal leading-relaxed text-slate-600">
                     {t('about.pastor_text_3')}
                   </p>
-                  <p className="text-lg font-normal leading-relaxed text-white/55">
+                  <p className="text-lg font-normal leading-relaxed text-slate-600">
                     {t('about.pastor_closing')}
                   </p>
                   
                   <div className="pt-4">
-                    <p className="text-lg font-normal leading-relaxed text-white/55 italic">
+                    <p className="text-lg font-normal leading-relaxed text-slate-500 italic">
                       {t('about.pastor_signoff')}
                     </p>
-                    <p className="text-lg font-bold text-white mt-1">
+                    <p className="text-lg font-bold text-[#0F1E36] mt-1">
                       Vitalie Fedula
                     </p>
-                    <p className="text-base font-medium text-white/50">
+                    <p className="text-base font-semibold text-slate-500">
                       {t('about.pastor_role')}
                     </p>
                   </div>
@@ -151,17 +151,17 @@ export default function About() {
         </section>
 
         {/* Slujire și Comunitate */}
-        <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-[#0a2240] border-t border-white/8">
+        <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-[#F0F5F1] border-t border-slate-200">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-16 sm:mb-20 space-y-4">
-                <p className="text-xs sm:text-sm tracking-[0.35em] uppercase text-sky-400 font-bold">
+                <p className="text-xs sm:text-sm tracking-[0.35em] uppercase text-emerald-700 font-bold">
                   {currentLang === 'ro' ? 'Slujire și Comunitate' : currentLang === 'ru' ? 'Служение и Общность' : 'Ministry & Community'}
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-none">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-[#0F1E36] leading-none">
                   {currentLang === 'ro' ? 'Lucrările noastre' : currentLang === 'ru' ? 'Наши служения' : 'Our ministries'}
                 </h2>
-                <p className="text-base sm:text-lg text-white/45 font-light max-w-2xl mx-auto pt-1">
+                <p className="text-base sm:text-lg text-slate-500 font-light max-w-2xl mx-auto pt-1">
                   {currentLang === 'ro' ? 'Locuri în care poți crește, sluji și fi parte din familia bisericii.' : currentLang === 'ru' ? 'Места, где ты можешь расти, служить и стать частью семьи церкви.' : 'Places where you can grow, serve, and be part of the church family.'}
                 </p>
               </div>
@@ -173,8 +173,8 @@ export default function About() {
                 const currentIndex = activeGallery[m.id] || 0;
                 return (
                   <ScrollReveal key={m.id} delay={index * 0.06}>
-                    <div className="h-full bg-white/[0.04] border border-white/8 hover:bg-white/[0.07] hover:border-white/15 transition-all duration-500 overflow-hidden flex flex-col group/card rounded-2xl">
-                      <div className="aspect-video bg-white/5 overflow-hidden relative">
+                    <div className="h-full bg-white border border-slate-200 hover:shadow-md hover:border-slate-350 transition-all duration-500 overflow-hidden flex flex-col group/card rounded-2xl shadow-sm">
+                      <div className="aspect-video bg-slate-50 overflow-hidden relative">
                         <img
                           src={currentImages[currentIndex]}
                           alt={m.title[currentLang as keyof TranslatedString]}
@@ -204,14 +204,14 @@ export default function About() {
                       </div>
                       <div className="p-7 space-y-3 flex-1 flex flex-col text-left">
                         {m.schedule && (
-                          <p className="text-[10px] uppercase tracking-[0.2em] text-sky-400 font-bold">
+                          <p className="text-[10px] uppercase tracking-[0.2em] text-emerald-600 font-bold">
                             {m.schedule[currentLang as keyof TranslatedString]}
                           </p>
                         )}
-                        <h3 className="text-xl font-extrabold tracking-tight text-white leading-tight">
+                        <h3 className="text-xl font-extrabold tracking-tight text-[#0F1E36] leading-tight">
                           {m.title[currentLang as keyof TranslatedString]}
                         </h3>
-                        <p className="text-base font-normal leading-relaxed text-white/45 flex-1">
+                        <p className="text-base font-normal leading-relaxed text-slate-500 flex-1">
                           {m.description[currentLang as keyof TranslatedString]}
                         </p>
                       </div>
@@ -224,16 +224,16 @@ export default function About() {
         </section>
 
         {/* Echipa de slujire Section */}
-        <section className="py-20 md:py-28 px-6 lg:px-8 bg-[#071a2f] border-t border-white/8 relative overflow-hidden">
+        <section className="py-20 md:py-28 px-6 lg:px-8 bg-[#FAF8F5] border-t border-slate-200 relative overflow-hidden">
           <div className="max-w-6xl mx-auto">
             <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20 space-y-4">
-              <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-sky-400 font-bold">
+              <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-sky-600 font-bold">
                 {t('about.team_title')}
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-wide text-white">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-wide text-[#0F1E36]">
                 {t('about.team_title')}
               </h2>
-              <p className="text-lg text-white/50 font-normal leading-relaxed">
+              <p className="text-lg text-slate-500 font-normal leading-relaxed">
                 {t('about.team_description')}
               </p>
             </div>
@@ -246,10 +246,10 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="group flex flex-col h-full bg-white/[0.04] border border-white/8 hover:bg-white/[0.07] hover:border-white/15 transition-all duration-500 rounded-2xl overflow-hidden"
+                  className="group flex flex-col h-full bg-white border border-slate-200 hover:shadow-md hover:border-slate-300 transition-all duration-500 rounded-2xl overflow-hidden shadow-sm"
                 >
                   {/* Photo Container */}
-                  <div className="aspect-[3/4] w-full overflow-hidden bg-white/5 relative">
+                  <div className="aspect-[3/4] w-full overflow-hidden bg-slate-50 relative">
                     <img
                       src={member.image}
                       alt={member.name}
@@ -259,13 +259,13 @@ export default function About() {
                     
                     {/* Social Overlay on Hover */}
                     {member.socialLinks && (
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                         {member.socialLinks.facebook && member.socialLinks.facebook !== '#' && (
                           <a
                             href={member.socialLinks.facebook}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-3 bg-white/90 text-[#071a2f] hover:bg-white rounded-full transition-colors duration-300 shadow-md"
+                            className="p-3 bg-white text-[#0F1E36] hover:bg-slate-50 rounded-full transition-colors duration-300 shadow-md"
                             aria-label="Facebook"
                           >
                             <Facebook className="size-5" />
@@ -276,7 +276,7 @@ export default function About() {
                             href={member.socialLinks.instagram}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-3 bg-white/90 text-[#071a2f] hover:bg-white rounded-full transition-colors duration-300 shadow-md"
+                            className="p-3 bg-white text-[#0F1E36] hover:bg-slate-50 rounded-full transition-colors duration-300 shadow-md"
                             aria-label="Instagram"
                           >
                             <Instagram className="size-5" />
@@ -289,16 +289,16 @@ export default function About() {
                   {/* Info Container */}
                   <div className="p-6 flex-1 flex flex-col justify-between">
                     <div className="space-y-3">
-                      <p className="text-[10px] tracking-[0.2em] uppercase text-sky-400 font-bold">
+                      <p className="text-[10px] tracking-[0.2em] uppercase text-sky-600 font-bold">
                         {t(member.roleKey)}
                       </p>
                       {member.name && (
-                        <h3 className="text-xl font-semibold tracking-wide text-white">
+                        <h3 className="text-xl font-semibold tracking-wide text-[#0F1E36]">
                           {member.name}
                         </h3>
                       )}
                       {t(member.detailsKey) && (
-                        <p className="text-base font-normal leading-relaxed text-white/50">
+                        <p className="text-base font-normal leading-relaxed text-slate-500">
                           {t(member.detailsKey)}
                         </p>
                       )}
