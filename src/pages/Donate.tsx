@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Heart, HandHeart, Users } from 'lucide-react';
+import { Heart, HandHeart, Users, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -17,109 +17,110 @@ export default function Donate() {
       />
 
       <div className="min-h-screen">
-        <section className="py-20 md:py-28 px-6 lg:px-8 border-b border-border bg-accent/5">
+        {/* Page Header */}
+        <section className="py-20 md:py-28 px-6 lg:px-8 bg-[#0a2240] border-b border-white/8">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <motion.div
               initial={{ opacity: 0.8, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <Heart className="size-12 mx-auto mb-6 text-red-500 fill-red-500/10" strokeWidth={1.2} />
-              <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground font-semibold mb-4">
+              <Heart className="size-12 mx-auto mb-6 text-red-400 fill-red-400/10" strokeWidth={1.2} />
+              <p className="text-xs tracking-[0.3em] uppercase text-sky-400 font-bold mb-4">
                 {t('donate.subtitle')}
               </p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wide mb-8">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-wide text-white mb-8">
                 {t('donate.title')}
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground font-normal leading-[1.8] max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-white/50 font-normal leading-[1.8] max-w-2xl mx-auto">
                 {t('donate.description')}
               </p>
             </motion.div>
           </div>
         </section>
 
-        <section className="py-16 md:py-24 px-6 lg:px-8">
+        {/* Content */}
+        <section className="py-16 md:py-24 px-6 lg:px-8 bg-[#071a2f]">
           <div className="max-w-4xl mx-auto space-y-12">
+            {/* Scripture quote */}
             <ScrollReveal>
-              <blockquote className="border-l-2 border-foreground/30 pl-6 md:pl-8 py-2">
-                <p className="text-xl md:text-2xl font-normal leading-relaxed italic text-foreground">
+              <blockquote className="border-l-2 border-sky-400/30 pl-6 md:pl-8 py-2">
+                <p className="text-xl md:text-2xl font-normal leading-relaxed italic text-white/80">
                    {t('donate.verse')}
                 </p>
-                <footer className="mt-4 text-sm font-normal tracking-wide text-muted-foreground">
+                <footer className="mt-4 text-sm font-normal tracking-wide text-white/40">
                   — {t('donate.verse_ref')}
                 </footer>
               </blockquote>
             </ScrollReveal>
 
+            {/* Descriptive text */}
             <ScrollReveal delay={0.1}>
-              <div className="space-y-5 text-lg font-normal leading-relaxed text-muted-foreground">
-                <p>
-                  {t('donate.text_1')}
-                </p>
-                <p>
-                  {t('donate.text_2')}
-                </p>
+              <div className="space-y-5 text-lg font-normal leading-relaxed text-white/55">
+                <p>{t('donate.text_1')}</p>
+                <p>{t('donate.text_2')}</p>
               </div>
             </ScrollReveal>
 
+            {/* Impact cards */}
             <div className="grid md:grid-cols-3 gap-6 pt-8">
               <ScrollReveal delay={0.15}>
-                <div className="p-8 border border-border bg-background space-y-3 h-full">
-                  <HandHeart className="size-7 text-muted-foreground" strokeWidth={1.2} />
-                  <h3 className="text-lg font-semibold tracking-wide">{t('donate.mission_title')}</h3>
-                  <p className="text-base font-normal leading-relaxed text-muted-foreground">
+                <div className="p-8 rounded-2xl bg-white/[0.04] border border-white/8 space-y-3 h-full hover:bg-white/[0.07] transition-all duration-500">
+                  <HandHeart className="size-7 text-sky-300" strokeWidth={1.2} />
+                  <h3 className="text-lg font-semibold tracking-wide text-white">{t('donate.mission_title')}</h3>
+                  <p className="text-base font-normal leading-relaxed text-white/45">
                     {t('donate.mission_desc')}
                   </p>
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={0.2}>
-                <div className="p-8 border border-border bg-background space-y-3 h-full">
-                  <Users className="size-7 text-muted-foreground" strokeWidth={1.2} />
-                  <h3 className="text-lg font-semibold tracking-wide">{t('donate.youth_title')}</h3>
-                  <p className="text-base font-normal leading-relaxed text-muted-foreground">
+                <div className="p-8 rounded-2xl bg-white/[0.04] border border-white/8 space-y-3 h-full hover:bg-white/[0.07] transition-all duration-500">
+                  <Users className="size-7 text-sky-300" strokeWidth={1.2} />
+                  <h3 className="text-lg font-semibold tracking-wide text-white">{t('donate.youth_title')}</h3>
+                  <p className="text-base font-normal leading-relaxed text-white/45">
                     {t('donate.youth_desc')}
                   </p>
                 </div>
               </ScrollReveal>
               <ScrollReveal delay={0.25}>
-                <div className="p-8 border border-border bg-background space-y-3 h-full">
-                  <Heart className="size-7 text-muted-foreground" strokeWidth={1.2} />
-                  <h3 className="text-lg font-semibold tracking-wide">{t('donate.social_title')}</h3>
-                  <p className="text-base font-normal leading-relaxed text-muted-foreground">
+                <div className="p-8 rounded-2xl bg-white/[0.04] border border-white/8 space-y-3 h-full hover:bg-white/[0.07] transition-all duration-500">
+                  <Heart className="size-7 text-sky-300" strokeWidth={1.2} />
+                  <h3 className="text-lg font-semibold tracking-wide text-white">{t('donate.social_title')}</h3>
+                  <p className="text-base font-normal leading-relaxed text-white/45">
                     {t('donate.social_desc')}
                   </p>
                 </div>
               </ScrollReveal>
             </div>
 
-            {/* Card Transfer Bancar pe pagina de Donații */}
+            {/* Bank Transfer Card */}
             <ScrollReveal delay={0.28}>
-              <div className="max-w-xl mx-auto border border-border bg-card text-card-foreground p-8 rounded-3xl shadow-xl space-y-6 mt-12">
+              <div className="max-w-xl mx-auto rounded-2xl bg-white/[0.04] border border-white/8 p-8 shadow-2xl shadow-black/20 space-y-6 mt-12">
                 <div className="space-y-2 text-center">
-                  <span className="text-xs font-bold text-[#1872B9] tracking-widest uppercase">
+                  <span className="text-xs font-bold text-sky-400 tracking-widest uppercase">
                     {currentLang === 'ro' ? 'Transfer Bancar' : currentLang === 'ru' ? 'Банковский Перевод' : 'Bank Transfer'}
                   </span>
-                  <h4 className="text-2xl font-extrabold text-[#104E8B] tracking-tight">
+                  <h4 className="text-2xl font-extrabold text-white tracking-tight">
                     {currentLang === 'ro' ? 'Detalii Cont' : currentLang === 'ru' ? 'Реквизиты' : 'Account Details'}
                   </h4>
                 </div>
-                <div className="space-y-4 text-sm font-light text-muted-foreground">
-                  <p className="font-semibold text-foreground text-center">BC „Moldova Agroindbank” S.A.</p>
+                <div className="space-y-4 text-sm font-light text-white/50">
+                  <p className="font-semibold text-white text-center">BC „Moldova Agroindbank" S.A.</p>
                   <div className="space-y-3">
                     <div>
-                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">IBAN MDL</p>
-                      <p className="font-mono text-xs md:text-sm font-bold text-[#104E8B] bg-accent/60 p-2.5 rounded-xl border border-border break-all select-all text-center">
+                      <p className="text-xs uppercase tracking-wider text-white/40 mb-1">IBAN MDL</p>
+                      <p className="font-mono text-xs md:text-sm font-bold text-sky-300 bg-white/[0.04] p-2.5 rounded-xl border border-white/8 break-all select-all text-center">
                         MD24AG0000002254128XXX
                       </p>
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">IBAN EUR</p>
-                      <p className="font-mono text-xs md:text-sm font-bold text-[#104E8B] bg-accent/60 p-2.5 rounded-xl border border-border break-all select-all text-center">
+                      <p className="text-xs uppercase tracking-wider text-white/40 mb-1">IBAN EUR</p>
+                      <p className="font-mono text-xs md:text-sm font-bold text-sky-300 bg-white/[0.04] p-2.5 rounded-xl border border-white/8 break-all select-all text-center">
                         MD24AG0000002254128EURX
                       </p>
                     </div>
                   </div>
-                  <p className="text-xs italic text-center pt-2">
+                  <p className="text-xs italic text-center pt-2 text-white/35">
                     {currentLang === 'ro' 
                       ? 'Cod Fiscal (CUI): 25846669 — Asociația Religioasă Biserica UN NOU ÎNCEPUT' 
                       : 'Fiscal Code (CUI): 25846669 — UN NOU ÎNCEPUT Religious Association'}
@@ -128,21 +129,23 @@ export default function Donate() {
               </div>
             </ScrollReveal>
 
+            {/* CTA */}
             <ScrollReveal delay={0.3}>
-              <div className="mt-12 p-8 md:p-10 bg-accent/40 border border-border space-y-4 text-center rounded-3xl shadow-md">
-                <h3 className="text-2xl font-bold tracking-wide">{t('donate.how_title')}</h3>
-                <p className="text-lg font-normal leading-relaxed text-muted-foreground max-w-2xl mx-auto">
+              <div className="mt-12 p-8 md:p-10 rounded-2xl bg-white/[0.04] border border-white/8 space-y-4 text-center">
+                <h3 className="text-2xl font-bold tracking-wide text-white">{t('donate.how_title')}</h3>
+                <p className="text-lg font-normal leading-relaxed text-white/50 max-w-2xl mx-auto">
                   {t('donate.how_desc')}
                 </p>
                 <Link
                   to={`/${currentLang}/contact`}
-                  className="inline-flex items-center gap-2 mt-4 px-8 py-3 bg-[#1872B9] text-white font-bold rounded-full hover:bg-[#104E8B] transition-all shadow-lg shadow-[#1872B9]/30 hover:shadow-xl hover:shadow-[#1872B9]/50 hover:-translate-y-0.5 active:scale-95 text-xs uppercase tracking-wider duration-300"
+                  className="inline-flex items-center gap-2 mt-4 px-8 py-3.5 bg-white text-[#0d2740] font-bold rounded-full hover:bg-sky-100 transition-all shadow-lg shadow-white/10 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 text-xs uppercase tracking-wider duration-300"
                 >
                   {t('nav.contact')}
+                  <ArrowRight className="size-4" />
                 </Link>
 
-                <div className="mt-8 pt-8 border-t border-border/50">
-                  <p className="text-base font-normal text-muted-foreground tracking-wide">
+                <div className="mt-8 pt-8 border-t border-white/8">
+                  <p className="text-base font-normal text-white/40 tracking-wide">
                     {t('donate.online_soon')}
                   </p>
                 </div>
@@ -154,4 +157,3 @@ export default function Donate() {
     </>
   );
 }
-

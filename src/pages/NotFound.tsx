@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 import { SEOHead } from "@/components/seo/SEOHead";
 
 /**
@@ -9,6 +9,9 @@ import { SEOHead } from "@/components/seo/SEOHead";
  * Provides clear navigation back to home
  */
 const NotFound = () => {
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language.split('-')[0] || 'ro';
+
   return (
     <>
       <SEOHead
@@ -16,7 +19,7 @@ const NotFound = () => {
         description="Pagina pe care o cauți nu există. Revino la pagina principală pentru a continua navigarea."
       />
       
-      <main className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-6">
+      <main className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-6 bg-[#071a2f]">
         <motion.div
           className="max-w-2xl w-full text-center space-y-8"
           initial={{ opacity: 0, y: 20 }}
@@ -29,7 +32,7 @@ const NotFound = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <h1 className="text-[120px] md:text-[180px] font-extralight tracking-wider leading-none text-foreground/10">
+            <h1 className="text-[120px] md:text-[180px] font-extralight tracking-wider leading-none text-white/10">
               404
             </h1>
           </motion.div>
@@ -37,7 +40,7 @@ const NotFound = () => {
           {/* Content */}
           <div className="space-y-4 -mt-8">
             <motion.h2
-              className="text-3xl md:text-5xl font-light tracking-wide"
+              className="text-3xl md:text-5xl font-light tracking-wide text-white"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -46,7 +49,7 @@ const NotFound = () => {
             </motion.h2>
             
             <motion.p
-              className="text-base md:text-lg text-muted-foreground font-light leading-relaxed max-w-md mx-auto"
+              className="text-base md:text-lg text-white/50 font-light leading-relaxed max-w-md mx-auto"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
@@ -62,16 +65,13 @@ const NotFound = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            <Button
-              asChild
-              size="lg"
-              className="px-8 py-6 text-base font-light tracking-wide group"
+            <Link
+              to={`/${currentLang}`}
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-[#0d2740] font-bold rounded-full hover:bg-sky-100 transition-all shadow-lg shadow-white/10 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 text-sm tracking-wide duration-300 group"
             >
-              <Link to={`/${currentLang}`}>
-                <ArrowLeft className="mr-2 size-5 transition-transform group-hover:-translate-x-1" />
-                Înapoi la Acasă
-              </Link>
-            </Button>
+              <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
+              Înapoi la Acasă
+            </Link>
           </motion.div>
 
           {/* Decorative Element */}
@@ -81,7 +81,7 @@ const NotFound = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.8 }}
           >
-            <div className="h-px w-24 mx-auto bg-border" />
+            <div className="h-px w-24 mx-auto bg-white/10" />
           </motion.div>
         </motion.div>
       </main>

@@ -19,11 +19,11 @@ export function Layout({ children }: LayoutProps) {
   const isHomepage = pathParts.length === 1;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#071a2f]">
       <Header />
       <main 
         id="main-content" 
-        className={`flex-1 ${isHomepage ? '' : 'pt-24 md:pt-32 px-4 sm:px-6 lg:px-8'}`}
+        className={`flex-1 ${isHomepage ? '' : 'pt-24 md:pt-32'}`}
         tabIndex={-1}
       >
         {children}

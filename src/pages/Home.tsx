@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin, ImageIcon } from 'lucide-react';
+import { ArrowRight, MapPin, Book, Flame, Clock, Users, Heart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -43,13 +43,20 @@ export default function Home() {
   const nextWednesday = getNextServiceDate(3);
   const nextSaturday = getNextServiceDate(6);
 
+  const valueIcons = [
+    <ThinCross className="size-8" />,
+    <Book className="size-8" strokeWidth={1.5} />,
+    <Flame className="size-8" strokeWidth={1.5} />,
+  ];
 
   return (
     <>
       <SEOHead />
 
       <div className="min-h-screen">
-        {/* Hero */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* Hero — KEPT AS-IS */}
+        {/* ═══════════════════════════════════════════════════════════ */}
         <section className="relative min-h-[100svh] w-full overflow-hidden">
           <UnderwaterEffect />
 
@@ -84,32 +91,32 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Program / Schedule Section */}
-        <section className="py-20 md:py-28 px-6 lg:px-8 bg-gradient-to-b from-[#0d4a8a] via-[#1565c0] to-[#1872B9] text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-          <div className="max-w-6xl mx-auto relative z-10 text-center space-y-16">
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* Program / Schedule */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        <section className="relative py-24 md:py-32 px-6 lg:px-8 bg-[#0a2240] overflow-hidden">
+          {/* Subtle dot texture */}
+          <div className="absolute inset-0 opacity-[0.015] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 0.5px, transparent 0)', backgroundSize: '24px 24px' }} />
+          
+          <div className="max-w-6xl mx-auto relative z-10">
             <ScrollReveal>
-              <div className="space-y-5">
-                <div className="relative size-16 md:size-20 mx-auto flex items-center justify-center shrink-0 mb-6 bg-white/10 rounded-full border border-white/20 p-2">
-                  <img
-                    src="/logo.png"
-                    alt="Logo Biserica UN NOU ÎNCEPUT"
-                    className="size-full object-cover scale-150 rounded-full"
-                  />
+              <div className="text-center mb-16 md:mb-20 space-y-6">
+                <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10">
+                  <Clock className="size-4 text-sky-300" strokeWidth={1.5} />
+                  <span className="text-xs tracking-[0.3em] uppercase text-sky-300 font-bold">
+                    {t('home.program.subtitle')}
+                  </span>
                 </div>
-                <p className="text-xs sm:text-sm tracking-[0.35em] uppercase text-sky-300 font-bold">
-                  {t('home.program.subtitle')}
-                </p>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white leading-none">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[0.95]">
                   {currentLang === 'ro' ? <>Un loc pentru tine<br />și familia ta!</> : currentLang === 'ru' ? <>Место для вас<br />и вашей семьи!</> : <>A place for you<br />and your family!</>}
                 </h2>
-                <p className="text-lg sm:text-xl text-white/75 font-light max-w-2xl mx-auto pt-1">
+                <p className="text-lg text-white/50 font-normal max-w-xl mx-auto">
                   {t('home.program.title')}
                 </p>
               </div>
             </ScrollReveal>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
               {[
                 {
                   day: t('home.program.sunday'),
@@ -136,8 +143,8 @@ export default function Home() {
                   image: '/poze/pastor1-optimized.webp',
                 },
               ].map((item, index) => (
-                <ScrollReveal key={item.day} delay={index * 0.15}>
-                  <div className="relative rounded-3xl overflow-hidden h-[420px] group cursor-default">
+                <ScrollReveal key={item.day} delay={index * 0.12}>
+                  <div className="relative rounded-2xl overflow-hidden h-[440px] group cursor-default shadow-2xl shadow-black/30 border border-white/5">
                     {/* Background image */}
                     <img
                       src={item.image}
@@ -146,26 +153,26 @@ export default function Home() {
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     {/* Gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#020e1a] via-[#061629]/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628] via-[#0a1628]/60 to-transparent" />
                     {/* Top badge */}
                     <div className="absolute top-5 left-5">
-                      <span className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sky-300 text-[10px] font-bold uppercase tracking-[0.2em]">
+                      <span className="px-3 py-1.5 rounded-full bg-white/90 text-[#0a1628] text-[10px] font-bold uppercase tracking-[0.15em] shadow-sm backdrop-blur-sm">
                         {item.date}
                       </span>
                     </div>
                     {/* Content */}
                     <div className="absolute inset-x-0 bottom-0 p-7 space-y-3">
-                      <h3 className="text-[11px] font-black tracking-[0.35em] text-sky-400 uppercase">
+                      <h3 className="text-[11px] font-black tracking-[0.35em] text-amber-300/90 uppercase">
                         {item.day}
                       </h3>
                       <p className="text-4xl font-light tracking-tighter text-white leading-none">
                         {item.time}
                       </p>
-                      <div className="h-px w-10 bg-white/25" />
+                      <div className="h-px w-10 bg-white/20" />
                       <p className="text-xl font-extrabold text-white leading-tight">
                         {item.title}
                       </p>
-                      <p className="text-sm text-white/65 font-normal">
+                      <p className="text-sm text-white/50 font-normal">
                         {item.subtitle}
                       </p>
                     </div>
@@ -176,42 +183,41 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Valori — mid-blue range */}
-        <section className="py-20 md:py-28 px-6 lg:px-8 bg-gradient-to-b from-[#0a2040] via-[#0e3060] to-[#174a85] text-white">
-          <div className="max-w-6xl mx-auto">
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* Values */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        <section className="py-24 md:py-32 px-6 lg:px-8 bg-[#071a2f] text-white relative overflow-hidden">
+          {/* Ambient glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-sky-500/5 rounded-full blur-[120px] pointer-events-none" />
+
+          <div className="max-w-5xl mx-auto relative z-10">
             <ScrollReveal>
-              <div className="text-center mb-16 sm:mb-20 space-y-3">
-                <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-sky-300 font-bold">
+              <div className="text-center mb-20 space-y-4">
+                <p className="text-xs tracking-[0.4em] uppercase text-sky-400 font-bold">
                   {t('home.values.subtitle')}
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-none">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
                   {t('home.values.title')}
                 </h2>
               </div>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-3 gap-8 md:gap-10">
+            <div className="space-y-0">
               {churchValues.map((value, index) => (
                 <ScrollReveal key={value.id} delay={index * 0.1}>
-                  <div className="group rounded-3xl overflow-hidden border border-white/10 bg-white/8 backdrop-blur-sm hover:border-white/25 transition-all duration-500 hover:-translate-y-2 text-left">
-                    {/* Image placeholder */}
-                    <div className="w-full h-52 bg-white/5 flex flex-col items-center justify-center border-b border-white/10 gap-3">
-                      <ImageIcon className="size-10 text-white/20" strokeWidth={1} />
-                      <span className="text-[11px] uppercase tracking-[0.3em] text-white/25 font-medium">Imagine</span>
+                  <div className={`flex flex-col md:flex-row items-start gap-8 md:gap-12 py-12 md:py-14 ${index < churchValues.length - 1 ? 'border-b border-white/8' : ''}`}>
+                    {/* Icon */}
+                    <div className="shrink-0 size-16 rounded-xl bg-white/[0.04] border border-white/8 flex items-center justify-center text-sky-300">
+                      {valueIcons[index]}
                     </div>
-                    {/* Content */}
-                    <div className="p-8 space-y-5">
-                      <div className="size-14 rounded-2xl bg-sky-400/20 text-sky-300 flex items-center justify-center group-hover:bg-sky-400 group-hover:text-white transition-colors duration-500">
-                        {index === 0 ? <ThinCross className="size-7" /> : (value.icon && <value.icon className="size-7" strokeWidth={1.5} />)}
-                      </div>
-                      <div className="space-y-3">
-                        <h3 className="text-xl font-extrabold tracking-tight text-white">
-                          {value.title[currentLang as keyof TranslatedString]}
-                        </h3>
-                        <p className="text-base font-normal leading-relaxed text-sky-100/80">
-                          {value.description[currentLang as keyof TranslatedString]}
-                        </p>
-                      </div>
+                    {/* Text */}
+                    <div className="space-y-3 flex-1">
+                      <h3 className="text-xl md:text-2xl font-extrabold tracking-tight text-white leading-snug">
+                        {value.title[currentLang as keyof TranslatedString]}
+                      </h3>
+                      <p className="text-base md:text-lg font-normal leading-relaxed text-white/50 max-w-2xl">
+                        {value.description[currentLang as keyof TranslatedString]}
+                      </p>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -220,116 +226,164 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Nav CTA Section — lightening blues */}
-        <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#174a85] via-[#1e5fa0] to-[#c8dff5]">
-          <div className="max-w-6xl mx-auto">
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* Discover — editorial grid */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        <section className="py-24 md:py-32 px-6 lg:px-8 bg-[#0c2744] text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.012] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 0.5px, transparent 0)', backgroundSize: '24px 24px' }} />
+
+          <div className="max-w-6xl mx-auto relative z-10">
             <ScrollReveal>
-              <div className="text-center mb-16 sm:mb-20 space-y-4">
-                <p className="text-xs sm:text-sm tracking-[0.35em] uppercase text-sky-200 font-bold">
+              <div className="text-center mb-16 md:mb-20 space-y-4">
+                <p className="text-xs tracking-[0.35em] uppercase text-sky-400 font-bold">
                   {currentLang === 'ro' ? 'Explorează' : currentLang === 'ru' ? 'Исследуйте' : 'Explore'}
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-none">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
                   {currentLang === 'ro' ? 'Ce poți descoperi' : currentLang === 'ru' ? 'Что вы можете открыть' : 'What you can discover'}
                 </h2>
               </div>
             </ScrollReveal>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {[
-                {
-                  to: `/${currentLang}/despre`,
-                  label: currentLang === 'ro' ? 'Despre noi' : currentLang === 'ru' ? 'О нас' : 'About us',
-                  desc: currentLang === 'ro' ? 'Cunoaște echipa, pastorul și misiunea noastră.' : currentLang === 'ru' ? 'Познакомьтесь с командой, пастором и нашей миссией.' : 'Meet the team, pastor, and our mission.',
-                  icon: '👥',
-                  accent: 'from-sky-500/20 to-sky-600/10',
-                  border: 'border-sky-400/30 hover:border-sky-300/60',
-                },
-                {
-                  to: `/${currentLang}/donatii`,
-                  label: currentLang === 'ro' ? 'Susține lucrarea' : currentLang === 'ru' ? 'Поддержите служение' : 'Support the ministry',
-                  desc: currentLang === 'ro' ? 'Participă la răspândirea Evangheliei prin dărnicie.' : currentLang === 'ru' ? 'Участвуйте в распространении Евангелия через щедрость.' : 'Participate in spreading the Gospel through generosity.',
-                  icon: '🤝',
-                  accent: 'from-emerald-500/20 to-emerald-600/10',
-                  border: 'border-emerald-400/30 hover:border-emerald-300/60',
-                },
-                {
-                  to: `/${currentLang}/contact`,
-                  label: currentLang === 'ro' ? 'Vizitează-ne' : currentLang === 'ru' ? 'Посетите нас' : 'Visit us',
-                  desc: currentLang === 'ro' ? 'Vino la o întâlnire sau trimite-ne un mesaj.' : currentLang === 'ru' ? 'Приходите на встречу или напишите нам.' : 'Come to a service or send us a message.',
-                  icon: '📍',
-                  accent: 'from-orange-500/20 to-orange-600/10',
-                  border: 'border-orange-400/30 hover:border-orange-300/60',
-                },
-                {
-                  to: `/${currentLang}/biblia`,
-                  label: currentLang === 'ro' ? 'Citește Biblia' : currentLang === 'ru' ? 'Читайте Библию' : 'Read the Bible',
-                  desc: currentLang === 'ro' ? 'Cuvântul lui Dumnezeu — fundația credinței noastre.' : currentLang === 'ru' ? 'Слово Бога — основа нашей веры.' : "God's Word — the foundation of our faith.",
-                  icon: '📖',
-                  accent: 'from-purple-500/20 to-purple-600/10',
-                  border: 'border-purple-400/30 hover:border-purple-300/60',
-                },
-              ].map((card, index) => (
-                <ScrollReveal key={card.to} delay={index * 0.1}>
-                  <Link
-                    to={card.to}
-                    className={`group flex flex-col h-full rounded-3xl border overflow-hidden ${card.border} transition-all duration-400 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/20`}
-                  >
-                    {/* Image placeholder */}
-                    <div className={`w-full h-40 bg-gradient-to-br ${card.accent} flex flex-col items-center justify-center gap-2 border-b border-white/10`}>
-                      <ImageIcon className="size-8 text-white/25" strokeWidth={1} />
-                      <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Imagine</span>
-                    </div>
-                    {/* Content */}
-                    <div className={`flex flex-col flex-1 p-7 bg-gradient-to-br backdrop-blur-sm ${card.accent}`}>
-                      <div className="text-3xl mb-4">{card.icon}</div>
-                      <h3 className="text-lg font-extrabold text-white mb-2 leading-tight">{card.label}</h3>
-                      <p className="text-sm text-white/65 font-normal leading-relaxed flex-1">{card.desc}</p>
-                      <div className="mt-5 flex items-center gap-2 text-white/50 group-hover:text-white/90 transition-colors text-sm font-semibold">
-                        <span>{currentLang === 'ro' ? 'Descoperă' : currentLang === 'ru' ? 'Открыть' : 'Discover'}</span>
-                        <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+            {/* Top row — 2 large cards */}
+            <div className="grid md:grid-cols-2 gap-5 mb-5">
+              <ScrollReveal delay={0}>
+                <Link
+                  to={`/${currentLang}/despre`}
+                  className="group block rounded-2xl bg-white/[0.04] border border-white/8 text-white p-8 md:p-10 h-full min-h-[280px] relative overflow-hidden transition-all duration-500 hover:bg-white/[0.07] hover:border-white/15 hover:-translate-y-1"
+                >
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-sky-500/10 rounded-full blur-[60px] pointer-events-none" />
+                  <div className="relative z-10 flex flex-col justify-between h-full">
+                    <div className="space-y-4">
+                      <div className="size-12 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center">
+                        <Users className="size-6 text-sky-300" strokeWidth={1.5} />
                       </div>
+                      <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight leading-tight">
+                        {currentLang === 'ro' ? 'Despre noi' : currentLang === 'ru' ? 'О нас' : 'About us'}
+                      </h3>
+                      <p className="text-white/45 text-base font-normal leading-relaxed max-w-sm">
+                        {currentLang === 'ro' ? 'Cunoaște echipa, pastorul și misiunea noastră. Suntem o comunitate care crește împreună.' : currentLang === 'ru' ? 'Познакомьтесь с командой, пастором и нашей миссией.' : 'Meet the team, pastor, and our mission.'}
+                      </p>
                     </div>
-                  </Link>
-                </ScrollReveal>
-              ))}
+                    <div className="mt-8 flex items-center gap-2 text-sky-300 group-hover:text-sky-200 transition-colors text-sm font-semibold">
+                      <span>{currentLang === 'ro' ? 'Descoperă' : currentLang === 'ru' ? 'Открыть' : 'Discover'}</span>
+                      <ArrowRight className="size-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.1}>
+                <Link
+                  to={`/${currentLang}/biblia`}
+                  className="group block rounded-2xl bg-white/[0.04] border border-white/8 text-white p-8 md:p-10 h-full min-h-[280px] relative overflow-hidden transition-all duration-500 hover:bg-white/[0.07] hover:border-white/15 hover:-translate-y-1"
+                >
+                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-400/8 rounded-full blur-[60px] pointer-events-none" />
+                  <div className="relative z-10 flex flex-col justify-between h-full">
+                    <div className="space-y-4">
+                      <div className="size-12 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center">
+                        <Book className="size-6 text-amber-300/80" strokeWidth={1.5} />
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight leading-tight">
+                        {currentLang === 'ro' ? 'Citește Biblia' : currentLang === 'ru' ? 'Читайте Библию' : 'Read the Bible'}
+                      </h3>
+                      <p className="text-white/45 text-base font-normal leading-relaxed max-w-sm">
+                        {currentLang === 'ro' ? 'Cuvântul lui Dumnezeu — fundația credinței noastre. Citește în română, engleză sau rusă.' : currentLang === 'ru' ? 'Слово Бога — основа нашей веры.' : "God's Word — the foundation of our faith."}
+                      </p>
+                    </div>
+                    <div className="mt-8 flex items-center gap-2 text-amber-300/80 group-hover:text-amber-200 transition-colors text-sm font-semibold">
+                      <span>{currentLang === 'ro' ? 'Deschide' : currentLang === 'ru' ? 'Открыть' : 'Open'}</span>
+                      <ArrowRight className="size-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            </div>
+
+            {/* Bottom row — 2 smaller cards */}
+            <div className="grid sm:grid-cols-2 gap-5">
+              <ScrollReveal delay={0.15}>
+                <Link
+                  to={`/${currentLang}/donatii`}
+                  className="group block rounded-2xl bg-white/[0.04] border border-white/8 p-7 md:p-8 transition-all duration-500 hover:bg-white/[0.07] hover:border-white/15 hover:-translate-y-1"
+                >
+                  <div className="space-y-4">
+                    <div className="size-11 rounded-lg bg-emerald-500/10 border border-emerald-500/15 flex items-center justify-center">
+                      <Heart className="size-5 text-emerald-400" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="text-lg font-extrabold tracking-tight text-white leading-tight">
+                      {currentLang === 'ro' ? 'Susține lucrarea' : currentLang === 'ru' ? 'Поддержите служение' : 'Support the ministry'}
+                    </h3>
+                    <p className="text-sm text-white/40 font-normal leading-relaxed">
+                      {currentLang === 'ro' ? 'Participă la răspândirea Evangheliei prin dărnicie.' : currentLang === 'ru' ? 'Участвуйте в распространении Евангелия через щедрость.' : 'Participate in spreading the Gospel through generosity.'}
+                    </p>
+                    <div className="flex items-center gap-2 text-emerald-400 group-hover:text-emerald-300 transition-colors text-sm font-semibold pt-1">
+                      <span>{currentLang === 'ro' ? 'Descoperă' : currentLang === 'ru' ? 'Открыть' : 'Discover'}</span>
+                      <ArrowRight className="size-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.2}>
+                <Link
+                  to={`/${currentLang}/contact`}
+                  className="group block rounded-2xl bg-white/[0.04] border border-white/8 p-7 md:p-8 transition-all duration-500 hover:bg-white/[0.07] hover:border-white/15 hover:-translate-y-1"
+                >
+                  <div className="space-y-4">
+                    <div className="size-11 rounded-lg bg-orange-500/10 border border-orange-500/15 flex items-center justify-center">
+                      <MapPin className="size-5 text-orange-400" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="text-lg font-extrabold tracking-tight text-white leading-tight">
+                      {currentLang === 'ro' ? 'Vizitează-ne' : currentLang === 'ru' ? 'Посетите нас' : 'Visit us'}
+                    </h3>
+                    <p className="text-sm text-white/40 font-normal leading-relaxed">
+                      {currentLang === 'ro' ? 'Vino la o întâlnire sau trimite-ne un mesaj.' : currentLang === 'ru' ? 'Приходите на встречу или напишите нам.' : 'Come to a service or send us a message.'}
+                    </p>
+                    <div className="flex items-center gap-2 text-orange-400 group-hover:text-orange-300 transition-colors text-sm font-semibold pt-1">
+                      <span>{currentLang === 'ro' ? 'Descoperă' : currentLang === 'ru' ? 'Открыть' : 'Discover'}</span>
+                      <ArrowRight className="size-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
             </div>
           </div>
         </section>
 
-        {/* Hartă — pale to mid-blue */}
-        <section className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#c8dff5] via-[#dbeeff] to-[#1a4a80] text-slate-900">
-          <div className="max-w-6xl mx-auto space-y-8">
+        {/* ═══════════════════════════════════════════════════════════ */}
+        {/* Map + Visit CTA */}
+        {/* ═══════════════════════════════════════════════════════════ */}
+        <section className="py-24 md:py-32 px-6 lg:px-8 bg-[#071a2f] text-white relative overflow-hidden">
+          <div className="max-w-6xl mx-auto relative z-10">
             <ScrollReveal>
-              <div className="text-center mb-8 sm:mb-12 space-y-3">
-                <MapPin className="size-8 mx-auto text-[#1872B9]" strokeWidth={1.2} />
-                <p className="text-xs sm:text-sm tracking-[0.3em] uppercase text-sky-700 font-bold">
-                  {t('home.cta_visit.we_wait')}
-                </p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#0d3b6e] leading-none">
+              <div className="text-center mb-12 md:mb-16 space-y-4">
+                <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10">
+                  <MapPin className="size-4 text-sky-300" strokeWidth={1.5} />
+                  <span className="text-xs tracking-[0.3em] uppercase text-sky-300 font-bold">
+                    {t('home.cta_visit.we_wait')}
+                  </span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
                   {t('home.cta_visit.visit_us')}
                 </h2>
               </div>
             </ScrollReveal>
+
             <ScrollReveal delay={0.1}>
-              <div className="h-[320px] sm:h-[420px] md:h-[500px] border border-slate-200/80 bg-white rounded-3xl overflow-hidden shadow-lg">
+              <div className="h-[300px] sm:h-[380px] md:h-[460px] rounded-2xl overflow-hidden border border-white/8 shadow-2xl shadow-black/30">
                 <MapEmbed className="h-full" />
               </div>
             </ScrollReveal>
-          </div>
-        </section>
 
-        {/* Vizitează-ne CTA — deep blue */}
-        <section className="py-20 md:py-28 px-6 lg:px-8 bg-gradient-to-b from-[#1a4a80] via-[#0a2040] to-[#061629] text-white text-center relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-          <div className="max-w-3xl mx-auto space-y-8 relative z-10">
-            <ScrollReveal>
-              <p className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white/95 max-w-2xl mx-auto leading-relaxed">
-                {t('home.cta_visit.description')}
-              </p>
-              <div className="pt-8">
+            {/* CTA below map */}
+            <ScrollReveal delay={0.2}>
+              <div className="mt-16 md:mt-20 text-center space-y-8">
+                <p className="text-xl sm:text-2xl md:text-3xl font-medium text-white/60 max-w-2xl mx-auto leading-relaxed">
+                  {t('home.cta_visit.description')}
+                </p>
                 <Link
                   to={`/${currentLang}/contact`}
-                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#1872B9] text-white font-bold rounded-full hover:bg-white hover:text-[#1872B9] transition-all shadow-lg shadow-[#1872B9]/35 hover:shadow-xl hover:shadow-[#1872B9]/55 hover:-translate-y-0.5 active:scale-95 text-xs uppercase tracking-wider duration-300"
+                  className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-white text-[#0d2740] font-bold rounded-full hover:bg-sky-100 transition-all shadow-lg shadow-white/10 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 text-xs uppercase tracking-wider duration-300"
                 >
                   {currentLang === 'ro' ? 'Nevoie de rugăciune' : currentLang === 'ru' ? 'Нужда в молитве' : 'Prayer Request'}
                   <ArrowRight className="size-4" />

@@ -33,7 +33,7 @@ export function Header() {
         'fixed left-1/2 -translate-x-1/2 w-[92%] max-w-7xl z-50 transition-all duration-300 rounded-full border shadow-lg px-4 md:px-6',
         isTransparent
           ? 'top-4 md:top-6 bg-[#07162C]/50 backdrop-blur-md border-white/10 text-white'
-          : 'top-2 md:top-4 bg-background/90 backdrop-blur-md border-border text-foreground'
+          : 'top-2 md:top-4 bg-[#0a2240]/85 backdrop-blur-md border-white/10 text-white'
       )}
     >
       <div className="w-full">
@@ -53,16 +53,10 @@ export function Header() {
             </div>
             
             <div className="flex flex-col items-start leading-none">
-              <span className={cn(
-                'text-base md:text-lg font-bold tracking-[0.2em] transition-colors',
-                isTransparent ? 'text-white' : 'text-foreground'
-              )}>
+              <span className="text-base md:text-lg font-bold tracking-[0.2em] text-white">
                 BISERICA
               </span>
-              <span className={cn(
-                'text-[9px] md:text-xs font-semibold tracking-[0.3em] mt-1 transition-colors',
-                isTransparent ? 'text-white/90' : 'text-muted-foreground'
-              )}>
+              <span className="text-[9px] md:text-xs font-semibold tracking-[0.3em] mt-1 text-white/80">
                 UN NOU ÎNCEPUT
               </span>
             </div>
@@ -74,21 +68,13 @@ export function Header() {
               <Link
                 key={link.path}
                 to={link.path}
-                className={cn(
-                  'relative text-base leading-7 font-light tracking-wide transition-colors duration-200',
-                  isTransparent
-                    ? 'text-white hover:text-white/80'
-                    : 'text-foreground hover:text-foreground/70'
-                )}
+                className="relative text-base leading-7 font-light tracking-wide text-white/90 hover:text-white transition-colors duration-200"
               >
                 {link.name}
                 {(location.pathname === link.path || (link.path === `/${currentLang}` && location.pathname === `/${currentLang}/`)) && (
                   <motion.div
                     layoutId="activeNav"
-                    className={cn(
-                      'absolute -bottom-1 left-0 right-0 h-px',
-                      isTransparent ? 'bg-white' : 'bg-foreground'
-                    )}
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-white"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -96,27 +82,20 @@ export function Header() {
             ))}
             
             <LanguageSelector 
-              className={cn(
-                "ml-4 border-l border-white/10 pl-4",
-                isTransparent ? "text-white" : "text-foreground"
-              )} 
+              className="ml-4 border-l border-white/20 pl-4 text-white" 
             />
           </nav>
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-2">
-            <LanguageSelector 
-              className={cn(
-                isTransparent ? "text-white" : "text-foreground"
-              )} 
-            />
+            <LanguageSelector className="text-white" />
             
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className={cn('size-10', isTransparent && 'text-white hover:bg-white/10')}
+                  className="size-10 text-white hover:bg-white/10"
                   aria-label="Deschide meniul"
                 >
                   <Menu className="size-6" />
